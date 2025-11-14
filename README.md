@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Listener Dashboard (Icecast)
 
 A tiny, free-to-host listener-count dashboard. Scrape one or more Icecast `status.xsl` pages every ~15–30 minutes,
@@ -96,3 +97,6 @@ python3 -m http.server 8000
 
 ---
 Made with ❤️ for simple radio dashboards.
+=======
+# nopheros-listener-dashboard-main
+>>>>>>> 07c34ff (Initial commit)
