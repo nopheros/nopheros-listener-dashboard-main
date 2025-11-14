@@ -1,0 +1,7 @@
+# Run every 30 minutes (at minute 0 and 30). Adjust as desired.
+# Make sure the path to python and the script are correct for your Pi.
+# Also ensure LISTENER_URLS and (optionally) LISTENER_LABELS are exported in the user's environment
+# or prefixed inline like below.
+
+# Example with inline env vars and logging to a file:
+LISTENER_URLS="https://radio.turtle-music.org/status.xsl,https://sgradio.turtle-music.org/status.xsl"     LISTENER_LABELS="Tower 1,Tower 2"     /usr/bin/python3 /home/pi/listener-dashboard/scraper/scrape_and_push.py >> /home/pi/listener-dashboard/scraper/cron.log 2>&1
