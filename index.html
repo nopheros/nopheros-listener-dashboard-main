@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Listener Dashboard</title>
+  <style>
+    body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  margin: 0;
+  background:#0b0b0d;
+  color:#e9e9ee;
+}
+header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #222;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.badge {
+  padding:6px 10px;
+  border:1px solid #333;
+  border-radius:20px;
+  font-size:12px;
+  background:#121217;
+}
+main {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 22px;
+  margin: 0 0 6px 0;
+}
+.controls {
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+button {
+  border:1px solid #333;
+  background:#121217;
+  color:#e9e9ee;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+button.active {
+  outline:2px solid #5da;
+}
+#updated {
+  opacity:0.8;
+  font-size:12px;
+}
+
+/* Chart area */
+.chart-wrapper {
+  position: relative;
+  height: 420px;      /* fixed visual height */
+  max-width: 100%;
+  margin-top: 12px;
+  background:#0e0e12;
+  border:1px solid #222;
+  border-radius:14px;
+  padding:10px;
+  box-sizing: border-box;
+}
+
+canvas {
+  display:block;
+  width: 100% !important;
+  height: 100% !important;
+}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+  <header>
+    <h1>Listener Dashboard</h1>
+    <span class="badge">Live (auto-refresh)</span>
+    <span id="updated" class="badge">—</span>
+  </header>
+  <main>
+    <div class="controls">
+      <button data-range="24h" class="active">Last 24h</button>
+      <button data-range="all">All Time</button>
+      <button id="refresh">Refresh Now</button>
+    </div>
+    <p>Total listeners is the bold line. Click series names in the legend to toggle visibility.</p>
+    <div class="chart-wrapper">
+      <canvas id="chart"></canvas>
+    </div>
+  </main>
+
+  <script>
+    const paths = {
+      "24h": "data/data_24h.json",
+      "all": "data/data_all.json"
+    };
+    let currentRange = "24h";
+    let chart;
+
+    async function fetchData(kind) {
+      const url = paths[kind];
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to load " + url);
+      return await res.json();
+    }
+
+    function toDataset(series, isTotal=false) {
+      return {
+        label: series.name,
+        data: series.points.map(([x, y]) => ({ x, y })),
+        borderWidth: isTotal ? 3 : 2,
+        pointRadius: 0,
+        tension: 0.2
+      };
+    }
+
+    function buildChart(payload) {
+      const ctx = document.getElementById('chart').getContext('2d');
+      const total = payload.series.find(s => s.name.toLowerCase() === "total");
+      const others = payload.series.filter(s => s !== total);
+
+      const datasets = [];
+      if (others) datasets.push(...others.map(s => toDataset(s)));
+      if (total) datasets.push(toDataset(total, true));
+
+      const config = {
+        type: 'line',
+        data: { datasets },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          parsing: false,
+          scales: {
+            x: {
+              type: 'time',
+              time: { unit: 'hour' },
+              ticks: { color: '#aaa' },
+              grid: { color: '#222' }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#aaa' },
+              grid: { color: '#222' }
+            }
+          },
+          plugins: {
+            legend: { labels: { color: '#ddd' } },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                title: (items) => new Date(items[0].parsed.x).toLocaleString()
+              }
+            }
+          },
+          interaction: { mode: 'nearest', axis: 'x', intersect: false }
+        }
+      };
+      if (chart) chart.destroy();
+      chart = new Chart(ctx, config);
+      document.getElementById('updated').textContent = "Updated: " + (payload.generated_at || new Date().toISOString());
+    }
+
+    async function loadRange(kind) {
+      try {
+        const payload = await fetchData(kind);
+        buildChart(payload);
+      } catch (e) {
+        console.error(e);
+        alert("Failed to load data. Have you run the scraper yet?");
+      }
+    }
+
+    // Hook up controls
+    document.querySelectorAll("button[data-range]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("button[data-range]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentRange = btn.dataset.range;
+        loadRange(currentRange);
+      });
+    });
+    document.getElementById("refresh").addEventListener("click", () => loadRange(currentRange));
+
+    // Auto-refresh every 60 seconds
+    setInterval(() => loadRange(currentRange), 60000);
+
+    // Initial load
+    loadRange(currentRange);
+  </script>
+  <!-- Lightweight time adapter using Chart.js built-in date functionality via Intl, no extra deps -->
+</body>
+</html>
