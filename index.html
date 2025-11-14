@@ -40,6 +40,21 @@ h1 {
   align-items:center;
   flex-wrap:wrap;
 }
+/* Small stat box shown above the chart */
+.stats {
+  margin-top:12px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.stat-box {
+  background:#121217;
+  border:1px solid #222;
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:16px;
+}
+.stat-box strong { font-weight:700; color:#e9e9ee; }
 button {
   border:1px solid #333;
   background:#121217;
@@ -89,6 +104,9 @@ canvas {
       <button data-range="24h" class="active">Last 24h</button>
       <button data-range="all">All Time</button>
       <button id="refresh">Refresh Now</button>
+    </div>
+    <div class="stats">
+      <div id="total-box" class="stat-box">Total listeners: <strong id="total-value">—</strong></div>
     </div>
     <p>Total listeners is the bold line. Click series names in the legend to toggle visibility.</p>
     <div class="chart-wrapper">
@@ -165,6 +183,20 @@ canvas {
       };
       if (chart) chart.destroy();
       chart = new Chart(ctx, config);
+      // Update the small total-listeners box (latest data point of the "Total" series)
+      try {
+        const totalBoxEl = document.getElementById('total-value');
+        if (total && total.points && total.points.length && totalBoxEl) {
+          const last = total.points[total.points.length - 1];
+          // last is [timestamp, value]
+          totalBoxEl.textContent = String(last[1]);
+        } else if (totalBoxEl) {
+          totalBoxEl.textContent = '—';
+        }
+      } catch (e) {
+        console.warn('Failed updating total box', e);
+      }
+
       document.getElementById('updated').textContent = "Updated: " + (payload.generated_at || new Date().toISOString());
     }
 
