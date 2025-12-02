@@ -12,6 +12,12 @@
   justify-content: center;
   margin: 24px 16px;
 }
+.now-playing {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #aaa;
+    font-style: italic;
+}
 
 .tower3-player-card {
   display: flex;
@@ -222,7 +228,8 @@ canvas {
           >
             ▶
           </a>
-
+    <!-- ⭐ NEW: Live Now Playing text -->
+    <p id="now-playing" class="now-playing">Loading track…</p>
           <!-- Fake volume bar for the “mini player” look -->
           <div class="tower3-volume-bar">
             <div class="tower3-volume-fill"></div>
@@ -348,7 +355,46 @@ canvas {
 
     // Initial load
     loadRange(currentRange);
-  </script>
+  </script><script>
+// ========== NOW PLAYING FETCH LOOP ==========
+
+// URL to your Icecast server’s JSON status output
+const NOW_PLAYING_URL = "http://***REMOVED***:8000/status-json.xsl";
+
+// Where we will place the text
+const nowPlayingElement = document.getElementById("now-playing");
+
+async function updateNowPlaying() {
+    try {
+        const response = await fetch(NOW_PLAYING_URL, { cache: "no-store" });
+        const data = await response.json();
+
+        // Icecast puts sources inside "icestats.source"
+        let source = data.icestats.source;
+
+        // If multiple mountpoints exist, pick /tower3 only
+        if (Array.isArray(source)) {
+            source = source.find(s => s.listenurl && s.listenurl.includes("/tower3"));
+        }
+
+        if (source && source.title) {
+            nowPlayingElement.textContent = "Now Playing: " + source.title;
+        } else {
+            nowPlayingElement.textContent = "Now Playing: (no metadata)";
+        }
+    } catch (err) {
+        nowPlayingElement.textContent = "Now Playing: (unavailable)";
+        console.error("Metadata fetch failed:", err);
+    }
+}
+
+// Run immediately
+updateNowPlaying();
+
+// Refresh every 10 seconds
+setInterval(updateNowPlaying, 10000);
+</script>
+
   <!-- Lightweight time adapter using Chart.js built-in date functionality via Intl, no extra deps -->
 </body>
 </html>
