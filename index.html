@@ -5,6 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Listener Dashboard</title>
   <style>
+    /* ---- Tower 3 mini player ---- */
+
+.player-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 24px 16px;
+}
+
+.tower3-player-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #121212;
+  border-radius: 18px;
+  padding: 14px 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  max-width: 520px;
+  width: 100%;
+}
+
+.tower3-player-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.tower3-player-content h2 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+}
+
+.tower3-player-content p {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
+
+.tower3-player-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.tower3-play-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #27ae60);
+  color: #000;
+  font-size: 1.2rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.tower3-play-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.7);
+}
+
+.tower3-volume-bar {
+  position: relative;
+  width: 180px;
+  height: 6px;
+  border-radius: 999px;
+  background: #2b2b2b;
+  overflow: hidden;
+}
+
+.tower3-volume-fill {
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+}
+
+.tower3-player-content small {
+  font-size: 0.75rem;
+  color: #888;
+}
+
     body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
   margin: 0;
@@ -94,6 +180,41 @@ canvas {
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
 <body>
+    <!-- Tower 3 - Mini Player Card -->
+  <section class="player-wrapper">
+    <div class="tower3-player-card">
+      <img
+        src="img/logo.jpg"
+        alt="Nopheros Logo"
+        class="tower3-player-logo"
+      />
+
+      <div class="tower3-player-content">
+        <h2>Tower 3 – Everlook Broadcasting</h2>
+        <p>24/7 AutoDJ from the Pilgrim of the Signal archive.</p>
+
+        <div class="tower3-player-controls">
+          <!-- This acts like the play button: opens the stream URL -->
+          <a
+            href="http://***REMOVED***:8000/tower3"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="tower3-play-button"
+          >
+            ▶
+          </a>
+
+          <!-- Fake volume bar for the “mini player” look -->
+          <div class="tower3-volume-bar">
+            <div class="tower3-volume-fill"></div>
+          </div>
+        </div>
+
+        <small>Opens in your browser or media player.</small>
+      </div>
+    </div>
+  </section>
+
   <header>
     <h1>Listener Dashboard</h1>
     <span class="badge">Live (auto-refresh)</span>
