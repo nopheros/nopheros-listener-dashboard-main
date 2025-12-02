@@ -181,40 +181,7 @@ canvas {
 </head>
 <body>
     <!-- Tower 3 - Mini Player Card -->
-  <section class="player-wrapper">
-    <div class="tower3-player-card">
-      <img
-        src="img/logo.jpg"
-        alt="Nopheros Logo"
-        class="tower3-player-logo"
-      />
-
-      <div class="tower3-player-content">
-        <h2>Tower 3 – Everlook Broadcasting Co. Testing</h2>
-        <p>That rickety old tower that skeezy Gnomes wouldn't even touch...</p>
-
-        <div class="tower3-player-controls">
-          <!-- This acts like the play button: opens the stream URL -->
-          <a
-            href="http://***REMOVED***:8000/tower3"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="tower3-play-button"
-          >
-            ▶
-          </a>
-
-          <!-- Fake volume bar for the “mini player” look -->
-          <div class="tower3-volume-bar">
-            <div class="tower3-volume-fill"></div>
-          </div>
-        </div>
-
-        <small>opens in your browser or media player</small>
-      </div>
-    </div>
-  </section>
-
+  
   <header>
     <h1>Listener Dashboard</h1>
     <span class="badge">Live (auto-refresh)</span>
@@ -233,6 +200,40 @@ canvas {
     <div class="chart-wrapper">
       <canvas id="chart"></canvas>
     </div>
+    <section class="player-wrapper">
+    <div class="tower3-player-card">
+      <img
+        src="img/logo.jpg"
+        alt="Nopheros Logo"
+        class="tower3-player-logo"
+      />
+
+      <div class="tower3-player-content">
+        <h2>Tower 3 – Everlook Broadcasting Co. Testing</h2>
+        <p>That rickety old tower that skeezy Gnomes wouldn't even touch...</p>
+
+        <div class="tower3-player-controls">
+          <!-- This acts like the play button: opens the stream URL -->
+          <a
+            href="http://***REMOVED***:8000/tower3.m3u"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="tower3-play-button"
+          >
+            ▶
+          </a>
+
+          <!-- Fake volume bar for the “mini player” look -->
+          <div class="tower3-volume-bar">
+            <div class="tower3-volume-fill"></div>
+          </div>
+        </div>
+
+        <small>opens in your browser or media player</small>
+      </div>
+    </div>
+  </section>
+
   </main>
 
   <script>
