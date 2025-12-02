@@ -1,0 +1,2574 @@
+Thu 13 Nov 23:30:01 EST 2025
+7116	data/data_24h.json
+7116	data/data_all.json
+Fri 14 Nov 00:00:01 EST 2025
+8091	data/data_24h.json
+8091	data/data_all.json
+Fri 14 Nov 00:30:01 EST 2025
+9066	data/data_24h.json
+9066	data/data_all.json
+Fri 14 Nov 01:00:01 EST 2025
+10041	data/data_24h.json
+10041	data/data_all.json
+Fri 14 Nov 01:30:01 EST 2025
+11016	data/data_24h.json
+11016	data/data_all.json
+Fri 14 Nov 02:00:01 EST 2025
+11991	data/data_24h.json
+11991	data/data_all.json
+Fri 14 Nov 02:30:01 EST 2025
+12966	data/data_24h.json
+12966	data/data_all.json
+Fri 14 Nov 03:00:01 EST 2025
+13941	data/data_24h.json
+13941	data/data_all.json
+Fri 14 Nov 03:30:01 EST 2025
+14916	data/data_24h.json
+14916	data/data_all.json
+Fri 14 Nov 04:00:01 EST 2025
+15887	data/data_24h.json
+15887	data/data_all.json
+Fri 14 Nov 04:30:01 EST 2025
+16856	data/data_24h.json
+16856	data/data_all.json
+Fri 14 Nov 05:00:01 EST 2025
+17822	data/data_24h.json
+17822	data/data_all.json
+Fri 14 Nov 05:30:01 EST 2025
+18792	data/data_24h.json
+18792	data/data_all.json
+Fri 14 Nov 06:00:01 EST 2025
+19767	data/data_24h.json
+19767	data/data_all.json
+Fri 14 Nov 06:30:01 EST 2025
+20742	data/data_24h.json
+20742	data/data_all.json
+Fri 14 Nov 07:00:01 EST 2025
+21717	data/data_24h.json
+21717	data/data_all.json
+Fri 14 Nov 07:30:01 EST 2025
+22692	data/data_24h.json
+22692	data/data_all.json
+Fri 14 Nov 08:00:01 EST 2025
+23667	data/data_24h.json
+23667	data/data_all.json
+Fri 14 Nov 08:30:01 EST 2025
+24641	data/data_24h.json
+24641	data/data_all.json
+Fri 14 Nov 09:00:01 EST 2025
+25616	data/data_24h.json
+25616	data/data_all.json
+Fri 14 Nov 09:30:01 EST 2025
+26591	data/data_24h.json
+26591	data/data_all.json
+Fri 14 Nov 10:00:01 EST 2025
+27566	data/data_24h.json
+27566	data/data_all.json
+Fri 14 Nov 10:30:01 EST 2025
+28541	data/data_24h.json
+28541	data/data_all.json
+Fri 14 Nov 11:00:01 EST 2025
+29516	data/data_24h.json
+29516	data/data_all.json
+Fri 14 Nov 11:30:01 EST 2025
+30491	data/data_24h.json
+30491	data/data_all.json
+Fri 14 Nov 12:00:01 EST 2025
+31466	data/data_24h.json
+31466	data/data_all.json
+Fri 14 Nov 12:30:01 EST 2025
+32441	data/data_24h.json
+32441	data/data_all.json
+Fri 14 Nov 13:00:01 EST 2025
+33416	data/data_24h.json
+33416	data/data_all.json
+Fri 14 Nov 13:30:01 EST 2025
+34391	data/data_24h.json
+34391	data/data_all.json
+Fri 14 Nov 14:00:01 EST 2025
+35366	data/data_24h.json
+35366	data/data_all.json
+Fri 14 Nov 14:30:02 EST 2025
+36341	data/data_24h.json
+36341	data/data_all.json
+Fri 14 Nov 15:00:01 EST 2025
+37310	data/data_24h.json
+37310	data/data_all.json
+Fri 14 Nov 15:30:01 EST 2025
+38285	data/data_24h.json
+38285	data/data_all.json
+Fri 14 Nov 16:00:01 EST 2025
+39260	data/data_24h.json
+39260	data/data_all.json
+Fri 14 Nov 16:30:01 EST 2025
+40235	data/data_24h.json
+40235	data/data_all.json
+Fri 14 Nov 17:00:01 EST 2025
+41210	data/data_24h.json
+41210	data/data_all.json
+Fri 14 Nov 17:30:01 EST 2025
+42185	data/data_24h.json
+42185	data/data_all.json
+Fri 14 Nov 18:00:01 EST 2025
+43160	data/data_24h.json
+43160	data/data_all.json
+Fri 14 Nov 18:30:01 EST 2025
+44135	data/data_24h.json
+44135	data/data_all.json
+Fri 14 Nov 19:00:01 EST 2025
+45110	data/data_24h.json
+45110	data/data_all.json
+Fri 14 Nov 19:30:01 EST 2025
+45760	data/data_24h.json
+46085	data/data_all.json
+Fri 14 Nov 20:00:01 EST 2025
+46661	data/data_24h.json
+47051	data/data_all.json
+Fri 14 Nov 20:30:01 EST 2025
+47051	data/data_24h.json
+48026	data/data_all.json
+Fri 14 Nov 21:00:01 EST 2025
+46986	data/data_24h.json
+49001	data/data_all.json
+Fri 14 Nov 21:30:01 EST 2025
+46986	data/data_24h.json
+49976	data/data_all.json
+Fri 14 Nov 22:00:01 EST 2025
+47051	data/data_24h.json
+50951	data/data_all.json
+Fri 14 Nov 22:30:01 EST 2025
+47051	data/data_24h.json
+51926	data/data_all.json
+Fri 14 Nov 23:00:01 EST 2025
+46986	data/data_24h.json
+52901	data/data_all.json
+Fri 14 Nov 23:30:01 EST 2025
+46986	data/data_24h.json
+53876	data/data_all.json
+Sat 15 Nov 00:00:01 EST 2025
+46921	data/data_24h.json
+54851	data/data_all.json
+Sat 15 Nov 00:30:01 EST 2025
+46921	data/data_24h.json
+55826	data/data_all.json
+Sat 15 Nov 01:00:01 EST 2025
+46986	data/data_24h.json
+56801	data/data_all.json
+Sat 15 Nov 01:30:01 EST 2025
+46986	data/data_24h.json
+57776	data/data_all.json
+Sat 15 Nov 02:00:01 EST 2025
+46986	data/data_24h.json
+58751	data/data_all.json
+Sat 15 Nov 02:30:01 EST 2025
+46986	data/data_24h.json
+59726	data/data_all.json
+Sat 15 Nov 03:00:01 EST 2025
+46921	data/data_24h.json
+60701	data/data_all.json
+Sat 15 Nov 03:30:01 EST 2025
+46986	data/data_24h.json
+61676	data/data_all.json
+Sat 15 Nov 04:00:01 EST 2025
+46989	data/data_24h.json
+62651	data/data_all.json
+Sat 15 Nov 04:30:01 EST 2025
+46931	data/data_24h.json
+63626	data/data_all.json
+Sat 15 Nov 05:00:01 EST 2025
+46940	data/data_24h.json
+64601	data/data_all.json
+Sat 15 Nov 05:30:01 EST 2025
+46945	data/data_24h.json
+65576	data/data_all.json
+Sat 15 Nov 06:00:01 EST 2025
+47010	data/data_24h.json
+66551	data/data_all.json
+Sat 15 Nov 06:30:01 EST 2025
+46945	data/data_24h.json
+67526	data/data_all.json
+Sat 15 Nov 07:00:01 EST 2025
+46945	data/data_24h.json
+68501	data/data_all.json
+Sat 15 Nov 07:30:01 EST 2025
+47010	data/data_24h.json
+69476	data/data_all.json
+Sat 15 Nov 08:00:01 EST 2025
+46945	data/data_24h.json
+70451	data/data_all.json
+Sat 15 Nov 08:30:01 EST 2025
+46946	data/data_24h.json
+71426	data/data_all.json
+Sat 15 Nov 09:00:01 EST 2025
+47011	data/data_24h.json
+72401	data/data_all.json
+Sat 15 Nov 09:30:01 EST 2025
+46946	data/data_24h.json
+73376	data/data_all.json
+Sat 15 Nov 10:00:01 EST 2025
+47011	data/data_24h.json
+74351	data/data_all.json
+Sat 15 Nov 10:30:01 EST 2025
+47011	data/data_24h.json
+75326	data/data_all.json
+Sat 15 Nov 11:00:01 EST 2025
+46946	data/data_24h.json
+76301	data/data_all.json
+Sat 15 Nov 11:30:01 EST 2025
+46946	data/data_24h.json
+77276	data/data_all.json
+Sat 15 Nov 12:00:01 EST 2025
+46946	data/data_24h.json
+78251	data/data_all.json
+Sat 15 Nov 12:30:01 EST 2025
+47011	data/data_24h.json
+79226	data/data_all.json
+Sat 15 Nov 13:00:01 EST 2025
+46946	data/data_24h.json
+80201	data/data_all.json
+Sat 15 Nov 13:30:01 EST 2025
+46946	data/data_24h.json
+81176	data/data_all.json
+Sat 15 Nov 14:00:01 EST 2025
+47011	data/data_24h.json
+82151	data/data_all.json
+Sat 15 Nov 14:30:01 EST 2025
+46946	data/data_24h.json
+83126	data/data_all.json
+Sat 15 Nov 15:00:01 EST 2025
+46952	data/data_24h.json
+84101	data/data_all.json
+Sat 15 Nov 15:30:01 EST 2025
+47017	data/data_24h.json
+85076	data/data_all.json
+Sat 15 Nov 16:00:01 EST 2025
+47017	data/data_24h.json
+86051	data/data_all.json
+Sat 15 Nov 16:30:01 EST 2025
+47017	data/data_24h.json
+87026	data/data_all.json
+Sat 15 Nov 17:00:01 EST 2025
+46952	data/data_24h.json
+88001	data/data_all.json
+Sat 15 Nov 17:30:01 EST 2025
+46952	data/data_24h.json
+88976	data/data_all.json
+Sat 15 Nov 18:00:01 EST 2025
+46952	data/data_24h.json
+89951	data/data_all.json
+Sat 15 Nov 18:30:01 EST 2025
+47017	data/data_24h.json
+90926	data/data_all.json
+Sat 15 Nov 19:00:01 EST 2025
+47017	data/data_24h.json
+91901	data/data_all.json
+Sat 15 Nov 19:30:01 EST 2025
+46952	data/data_24h.json
+92876	data/data_all.json
+Sat 15 Nov 20:00:01 EST 2025
+46961	data/data_24h.json
+93851	data/data_all.json
+Sat 15 Nov 20:30:01 EST 2025
+47026	data/data_24h.json
+94826	data/data_all.json
+Sat 15 Nov 21:00:01 EST 2025
+47026	data/data_24h.json
+95801	data/data_all.json
+Sat 15 Nov 21:30:01 EST 2025
+47026	data/data_24h.json
+96776	data/data_all.json
+Sat 15 Nov 22:00:01 EST 2025
+47026	data/data_24h.json
+97751	data/data_all.json
+Sat 15 Nov 22:30:01 EST 2025
+46961	data/data_24h.json
+98726	data/data_all.json
+Sat 15 Nov 23:00:01 EST 2025
+46961	data/data_24h.json
+99701	data/data_all.json
+Sat 15 Nov 23:30:01 EST 2025
+47026	data/data_24h.json
+100676	data/data_all.json
+Sun 16 Nov 00:00:01 EST 2025
+46961	data/data_24h.json
+101651	data/data_all.json
+Sun 16 Nov 00:30:01 EST 2025
+47026	data/data_24h.json
+102626	data/data_all.json
+Sun 16 Nov 01:00:01 EST 2025
+46961	data/data_24h.json
+103601	data/data_all.json
+Sun 16 Nov 01:30:01 EST 2025
+46961	data/data_24h.json
+104576	data/data_all.json
+Sun 16 Nov 02:00:01 EST 2025
+47026	data/data_24h.json
+105551	data/data_all.json
+Sun 16 Nov 02:30:01 EST 2025
+46961	data/data_24h.json
+106526	data/data_all.json
+Sun 16 Nov 03:00:01 EST 2025
+47026	data/data_24h.json
+107501	data/data_all.json
+Sun 16 Nov 03:30:01 EST 2025
+46961	data/data_24h.json
+108476	data/data_all.json
+Sun 16 Nov 04:00:01 EST 2025
+46961	data/data_24h.json
+109451	data/data_all.json
+Sun 16 Nov 04:30:01 EST 2025
+47026	data/data_24h.json
+110426	data/data_all.json
+Sun 16 Nov 05:00:01 EST 2025
+47026	data/data_24h.json
+111401	data/data_all.json
+Sun 16 Nov 05:30:01 EST 2025
+46961	data/data_24h.json
+112376	data/data_all.json
+Sun 16 Nov 06:00:01 EST 2025
+46961	data/data_24h.json
+113351	data/data_all.json
+Sun 16 Nov 06:30:01 EST 2025
+47026	data/data_24h.json
+114326	data/data_all.json
+Sun 16 Nov 07:00:01 EST 2025
+46961	data/data_24h.json
+115301	data/data_all.json
+Sun 16 Nov 07:30:01 EST 2025
+46961	data/data_24h.json
+116276	data/data_all.json
+Sun 16 Nov 08:00:01 EST 2025
+47026	data/data_24h.json
+117251	data/data_all.json
+Sun 16 Nov 08:30:01 EST 2025
+47026	data/data_24h.json
+118226	data/data_all.json
+Sun 16 Nov 09:00:01 EST 2025
+46961	data/data_24h.json
+119201	data/data_all.json
+Sun 16 Nov 09:30:01 EST 2025
+47026	data/data_24h.json
+120176	data/data_all.json
+Sun 16 Nov 10:00:01 EST 2025
+46961	data/data_24h.json
+121151	data/data_all.json
+Sun 16 Nov 10:30:01 EST 2025
+46961	data/data_24h.json
+122126	data/data_all.json
+Sun 16 Nov 11:00:01 EST 2025
+47026	data/data_24h.json
+123101	data/data_all.json
+Sun 16 Nov 11:30:01 EST 2025
+46961	data/data_24h.json
+124076	data/data_all.json
+Sun 16 Nov 12:00:01 EST 2025
+47026	data/data_24h.json
+125051	data/data_all.json
+Sun 16 Nov 12:30:01 EST 2025
+46961	data/data_24h.json
+126026	data/data_all.json
+Sun 16 Nov 13:00:01 EST 2025
+47026	data/data_24h.json
+127001	data/data_all.json
+Sun 16 Nov 13:30:01 EST 2025
+47026	data/data_24h.json
+127976	data/data_all.json
+Sun 16 Nov 14:00:01 EST 2025
+47026	data/data_24h.json
+128951	data/data_all.json
+Sun 16 Nov 14:30:01 EST 2025
+47026	data/data_24h.json
+129926	data/data_all.json
+Sun 16 Nov 15:00:01 EST 2025
+47026	data/data_24h.json
+130901	data/data_all.json
+Sun 16 Nov 15:30:01 EST 2025
+46961	data/data_24h.json
+131876	data/data_all.json
+Sun 16 Nov 16:00:01 EST 2025
+47026	data/data_24h.json
+132851	data/data_all.json
+Sun 16 Nov 16:30:01 EST 2025
+46961	data/data_24h.json
+133826	data/data_all.json
+Sun 16 Nov 17:00:01 EST 2025
+46961	data/data_24h.json
+134801	data/data_all.json
+Sun 16 Nov 17:30:01 EST 2025
+47026	data/data_24h.json
+135776	data/data_all.json
+Sun 16 Nov 18:00:01 EST 2025
+47026	data/data_24h.json
+136751	data/data_all.json
+Sun 16 Nov 18:30:01 EST 2025
+46961	data/data_24h.json
+137726	data/data_all.json
+Sun 16 Nov 19:00:01 EST 2025
+46961	data/data_24h.json
+138701	data/data_all.json
+Sun 16 Nov 19:30:01 EST 2025
+46961	data/data_24h.json
+139676	data/data_all.json
+Sun 16 Nov 20:00:01 EST 2025
+46961	data/data_24h.json
+140651	data/data_all.json
+Sun 16 Nov 20:30:01 EST 2025
+46961	data/data_24h.json
+141626	data/data_all.json
+Sun 16 Nov 21:00:01 EST 2025
+46961	data/data_24h.json
+142601	data/data_all.json
+Sun 16 Nov 21:30:01 EST 2025
+47026	data/data_24h.json
+143576	data/data_all.json
+Sun 16 Nov 22:00:01 EST 2025
+46961	data/data_24h.json
+144551	data/data_all.json
+Sun 16 Nov 22:30:01 EST 2025
+47026	data/data_24h.json
+145526	data/data_all.json
+Sun 16 Nov 23:00:01 EST 2025
+46961	data/data_24h.json
+146501	data/data_all.json
+Sun 16 Nov 23:30:01 EST 2025
+46961	data/data_24h.json
+147476	data/data_all.json
+Mon 17 Nov 00:00:01 EST 2025
+47026	data/data_24h.json
+148451	data/data_all.json
+Mon 17 Nov 00:30:01 EST 2025
+46961	data/data_24h.json
+149426	data/data_all.json
+Mon 17 Nov 01:00:01 EST 2025
+47026	data/data_24h.json
+150401	data/data_all.json
+Mon 17 Nov 01:30:01 EST 2025
+46961	data/data_24h.json
+151376	data/data_all.json
+Mon 17 Nov 02:00:01 EST 2025
+46957	data/data_24h.json
+152347	data/data_all.json
+Mon 17 Nov 02:30:01 EST 2025
+46948	data/data_24h.json
+153313	data/data_all.json
+Mon 17 Nov 03:00:01 EST 2025
+46948	data/data_24h.json
+154288	data/data_all.json
+Mon 17 Nov 03:30:01 EST 2025
+47001	data/data_24h.json
+155251	data/data_all.json
+Mon 17 Nov 04:00:01 EST 2025
+46931	data/data_24h.json
+156221	data/data_all.json
+Mon 17 Nov 04:30:01 EST 2025
+46931	data/data_24h.json
+157196	data/data_all.json
+Mon 17 Nov 05:00:01 EST 2025
+46996	data/data_24h.json
+158171	data/data_all.json
+Mon 17 Nov 05:30:01 EST 2025
+46931	data/data_24h.json
+159146	data/data_all.json
+Mon 17 Nov 06:00:01 EST 2025
+46996	data/data_24h.json
+160121	data/data_all.json
+Mon 17 Nov 06:30:01 EST 2025
+46931	data/data_24h.json
+161096	data/data_all.json
+Mon 17 Nov 07:00:01 EST 2025
+46996	data/data_24h.json
+162071	data/data_all.json
+Mon 17 Nov 07:30:01 EST 2025
+46996	data/data_24h.json
+163046	data/data_all.json
+Mon 17 Nov 08:00:01 EST 2025
+46931	data/data_24h.json
+164021	data/data_all.json
+Mon 17 Nov 08:30:01 EST 2025
+46931	data/data_24h.json
+164996	data/data_all.json
+Mon 17 Nov 09:00:01 EST 2025
+46996	data/data_24h.json
+165971	data/data_all.json
+Mon 17 Nov 09:30:01 EST 2025
+46996	data/data_24h.json
+166946	data/data_all.json
+Mon 17 Nov 10:00:01 EST 2025
+46996	data/data_24h.json
+167921	data/data_all.json
+Mon 17 Nov 10:30:01 EST 2025
+46931	data/data_24h.json
+168896	data/data_all.json
+Mon 17 Nov 11:00:01 EST 2025
+46996	data/data_24h.json
+169871	data/data_all.json
+Mon 17 Nov 11:30:01 EST 2025
+46996	data/data_24h.json
+170846	data/data_all.json
+Mon 17 Nov 12:00:01 EST 2025
+46931	data/data_24h.json
+171821	data/data_all.json
+Mon 17 Nov 12:30:01 EST 2025
+46931	data/data_24h.json
+172796	data/data_all.json
+Mon 17 Nov 13:00:01 EST 2025
+46931	data/data_24h.json
+173771	data/data_all.json
+Mon 17 Nov 13:30:01 EST 2025
+46931	data/data_24h.json
+174746	data/data_all.json
+Mon 17 Nov 14:00:01 EST 2025
+46931	data/data_24h.json
+175721	data/data_all.json
+Mon 17 Nov 14:30:01 EST 2025
+46931	data/data_24h.json
+176696	data/data_all.json
+Mon 17 Nov 15:00:01 EST 2025
+46931	data/data_24h.json
+177671	data/data_all.json
+Mon 17 Nov 15:30:01 EST 2025
+46931	data/data_24h.json
+178646	data/data_all.json
+Mon 17 Nov 16:00:01 EST 2025
+46931	data/data_24h.json
+179621	data/data_all.json
+Mon 17 Nov 16:30:01 EST 2025
+46931	data/data_24h.json
+180596	data/data_all.json
+Mon 17 Nov 17:00:01 EST 2025
+46931	data/data_24h.json
+181571	data/data_all.json
+Mon 17 Nov 17:30:01 EST 2025
+46931	data/data_24h.json
+182546	data/data_all.json
+Mon 17 Nov 18:00:01 EST 2025
+46988	data/data_24h.json
+183513	data/data_all.json
+Mon 17 Nov 18:30:01 EST 2025
+46983	data/data_24h.json
+184483	data/data_all.json
+Mon 17 Nov 19:00:01 EST 2025
+46983	data/data_24h.json
+185458	data/data_all.json
+Mon 17 Nov 19:30:01 EST 2025
+46918	data/data_24h.json
+186433	data/data_all.json
+Mon 17 Nov 20:00:01 EST 2025
+46983	data/data_24h.json
+187408	data/data_all.json
+Mon 17 Nov 20:30:01 EST 2025
+46899	data/data_24h.json
+188364	data/data_all.json
+Mon 17 Nov 21:00:01 EST 2025
+46895	data/data_24h.json
+189335	data/data_all.json
+Mon 17 Nov 21:30:01 EST 2025
+46895	data/data_24h.json
+190310	data/data_all.json
+Mon 17 Nov 22:00:01 EST 2025
+46960	data/data_24h.json
+191285	data/data_all.json
+Mon 17 Nov 22:30:01 EST 2025
+46960	data/data_24h.json
+192260	data/data_all.json
+Mon 17 Nov 23:00:01 EST 2025
+46895	data/data_24h.json
+193235	data/data_all.json
+Mon 17 Nov 23:30:01 EST 2025
+46960	data/data_24h.json
+194210	data/data_all.json
+Tue 18 Nov 00:00:01 EST 2025
+46960	data/data_24h.json
+195185	data/data_all.json
+Tue 18 Nov 00:30:01 EST 2025
+46960	data/data_24h.json
+196160	data/data_all.json
+Tue 18 Nov 01:00:01 EST 2025
+46960	data/data_24h.json
+197135	data/data_all.json
+Tue 18 Nov 01:30:02 EST 2025
+46960	data/data_24h.json
+198110	data/data_all.json
+Tue 18 Nov 02:00:01 EST 2025
+46895	data/data_24h.json
+199081	data/data_all.json
+Tue 18 Nov 02:30:01 EST 2025
+46969	data/data_24h.json
+200056	data/data_all.json
+Tue 18 Nov 03:00:01 EST 2025
+46963	data/data_24h.json
+201025	data/data_all.json
+Tue 18 Nov 03:30:01 EST 2025
+46974	data/data_24h.json
+201999	data/data_all.json
+Tue 18 Nov 04:00:01 EST 2025
+46979	data/data_24h.json
+202974	data/data_all.json
+Tue 18 Nov 04:30:01 EST 2025
+46914	data/data_24h.json
+203949	data/data_all.json
+Tue 18 Nov 05:00:01 EST 2025
+46903	data/data_24h.json
+204913	data/data_all.json
+Tue 18 Nov 05:30:01 EST 2025
+46956	data/data_24h.json
+205876	data/data_all.json
+Tue 18 Nov 06:00:01 EST 2025
+46885	data/data_24h.json
+206845	data/data_all.json
+Tue 18 Nov 06:30:01 EST 2025
+46944	data/data_24h.json
+207814	data/data_all.json
+Tue 18 Nov 07:00:01 EST 2025
+46902	data/data_24h.json
+208747	data/data_all.json
+Tue 18 Nov 07:30:01 EST 2025
+46798	data/data_24h.json
+209683	data/data_all.json
+Tue 18 Nov 08:00:01 EST 2025
+46823	data/data_24h.json
+210618	data/data_all.json
+Tue 18 Nov 08:30:01 EST 2025
+46758	data/data_24h.json
+211528	data/data_all.json
+Tue 18 Nov 09:00:01 EST 2025
+46683	data/data_24h.json
+212428	data/data_all.json
+Tue 18 Nov 09:30:01 EST 2025
+46608	data/data_24h.json
+213328	data/data_all.json
+Tue 18 Nov 10:00:01 EST 2025
+46534	data/data_24h.json
+214294	data/data_all.json
+Tue 18 Nov 10:30:01 EST 2025
+46591	data/data_24h.json
+215261	data/data_all.json
+Tue 18 Nov 11:00:01 EST 2025
+46590	data/data_24h.json
+216235	data/data_all.json
+Tue 18 Nov 11:30:01 EST 2025
+46520	data/data_24h.json
+217205	data/data_all.json
+Tue 18 Nov 12:00:01 EST 2025
+46585	data/data_24h.json
+218180	data/data_all.json
+Tue 18 Nov 12:30:01 EST 2025
+46585	data/data_24h.json
+219155	data/data_all.json
+Tue 18 Nov 13:00:01 EST 2025
+46585	data/data_24h.json
+220130	data/data_all.json
+Tue 18 Nov 13:30:01 EST 2025
+46585	data/data_24h.json
+221105	data/data_all.json
+Tue 18 Nov 14:00:01 EST 2025
+46585	data/data_24h.json
+222080	data/data_all.json
+Tue 18 Nov 14:30:01 EST 2025
+46585	data/data_24h.json
+223055	data/data_all.json
+Tue 18 Nov 15:00:01 EST 2025
+46579	data/data_24h.json
+224024	data/data_all.json
+Tue 18 Nov 15:30:01 EST 2025
+46576	data/data_24h.json
+224996	data/data_all.json
+Tue 18 Nov 16:00:01 EST 2025
+46511	data/data_24h.json
+225971	data/data_all.json
+Tue 18 Nov 16:30:01 EST 2025
+46511	data/data_24h.json
+226946	data/data_all.json
+Tue 18 Nov 17:00:01 EST 2025
+46511	data/data_24h.json
+227921	data/data_all.json
+Tue 18 Nov 17:30:01 EST 2025
+46550	data/data_24h.json
+228870	data/data_all.json
+Tue 18 Nov 18:00:01 EST 2025
+46493	data/data_24h.json
+229845	data/data_all.json
+Tue 18 Nov 18:30:01 EST 2025
+46498	data/data_24h.json
+230820	data/data_all.json
+Tue 18 Nov 19:00:01 EST 2025
+46498	data/data_24h.json
+231795	data/data_all.json
+Tue 18 Nov 19:30:01 EST 2025
+46548	data/data_24h.json
+232755	data/data_all.json
+Tue 18 Nov 20:00:01 EST 2025
+46534	data/data_24h.json
+233716	data/data_all.json
+Tue 18 Nov 20:30:01 EST 2025
+46552	data/data_24h.json
+234691	data/data_all.json
+Tue 18 Nov 21:00:01 EST 2025
+46557	data/data_24h.json
+235666	data/data_all.json
+Tue 18 Nov 21:30:01 EST 2025
+46554	data/data_24h.json
+236638	data/data_all.json
+Tue 18 Nov 22:00:01 EST 2025
+46489	data/data_24h.json
+237613	data/data_all.json
+Tue 18 Nov 22:30:01 EST 2025
+46489	data/data_24h.json
+238588	data/data_all.json
+Tue 18 Nov 23:00:01 EST 2025
+46554	data/data_24h.json
+239563	data/data_all.json
+Tue 18 Nov 23:30:01 EST 2025
+46545	data/data_24h.json
+240529	data/data_all.json
+Wed 19 Nov 00:00:01 EST 2025
+46451	data/data_24h.json
+241475	data/data_all.json
+Wed 19 Nov 00:30:01 EST 2025
+46439	data/data_24h.json
+242438	data/data_all.json
+Wed 19 Nov 01:00:01 EST 2025
+46424	data/data_24h.json
+243398	data/data_all.json
+Wed 19 Nov 01:30:01 EST 2025
+46409	data/data_24h.json
+244358	data/data_all.json
+Wed 19 Nov 02:00:01 EST 2025
+46458	data/data_24h.json
+245313	data/data_all.json
+Wed 19 Nov 02:30:01 EST 2025
+46442	data/data_24h.json
+246272	data/data_all.json
+Wed 19 Nov 03:00:01 EST 2025
+46429	data/data_24h.json
+247229	data/data_all.json
+Wed 19 Nov 03:30:01 EST 2025
+46351	data/data_24h.json
+248189	data/data_all.json
+Wed 19 Nov 04:00:01 EST 2025
+46330	data/data_24h.json
+249143	data/data_all.json
+Wed 19 Nov 04:30:01 EST 2025
+46370	data/data_24h.json
+250093	data/data_all.json
+Wed 19 Nov 05:00:01 EST 2025
+46357	data/data_24h.json
+251045	data/data_all.json
+Wed 19 Nov 05:30:01 EST 2025
+46277	data/data_24h.json
+251992	data/data_all.json
+Wed 19 Nov 06:00:01 EST 2025
+46333	data/data_24h.json
+252952	data/data_all.json
+Wed 19 Nov 06:30:01 EST 2025
+46335	data/data_24h.json
+253923	data/data_all.json
+Wed 19 Nov 07:00:01 EST 2025
+46305	data/data_24h.json
+254891	data/data_all.json
+Wed 19 Nov 07:30:01 EST 2025
+46341	data/data_24h.json
+255863	data/data_all.json
+Wed 19 Nov 08:00:01 EST 2025
+46446	data/data_24h.json
+256838	data/data_all.json
+Wed 19 Nov 08:30:01 EST 2025
+46446	data/data_24h.json
+257813	data/data_all.json
+Wed 19 Nov 09:00:01 EST 2025
+46521	data/data_24h.json
+258788	data/data_all.json
+Wed 19 Nov 09:30:01 EST 2025
+46596	data/data_24h.json
+259763	data/data_all.json
+Wed 19 Nov 10:00:01 EST 2025
+46605	data/data_24h.json
+260738	data/data_all.json
+Wed 19 Nov 10:30:01 EST 2025
+46675	data/data_24h.json
+261713	data/data_all.json
+Wed 19 Nov 11:00:01 EST 2025
+46614	data/data_24h.json
+262688	data/data_all.json
+Wed 19 Nov 11:30:01 EST 2025
+46684	data/data_24h.json
+263663	data/data_all.json
+Wed 19 Nov 12:00:01 EST 2025
+46619	data/data_24h.json
+264638	data/data_all.json
+Wed 19 Nov 12:30:01 EST 2025
+46684	data/data_24h.json
+265613	data/data_all.json
+Wed 19 Nov 13:00:01 EST 2025
+46619	data/data_24h.json
+266588	data/data_all.json
+Wed 19 Nov 13:30:01 EST 2025
+46684	data/data_24h.json
+267563	data/data_all.json
+Wed 19 Nov 14:00:01 EST 2025
+46619	data/data_24h.json
+268538	data/data_all.json
+Wed 19 Nov 14:30:01 EST 2025
+46619	data/data_24h.json
+269513	data/data_all.json
+Wed 19 Nov 15:00:01 EST 2025
+46625	data/data_24h.json
+270488	data/data_all.json
+Wed 19 Nov 15:30:01 EST 2025
+46693	data/data_24h.json
+271463	data/data_all.json
+Wed 19 Nov 16:00:01 EST 2025
+46693	data/data_24h.json
+272438	data/data_all.json
+Wed 19 Nov 16:30:01 EST 2025
+46693	data/data_24h.json
+273413	data/data_all.json
+Wed 19 Nov 17:00:01 EST 2025
+46693	data/data_24h.json
+274388	data/data_all.json
+Wed 19 Nov 17:30:01 EST 2025
+46718	data/data_24h.json
+275363	data/data_all.json
+Wed 19 Nov 18:00:01 EST 2025
+46654	data/data_24h.json
+276338	data/data_all.json
+Wed 19 Nov 18:30:01 EST 2025
+46719	data/data_24h.json
+277313	data/data_all.json
+Wed 19 Nov 19:00:01 EST 2025
+46719	data/data_24h.json
+278288	data/data_all.json
+Wed 19 Nov 19:30:01 EST 2025
+46669	data/data_24h.json
+279263	data/data_all.json
+Wed 19 Nov 20:00:01 EST 2025
+46683	data/data_24h.json
+280238	data/data_all.json
+Wed 19 Nov 20:30:01 EST 2025
+46748	data/data_24h.json
+281213	data/data_all.json
+Wed 19 Nov 21:00:01 EST 2025
+46748	data/data_24h.json
+282188	data/data_all.json
+Wed 19 Nov 21:30:01 EST 2025
+46751	data/data_24h.json
+283163	data/data_all.json
+Wed 19 Nov 22:00:01 EST 2025
+46751	data/data_24h.json
+284138	data/data_all.json
+Wed 19 Nov 22:30:01 EST 2025
+46686	data/data_24h.json
+285113	data/data_all.json
+Wed 19 Nov 23:00:01 EST 2025
+46686	data/data_24h.json
+286088	data/data_all.json
+Wed 19 Nov 23:30:01 EST 2025
+46695	data/data_24h.json
+287063	data/data_all.json
+Thu 20 Nov 00:00:01 EST 2025
+46724	data/data_24h.json
+288038	data/data_all.json
+Thu 20 Nov 00:30:01 EST 2025
+46736	data/data_24h.json
+289013	data/data_all.json
+Thu 20 Nov 01:00:01 EST 2025
+46750	data/data_24h.json
+289987	data/data_all.json
+Thu 20 Nov 01:30:01 EST 2025
+46759	data/data_24h.json
+290956	data/data_all.json
+Thu 20 Nov 02:00:01 EST 2025
+46829	data/data_24h.json
+291917	data/data_all.json
+Thu 20 Nov 02:30:01 EST 2025
+46763	data/data_24h.json
+292874	data/data_all.json
+Thu 20 Nov 03:00:01 EST 2025
+46756	data/data_24h.json
+293824	data/data_all.json
+Thu 20 Nov 03:30:01 EST 2025
+46812	data/data_24h.json
+294776	data/data_all.json
+Thu 20 Nov 04:00:01 EST 2025
+46754	data/data_24h.json
+295736	data/data_all.json
+Thu 20 Nov 04:30:01 EST 2025
+46764	data/data_24h.json
+296696	data/data_all.json
+Thu 20 Nov 05:00:01 EST 2025
+46786	data/data_24h.json
+297670	data/data_all.json
+Thu 20 Nov 05:30:01 EST 2025
+46870	data/data_24h.json
+298638	data/data_all.json
+Thu 20 Nov 06:00:01 EST 2025
+46822	data/data_24h.json
+299613	data/data_all.json
+Thu 20 Nov 06:30:01 EST 2025
+46810	data/data_24h.json
+300572	data/data_all.json
+Thu 20 Nov 07:00:01 EST 2025
+46792	data/data_24h.json
+301522	data/data_all.json
+Thu 20 Nov 07:30:01 EST 2025
+46782	data/data_24h.json
+302484	data/data_all.json
+Thu 20 Nov 08:00:01 EST 2025
+46767	data/data_24h.json
+303444	data/data_all.json
+Thu 20 Nov 08:30:01 EST 2025
+46767	data/data_24h.json
+304419	data/data_all.json
+Thu 20 Nov 09:00:01 EST 2025
+46767	data/data_24h.json
+305394	data/data_all.json
+Thu 20 Nov 09:30:01 EST 2025
+46767	data/data_24h.json
+306369	data/data_all.json
+Thu 20 Nov 10:00:01 EST 2025
+46832	data/data_24h.json
+307344	data/data_all.json
+Thu 20 Nov 10:30:01 EST 2025
+46767	data/data_24h.json
+308319	data/data_all.json
+Thu 20 Nov 11:00:01 EST 2025
+46767	data/data_24h.json
+309294	data/data_all.json
+Thu 20 Nov 11:30:01 EST 2025
+46767	data/data_24h.json
+310269	data/data_all.json
+Thu 20 Nov 12:00:01 EST 2025
+46767	data/data_24h.json
+311244	data/data_all.json
+Thu 20 Nov 12:30:01 EST 2025
+46767	data/data_24h.json
+312219	data/data_all.json
+Thu 20 Nov 13:00:01 EST 2025
+46832	data/data_24h.json
+313194	data/data_all.json
+Thu 20 Nov 13:30:01 EST 2025
+46767	data/data_24h.json
+314169	data/data_all.json
+Thu 20 Nov 14:00:01 EST 2025
+46832	data/data_24h.json
+315144	data/data_all.json
+Thu 20 Nov 14:30:01 EST 2025
+46832	data/data_24h.json
+316119	data/data_all.json
+Thu 20 Nov 15:00:01 EST 2025
+46755	data/data_24h.json
+317082	data/data_all.json
+Thu 20 Nov 15:30:01 EST 2025
+46755	data/data_24h.json
+318057	data/data_all.json
+Thu 20 Nov 16:00:01 EST 2025
+46755	data/data_24h.json
+319032	data/data_all.json
+Thu 20 Nov 16:30:01 EST 2025
+46755	data/data_24h.json
+320007	data/data_all.json
+Thu 20 Nov 17:00:01 EST 2025
+46755	data/data_24h.json
+320982	data/data_all.json
+Thu 20 Nov 17:30:01 EST 2025
+46755	data/data_24h.json
+321957	data/data_all.json
+Thu 20 Nov 18:00:01 EST 2025
+46755	data/data_24h.json
+322932	data/data_all.json
+Thu 20 Nov 18:30:01 EST 2025
+46755	data/data_24h.json
+323907	data/data_all.json
+Thu 20 Nov 19:00:01 EST 2025
+46731	data/data_24h.json
+324858	data/data_all.json
+Thu 20 Nov 19:30:01 EST 2025
+46718	data/data_24h.json
+325820	data/data_all.json
+Thu 20 Nov 20:00:01 EST 2025
+46709	data/data_24h.json
+326786	data/data_all.json
+Thu 20 Nov 20:30:01 EST 2025
+46708	data/data_24h.json
+327760	data/data_all.json
+Thu 20 Nov 21:00:01 EST 2025
+46708	data/data_24h.json
+328735	data/data_all.json
+Thu 20 Nov 21:30:01 EST 2025
+46708	data/data_24h.json
+329710	data/data_all.json
+Thu 20 Nov 22:00:01 EST 2025
+46708	data/data_24h.json
+330685	data/data_all.json
+Thu 20 Nov 22:30:01 EST 2025
+46708	data/data_24h.json
+331660	data/data_all.json
+Thu 20 Nov 23:00:01 EST 2025
+46773	data/data_24h.json
+332635	data/data_all.json
+Thu 20 Nov 23:30:01 EST 2025
+46773	data/data_24h.json
+333610	data/data_all.json
+Fri 21 Nov 00:00:01 EST 2025
+46773	data/data_24h.json
+334585	data/data_all.json
+Fri 21 Nov 00:30:01 EST 2025
+46707	data/data_24h.json
+335559	data/data_all.json
+Fri 21 Nov 01:00:01 EST 2025
+46761	data/data_24h.json
+336522	data/data_all.json
+Fri 21 Nov 01:30:01 EST 2025
+46759	data/data_24h.json
+337490	data/data_all.json
+Fri 21 Nov 02:00:01 EST 2025
+46694	data/data_24h.json
+338450	data/data_all.json
+Fri 21 Nov 02:30:01 EST 2025
+46698	data/data_24h.json
+339411	data/data_all.json
+Fri 21 Nov 03:00:01 EST 2025
+46710	data/data_24h.json
+340373	data/data_all.json
+Fri 21 Nov 03:30:01 EST 2025
+46782	data/data_24h.json
+341333	data/data_all.json
+Fri 21 Nov 04:00:01 EST 2025
+46732	data/data_24h.json
+342307	data/data_all.json
+Fri 21 Nov 04:30:01 EST 2025
+46804	data/data_24h.json
+343275	data/data_all.json
+Fri 21 Nov 05:00:01 EST 2025
+46793	data/data_24h.json
+344237	data/data_all.json
+Fri 21 Nov 05:30:02 EST 2025
+46800	data/data_24h.json
+345212	data/data_all.json
+Fri 21 Nov 06:00:01 EST 2025
+46735	data/data_24h.json
+346187	data/data_all.json
+Fri 21 Nov 06:30:01 EST 2025
+46751	data/data_24h.json
+347162	data/data_all.json
+Fri 21 Nov 07:00:01 EST 2025
+46776	data/data_24h.json
+348137	data/data_all.json
+Fri 21 Nov 07:30:01 EST 2025
+46789	data/data_24h.json
+349112	data/data_all.json
+Fri 21 Nov 08:00:01 EST 2025
+46804	data/data_24h.json
+350087	data/data_all.json
+Fri 21 Nov 08:30:01 EST 2025
+46804	data/data_24h.json
+351062	data/data_all.json
+Fri 21 Nov 09:00:01 EST 2025
+46804	data/data_24h.json
+352037	data/data_all.json
+Fri 21 Nov 09:30:01 EST 2025
+46869	data/data_24h.json
+353012	data/data_all.json
+Fri 21 Nov 10:00:01 EST 2025
+46804	data/data_24h.json
+353987	data/data_all.json
+Fri 21 Nov 10:30:01 EST 2025
+46804	data/data_24h.json
+354962	data/data_all.json
+Fri 21 Nov 11:00:01 EST 2025
+46869	data/data_24h.json
+355937	data/data_all.json
+Fri 21 Nov 11:30:01 EST 2025
+46869	data/data_24h.json
+356912	data/data_all.json
+Fri 21 Nov 12:00:02 EST 2025
+46869	data/data_24h.json
+357887	data/data_all.json
+Fri 21 Nov 12:30:01 EST 2025
+46804	data/data_24h.json
+358862	data/data_all.json
+Fri 21 Nov 13:00:01 EST 2025
+46804	data/data_24h.json
+359837	data/data_all.json
+Fri 21 Nov 13:30:01 EST 2025
+46791	data/data_24h.json
+360799	data/data_all.json
+Fri 21 Nov 14:00:01 EST 2025
+46791	data/data_24h.json
+361774	data/data_all.json
+Fri 21 Nov 14:30:01 EST 2025
+46791	data/data_24h.json
+362749	data/data_all.json
+Fri 21 Nov 15:00:01 EST 2025
+46803	data/data_24h.json
+363724	data/data_all.json
+Fri 21 Nov 15:30:01 EST 2025
+46789	data/data_24h.json
+364685	data/data_all.json
+Fri 21 Nov 16:00:01 EST 2025
+46789	data/data_24h.json
+365660	data/data_all.json
+Fri 21 Nov 16:30:01 EST 2025
+46854	data/data_24h.json
+366635	data/data_all.json
+Fri 21 Nov 17:00:01 EST 2025
+46854	data/data_24h.json
+367610	data/data_all.json
+Fri 21 Nov 17:30:02 EST 2025
+46783	data/data_24h.json
+368579	data/data_all.json
+Fri 21 Nov 18:00:01 EST 2025
+46848	data/data_24h.json
+369554	data/data_all.json
+Fri 21 Nov 18:30:01 EST 2025
+46783	data/data_24h.json
+370529	data/data_all.json
+Fri 21 Nov 19:00:01 EST 2025
+46870	data/data_24h.json
+371504	data/data_all.json
+Fri 21 Nov 19:30:01 EST 2025
+46885	data/data_24h.json
+372479	data/data_all.json
+Fri 21 Nov 20:00:01 EST 2025
+46893	data/data_24h.json
+373454	data/data_all.json
+Fri 21 Nov 20:30:01 EST 2025
+46895	data/data_24h.json
+374429	data/data_all.json
+Fri 21 Nov 21:00:01 EST 2025
+46830	data/data_24h.json
+375404	data/data_all.json
+Fri 21 Nov 21:30:01 EST 2025
+46895	data/data_24h.json
+376379	data/data_all.json
+Fri 21 Nov 22:00:01 EST 2025
+46895	data/data_24h.json
+377354	data/data_all.json
+Fri 21 Nov 22:30:01 EST 2025
+46895	data/data_24h.json
+378329	data/data_all.json
+Fri 21 Nov 23:00:01 EST 2025
+46799	data/data_24h.json
+379273	data/data_all.json
+Fri 21 Nov 23:30:01 EST 2025
+46793	data/data_24h.json
+380242	data/data_all.json
+Sat 22 Nov 00:00:01 EST 2025
+46792	data/data_24h.json
+381216	data/data_all.json
+Sat 22 Nov 00:30:01 EST 2025
+46782	data/data_24h.json
+382180	data/data_all.json
+Sat 22 Nov 01:00:01 EST 2025
+46779	data/data_24h.json
+383140	data/data_all.json
+Sat 22 Nov 01:30:01 EST 2025
+46770	data/data_24h.json
+384099	data/data_all.json
+Sat 22 Nov 02:00:01 EST 2025
+46834	data/data_24h.json
+385059	data/data_all.json
+Sat 22 Nov 02:30:01 EST 2025
+46833	data/data_24h.json
+386019	data/data_all.json
+Sat 22 Nov 03:00:01 EST 2025
+46765	data/data_24h.json
+386977	data/data_all.json
+Sat 22 Nov 03:30:01 EST 2025
+46750	data/data_24h.json
+387922	data/data_all.json
+Sat 22 Nov 04:00:01 EST 2025
+46786	data/data_24h.json
+388867	data/data_all.json
+Sat 22 Nov 04:30:01 EST 2025
+46699	data/data_24h.json
+389813	data/data_all.json
+Sat 22 Nov 05:00:01 EST 2025
+46684	data/data_24h.json
+390760	data/data_all.json
+Sat 22 Nov 05:30:01 EST 2025
+46659	data/data_24h.json
+391710	data/data_all.json
+Sat 22 Nov 06:00:01 EST 2025
+46639	data/data_24h.json
+392665	data/data_all.json
+Sat 22 Nov 06:30:01 EST 2025
+46700	data/data_24h.json
+393636	data/data_all.json
+Sat 22 Nov 07:00:01 EST 2025
+46700	data/data_24h.json
+394611	data/data_all.json
+Sat 22 Nov 07:30:01 EST 2025
+46693	data/data_24h.json
+395579	data/data_all.json
+Sat 22 Nov 08:00:01 EST 2025
+46693	data/data_24h.json
+396554	data/data_all.json
+Sat 22 Nov 08:30:01 EST 2025
+46693	data/data_24h.json
+397529	data/data_all.json
+Sat 22 Nov 09:00:01 EST 2025
+46628	data/data_24h.json
+398504	data/data_all.json
+Sat 22 Nov 09:30:01 EST 2025
+46628	data/data_24h.json
+399479	data/data_all.json
+Sat 22 Nov 10:00:01 EST 2025
+46628	data/data_24h.json
+400454	data/data_all.json
+Sat 22 Nov 10:30:01 EST 2025
+46693	data/data_24h.json
+401429	data/data_all.json
+Sat 22 Nov 11:00:01 EST 2025
+46628	data/data_24h.json
+402404	data/data_all.json
+Sat 22 Nov 11:30:01 EST 2025
+46693	data/data_24h.json
+403379	data/data_all.json
+Sat 22 Nov 12:00:01 EST 2025
+46628	data/data_24h.json
+404354	data/data_all.json
+Sat 22 Nov 12:30:01 EST 2025
+46628	data/data_24h.json
+405329	data/data_all.json
+Sat 22 Nov 13:00:01 EST 2025
+46693	data/data_24h.json
+406304	data/data_all.json
+Sat 22 Nov 13:30:01 EST 2025
+46641	data/data_24h.json
+407279	data/data_all.json
+Sat 22 Nov 14:00:01 EST 2025
+46641	data/data_24h.json
+408254	data/data_all.json
+Sat 22 Nov 14:30:01 EST 2025
+46706	data/data_24h.json
+409229	data/data_all.json
+Sat 22 Nov 15:00:01 EST 2025
+46641	data/data_24h.json
+410204	data/data_all.json
+Sat 22 Nov 15:30:01 EST 2025
+46655	data/data_24h.json
+411179	data/data_all.json
+Sat 22 Nov 16:00:01 EST 2025
+46720	data/data_24h.json
+412154	data/data_all.json
+Sat 22 Nov 16:30:01 EST 2025
+46652	data/data_24h.json
+413126	data/data_all.json
+Sat 22 Nov 17:00:01 EST 2025
+46652	data/data_24h.json
+414101	data/data_all.json
+Sat 22 Nov 17:30:01 EST 2025
+46723	data/data_24h.json
+415076	data/data_all.json
+Sat 22 Nov 18:00:01 EST 2025
+46658	data/data_24h.json
+416051	data/data_all.json
+Sat 22 Nov 18:30:01 EST 2025
+46723	data/data_24h.json
+417026	data/data_all.json
+Sat 22 Nov 19:00:01 EST 2025
+46658	data/data_24h.json
+418001	data/data_all.json
+Sat 22 Nov 19:30:01 EST 2025
+46658	data/data_24h.json
+418976	data/data_all.json
+Sat 22 Nov 20:00:01 EST 2025
+46642	data/data_24h.json
+419935	data/data_all.json
+Sat 22 Nov 20:30:01 EST 2025
+46707	data/data_24h.json
+420910	data/data_all.json
+Sat 22 Nov 21:00:01 EST 2025
+46642	data/data_24h.json
+421885	data/data_all.json
+Sat 22 Nov 21:30:01 EST 2025
+46642	data/data_24h.json
+422860	data/data_all.json
+Sat 22 Nov 22:00:01 EST 2025
+46642	data/data_24h.json
+423835	data/data_all.json
+Sat 22 Nov 22:30:01 EST 2025
+46642	data/data_24h.json
+424810	data/data_all.json
+Sat 22 Nov 23:00:01 EST 2025
+46673	data/data_24h.json
+425785	data/data_all.json
+Sat 22 Nov 23:30:01 EST 2025
+46744	data/data_24h.json
+426760	data/data_all.json
+Sun 23 Nov 00:00:01 EST 2025
+46744	data/data_24h.json
+427735	data/data_all.json
+Sun 23 Nov 00:30:01 EST 2025
+46755	data/data_24h.json
+428710	data/data_all.json
+Sun 23 Nov 01:00:01 EST 2025
+46706	data/data_24h.json
+429685	data/data_all.json
+Sun 23 Nov 01:30:01 EST 2025
+46786	data/data_24h.json
+430660	data/data_all.json
+Sun 23 Nov 02:00:01 EST 2025
+46737	data/data_24h.json
+431635	data/data_all.json
+Sun 23 Nov 02:30:01 EST 2025
+46752	data/data_24h.json
+432610	data/data_all.json
+Sun 23 Nov 03:00:01 EST 2025
+46769	data/data_24h.json
+433585	data/data_all.json
+Sun 23 Nov 03:30:01 EST 2025
+46862	data/data_24h.json
+434560	data/data_all.json
+Sun 23 Nov 04:00:01 EST 2025
+46892	data/data_24h.json
+435535	data/data_all.json
+Sun 23 Nov 04:30:01 EST 2025
+46921	data/data_24h.json
+436510	data/data_all.json
+Sun 23 Nov 05:00:01 EST 2025
+46886	data/data_24h.json
+437485	data/data_all.json
+Sun 23 Nov 05:30:01 EST 2025
+46974	data/data_24h.json
+438460	data/data_all.json
+Sun 23 Nov 06:00:01 EST 2025
+46995	data/data_24h.json
+439435	data/data_all.json
+Sun 23 Nov 06:30:01 EST 2025
+46935	data/data_24h.json
+440410	data/data_all.json
+Sun 23 Nov 07:00:01 EST 2025
+46935	data/data_24h.json
+441385	data/data_all.json
+Sun 23 Nov 07:30:01 EST 2025
+46942	data/data_24h.json
+442360	data/data_all.json
+Sun 23 Nov 08:00:01 EST 2025
+46942	data/data_24h.json
+443335	data/data_all.json
+Sun 23 Nov 08:30:01 EST 2025
+46942	data/data_24h.json
+444310	data/data_all.json
+Sun 23 Nov 09:00:01 EST 2025
+47007	data/data_24h.json
+445285	data/data_all.json
+Sun 23 Nov 09:30:01 EST 2025
+47007	data/data_24h.json
+446260	data/data_all.json
+Sun 23 Nov 10:00:01 EST 2025
+47007	data/data_24h.json
+447235	data/data_all.json
+Sun 23 Nov 10:30:01 EST 2025
+46942	data/data_24h.json
+448210	data/data_all.json
+Sun 23 Nov 11:00:01 EST 2025
+47007	data/data_24h.json
+449185	data/data_all.json
+Sun 23 Nov 11:30:01 EST 2025
+46942	data/data_24h.json
+450160	data/data_all.json
+Sun 23 Nov 12:00:01 EST 2025
+46942	data/data_24h.json
+451135	data/data_all.json
+Sun 23 Nov 12:30:01 EST 2025
+46942	data/data_24h.json
+452110	data/data_all.json
+Sun 23 Nov 13:00:01 EST 2025
+47007	data/data_24h.json
+453085	data/data_all.json
+Sun 23 Nov 13:30:01 EST 2025
+46942	data/data_24h.json
+454060	data/data_all.json
+Sun 23 Nov 14:00:01 EST 2025
+46942	data/data_24h.json
+455035	data/data_all.json
+Sun 23 Nov 14:30:01 EST 2025
+47007	data/data_24h.json
+456010	data/data_all.json
+Sun 23 Nov 15:00:01 EST 2025
+46942	data/data_24h.json
+456985	data/data_all.json
+Sun 23 Nov 15:30:01 EST 2025
+46942	data/data_24h.json
+457960	data/data_all.json
+Sun 23 Nov 16:00:01 EST 2025
+46942	data/data_24h.json
+458935	data/data_all.json
+Sun 23 Nov 16:30:01 EST 2025
+47010	data/data_24h.json
+459910	data/data_all.json
+Sun 23 Nov 17:00:01 EST 2025
+47010	data/data_24h.json
+460885	data/data_all.json
+Sun 23 Nov 17:30:01 EST 2025
+47010	data/data_24h.json
+461860	data/data_all.json
+Sun 23 Nov 18:00:01 EST 2025
+47010	data/data_24h.json
+462835	data/data_all.json
+Sun 23 Nov 18:30:01 EST 2025
+46945	data/data_24h.json
+463810	data/data_all.json
+Sun 23 Nov 19:00:01 EST 2025
+46945	data/data_24h.json
+464785	data/data_all.json
+Sun 23 Nov 19:30:01 EST 2025
+47010	data/data_24h.json
+465760	data/data_all.json
+Sun 23 Nov 20:00:01 EST 2025
+47026	data/data_24h.json
+466735	data/data_all.json
+Sun 23 Nov 20:30:01 EST 2025
+47026	data/data_24h.json
+467710	data/data_all.json
+Sun 23 Nov 21:00:01 EST 2025
+47026	data/data_24h.json
+468685	data/data_all.json
+Sun 23 Nov 21:30:01 EST 2025
+47026	data/data_24h.json
+469660	data/data_all.json
+Sun 23 Nov 22:00:01 EST 2025
+46961	data/data_24h.json
+470635	data/data_all.json
+Sun 23 Nov 22:30:01 EST 2025
+47026	data/data_24h.json
+471610	data/data_all.json
+Sun 23 Nov 23:00:01 EST 2025
+46961	data/data_24h.json
+472585	data/data_all.json
+Sun 23 Nov 23:30:01 EST 2025
+46961	data/data_24h.json
+473560	data/data_all.json
+Mon 24 Nov 00:00:01 EST 2025
+46961	data/data_24h.json
+474535	data/data_all.json
+Mon 24 Nov 00:30:01 EST 2025
+47026	data/data_24h.json
+475510	data/data_all.json
+Mon 24 Nov 01:00:01 EST 2025
+46961	data/data_24h.json
+476485	data/data_all.json
+Mon 24 Nov 01:30:01 EST 2025
+47012	data/data_24h.json
+477446	data/data_all.json
+Mon 24 Nov 02:00:01 EST 2025
+46992	data/data_24h.json
+478401	data/data_all.json
+Mon 24 Nov 02:30:01 EST 2025
+46961	data/data_24h.json
+479345	data/data_all.json
+Mon 24 Nov 03:00:01 EST 2025
+46860	data/data_24h.json
+480284	data/data_all.json
+Mon 24 Nov 03:30:01 EST 2025
+46823	data/data_24h.json
+481222	data/data_all.json
+Mon 24 Nov 04:00:01 EST 2025
+46792	data/data_24h.json
+482166	data/data_all.json
+Mon 24 Nov 04:30:01 EST 2025
+46757	data/data_24h.json
+483106	data/data_all.json
+Mon 24 Nov 05:00:01 EST 2025
+46732	data/data_24h.json
+484056	data/data_all.json
+Mon 24 Nov 05:30:01 EST 2025
+46715	data/data_24h.json
+485014	data/data_all.json
+Mon 24 Nov 06:00:01 EST 2025
+46767	data/data_24h.json
+485976	data/data_all.json
+Mon 24 Nov 06:30:01 EST 2025
+46754	data/data_24h.json
+486938	data/data_all.json
+Mon 24 Nov 07:00:01 EST 2025
+46740	data/data_24h.json
+487899	data/data_all.json
+Mon 24 Nov 07:30:02 EST 2025
+46670	data/data_24h.json
+488869	data/data_all.json
+Mon 24 Nov 08:00:01 EST 2025
+46657	data/data_24h.json
+489831	data/data_all.json
+Mon 24 Nov 08:30:01 EST 2025
+46709	data/data_24h.json
+490793	data/data_all.json
+Mon 24 Nov 09:00:01 EST 2025
+46701	data/data_24h.json
+491760	data/data_all.json
+Mon 24 Nov 09:30:01 EST 2025
+46636	data/data_24h.json
+492735	data/data_all.json
+Mon 24 Nov 10:00:01 EST 2025
+46636	data/data_24h.json
+493710	data/data_all.json
+Mon 24 Nov 10:30:01 EST 2025
+46636	data/data_24h.json
+494685	data/data_all.json
+Mon 24 Nov 11:00:01 EST 2025
+46636	data/data_24h.json
+495660	data/data_all.json
+Mon 24 Nov 11:30:01 EST 2025
+46701	data/data_24h.json
+496635	data/data_all.json
+Mon 24 Nov 12:00:01 EST 2025
+46701	data/data_24h.json
+497610	data/data_all.json
+Mon 24 Nov 12:30:01 EST 2025
+46701	data/data_24h.json
+498585	data/data_all.json
+Mon 24 Nov 13:00:01 EST 2025
+46636	data/data_24h.json
+499560	data/data_all.json
+Mon 24 Nov 13:30:01 EST 2025
+46636	data/data_24h.json
+500535	data/data_all.json
+Mon 24 Nov 14:00:01 EST 2025
+46636	data/data_24h.json
+501510	data/data_all.json
+Mon 24 Nov 14:30:01 EST 2025
+46636	data/data_24h.json
+502485	data/data_all.json
+Mon 24 Nov 15:00:01 EST 2025
+46701	data/data_24h.json
+503460	data/data_all.json
+Mon 24 Nov 15:30:01 EST 2025
+46701	data/data_24h.json
+504435	data/data_all.json
+Mon 24 Nov 16:00:01 EST 2025
+46636	data/data_24h.json
+505410	data/data_all.json
+Mon 24 Nov 16:30:01 EST 2025
+46636	data/data_24h.json
+506385	data/data_all.json
+Mon 24 Nov 17:00:01 EST 2025
+46701	data/data_24h.json
+507360	data/data_all.json
+Mon 24 Nov 17:30:01 EST 2025
+46701	data/data_24h.json
+508335	data/data_all.json
+Mon 24 Nov 18:00:01 EST 2025
+46631	data/data_24h.json
+509305	data/data_all.json
+Mon 24 Nov 18:30:01 EST 2025
+46692	data/data_24h.json
+510276	data/data_all.json
+Mon 24 Nov 19:00:01 EST 2025
+46627	data/data_24h.json
+511251	data/data_all.json
+Mon 24 Nov 19:30:01 EST 2025
+46627	data/data_24h.json
+512226	data/data_all.json
+Mon 24 Nov 20:00:01 EST 2025
+46627	data/data_24h.json
+513201	data/data_all.json
+Mon 24 Nov 20:30:01 EST 2025
+46603	data/data_24h.json
+514152	data/data_all.json
+Mon 24 Nov 21:00:01 EST 2025
+46602	data/data_24h.json
+515126	data/data_all.json
+Mon 24 Nov 21:30:01 EST 2025
+46602	data/data_24h.json
+516101	data/data_all.json
+Mon 24 Nov 22:00:01 EST 2025
+46602	data/data_24h.json
+517076	data/data_all.json
+Mon 24 Nov 22:30:01 EST 2025
+46602	data/data_24h.json
+518051	data/data_all.json
+Mon 24 Nov 23:00:01 EST 2025
+46664	data/data_24h.json
+519023	data/data_all.json
+Mon 24 Nov 23:30:01 EST 2025
+46599	data/data_24h.json
+519998	data/data_all.json
+Tue 25 Nov 00:00:01 EST 2025
+46599	data/data_24h.json
+520973	data/data_all.json
+Tue 25 Nov 00:30:01 EST 2025
+46664	data/data_24h.json
+521948	data/data_all.json
+Tue 25 Nov 01:00:01 EST 2025
+46664	data/data_24h.json
+522923	data/data_all.json
+Tue 25 Nov 01:30:01 EST 2025
+46613	data/data_24h.json
+523898	data/data_all.json
+Tue 25 Nov 02:00:01 EST 2025
+46632	data/data_24h.json
+524872	data/data_all.json
+Tue 25 Nov 02:30:01 EST 2025
+46648	data/data_24h.json
+525832	data/data_all.json
+Tue 25 Nov 03:00:01 EST 2025
+46731	data/data_24h.json
+526792	data/data_all.json
+Tue 25 Nov 03:30:01 EST 2025
+46689	data/data_24h.json
+527750	data/data_all.json
+Tue 25 Nov 04:00:01 EST 2025
+46768	data/data_24h.json
+528710	data/data_all.json
+Tue 25 Nov 04:30:01 EST 2025
+46787	data/data_24h.json
+529670	data/data_all.json
+Tue 25 Nov 05:00:01 EST 2025
+46800	data/data_24h.json
+530631	data/data_all.json
+Tue 25 Nov 05:30:01 EST 2025
+46746	data/data_24h.json
+531599	data/data_all.json
+Tue 25 Nov 06:00:01 EST 2025
+46759	data/data_24h.json
+532574	data/data_all.json
+Tue 25 Nov 06:30:01 EST 2025
+46771	data/data_24h.json
+533548	data/data_all.json
+Tue 25 Nov 07:00:01 EST 2025
+46776	data/data_24h.json
+534514	data/data_all.json
+Tue 25 Nov 07:30:01 EST 2025
+46831	data/data_24h.json
+535474	data/data_all.json
+Tue 25 Nov 08:00:01 EST 2025
+46774	data/data_24h.json
+536444	data/data_all.json
+Tue 25 Nov 08:30:01 EST 2025
+46786	data/data_24h.json
+537418	data/data_all.json
+Tue 25 Nov 09:00:01 EST 2025
+46790	data/data_24h.json
+538389	data/data_all.json
+Tue 25 Nov 09:30:01 EST 2025
+46789	data/data_24h.json
+539363	data/data_all.json
+Tue 25 Nov 10:00:01 EST 2025
+46789	data/data_24h.json
+540338	data/data_all.json
+Tue 25 Nov 10:30:01 EST 2025
+46854	data/data_24h.json
+541313	data/data_all.json
+Tue 25 Nov 11:00:01 EST 2025
+46789	data/data_24h.json
+542288	data/data_all.json
+Tue 25 Nov 11:30:01 EST 2025
+46789	data/data_24h.json
+543263	data/data_all.json
+Tue 25 Nov 12:00:01 EST 2025
+46789	data/data_24h.json
+544238	data/data_all.json
+Tue 25 Nov 12:30:01 EST 2025
+46789	data/data_24h.json
+545213	data/data_all.json
+Tue 25 Nov 13:00:01 EST 2025
+46854	data/data_24h.json
+546188	data/data_all.json
+Tue 25 Nov 13:30:01 EST 2025
+46789	data/data_24h.json
+547163	data/data_all.json
+Tue 25 Nov 14:00:01 EST 2025
+46854	data/data_24h.json
+548138	data/data_all.json
+Tue 25 Nov 14:30:01 EST 2025
+46789	data/data_24h.json
+549113	data/data_all.json
+Tue 25 Nov 15:00:01 EST 2025
+46783	data/data_24h.json
+550082	data/data_all.json
+Tue 25 Nov 15:30:01 EST 2025
+46761	data/data_24h.json
+551035	data/data_all.json
+Tue 25 Nov 16:00:01 EST 2025
+46761	data/data_24h.json
+552010	data/data_all.json
+Tue 25 Nov 16:30:01 EST 2025
+46748	data/data_24h.json
+552972	data/data_all.json
+Tue 25 Nov 17:00:01 EST 2025
+46813	data/data_24h.json
+553947	data/data_all.json
+Tue 25 Nov 17:30:01 EST 2025
+46734	data/data_24h.json
+554908	data/data_all.json
+Tue 25 Nov 18:00:01 EST 2025
+46799	data/data_24h.json
+555883	data/data_all.json
+Tue 25 Nov 18:30:01 EST 2025
+46743	data/data_24h.json
+556858	data/data_all.json
+Tue 25 Nov 19:00:01 EST 2025
+46743	data/data_24h.json
+557833	data/data_all.json
+Tue 25 Nov 19:30:01 EST 2025
+46725	data/data_24h.json
+558790	data/data_all.json
+Tue 25 Nov 20:00:01 EST 2025
+46708	data/data_24h.json
+559748	data/data_all.json
+Tue 25 Nov 20:30:01 EST 2025
+46732	data/data_24h.json
+560723	data/data_all.json
+Tue 25 Nov 21:00:01 EST 2025
+46790	data/data_24h.json
+561690	data/data_all.json
+Tue 25 Nov 21:30:01 EST 2025
+46722	data/data_24h.json
+562662	data/data_all.json
+Tue 25 Nov 22:00:01 EST 2025
+46787	data/data_24h.json
+563637	data/data_all.json
+Tue 25 Nov 22:30:01 EST 2025
+46787	data/data_24h.json
+564612	data/data_all.json
+Tue 25 Nov 23:00:01 EST 2025
+46725	data/data_24h.json
+565587	data/data_all.json
+Tue 25 Nov 23:30:01 EST 2025
+46790	data/data_24h.json
+566562	data/data_all.json
+Wed 26 Nov 00:00:01 EST 2025
+46700	data/data_24h.json
+567512	data/data_all.json
+Wed 26 Nov 00:30:01 EST 2025
+46670	data/data_24h.json
+568457	data/data_all.json
+Wed 26 Nov 01:00:01 EST 2025
+46641	data/data_24h.json
+569403	data/data_all.json
+Wed 26 Nov 01:30:01 EST 2025
+46611	data/data_24h.json
+570348	data/data_all.json
+Wed 26 Nov 02:00:01 EST 2025
+46590	data/data_24h.json
+571301	data/data_all.json
+Wed 26 Nov 02:30:01 EST 2025
+46648	data/data_24h.json
+572255	data/data_all.json
+Wed 26 Nov 03:00:01 EST 2025
+46569	data/data_24h.json
+573200	data/data_all.json
+Wed 26 Nov 03:30:01 EST 2025
+46620	data/data_24h.json
+574145	data/data_all.json
+Wed 26 Nov 04:00:01 EST 2025
+46554	data/data_24h.json
+575103	data/data_all.json
+Wed 26 Nov 04:30:01 EST 2025
+46621	data/data_24h.json
+576066	data/data_all.json
+Wed 26 Nov 05:00:01 EST 2025
+46556	data/data_24h.json
+577026	data/data_all.json
+Wed 26 Nov 05:30:01 EST 2025
+46613	data/data_24h.json
+577986	data/data_all.json
+Wed 26 Nov 06:00:01 EST 2025
+46535	data/data_24h.json
+578948	data/data_all.json
+Wed 26 Nov 06:30:01 EST 2025
+46598	data/data_24h.json
+579921	data/data_all.json
+Wed 26 Nov 07:00:01 EST 2025
+46539	data/data_24h.json
+580892	data/data_all.json
+Wed 26 Nov 07:30:01 EST 2025
+46554	data/data_24h.json
+581867	data/data_all.json
+Wed 26 Nov 08:00:01 EST 2025
+46624	data/data_24h.json
+582842	data/data_all.json
+Wed 26 Nov 08:30:01 EST 2025
+46555	data/data_24h.json
+583812	data/data_all.json
+Wed 26 Nov 09:00:01 EST 2025
+46549	data/data_24h.json
+584777	data/data_all.json
+Wed 26 Nov 09:30:01 EST 2025
+46550	data/data_24h.json
+585752	data/data_all.json
+Wed 26 Nov 10:00:01 EST 2025
+46615	data/data_24h.json
+586727	data/data_all.json
+Wed 26 Nov 10:30:01 EST 2025
+46550	data/data_24h.json
+587702	data/data_all.json
+Wed 26 Nov 11:00:01 EST 2025
+46550	data/data_24h.json
+588677	data/data_all.json
+Wed 26 Nov 11:30:01 EST 2025
+46550	data/data_24h.json
+589652	data/data_all.json
+Wed 26 Nov 12:00:01 EST 2025
+46615	data/data_24h.json
+590627	data/data_all.json
+Wed 26 Nov 12:30:01 EST 2025
+46550	data/data_24h.json
+591602	data/data_all.json
+Wed 26 Nov 13:00:01 EST 2025
+46550	data/data_24h.json
+592577	data/data_all.json
+Wed 26 Nov 13:30:01 EST 2025
+46598	data/data_24h.json
+593535	data/data_all.json
+Wed 26 Nov 14:00:01 EST 2025
+46533	data/data_24h.json
+594510	data/data_all.json
+Wed 26 Nov 14:30:01 EST 2025
+46598	data/data_24h.json
+595485	data/data_all.json
+Wed 26 Nov 15:00:01 EST 2025
+46601	data/data_24h.json
+596460	data/data_all.json
+Wed 26 Nov 15:30:01 EST 2025
+46626	data/data_24h.json
+597435	data/data_all.json
+Wed 26 Nov 16:00:01 EST 2025
+46621	data/data_24h.json
+598405	data/data_all.json
+Wed 26 Nov 16:30:01 EST 2025
+46633	data/data_24h.json
+599379	data/data_all.json
+Wed 26 Nov 17:00:01 EST 2025
+46568	data/data_24h.json
+600354	data/data_all.json
+Wed 26 Nov 17:30:01 EST 2025
+46647	data/data_24h.json
+601329	data/data_all.json
+Wed 26 Nov 18:00:01 EST 2025
+46582	data/data_24h.json
+602304	data/data_all.json
+Wed 26 Nov 18:30:01 EST 2025
+46622	data/data_24h.json
+603254	data/data_all.json
+Wed 26 Nov 19:00:01 EST 2025
+46617	data/data_24h.json
+604224	data/data_all.json
+Wed 26 Nov 19:30:01 EST 2025
+46570	data/data_24h.json
+605199	data/data_all.json
+Wed 26 Nov 20:00:01 EST 2025
+46587	data/data_24h.json
+606174	data/data_all.json
+Wed 26 Nov 20:30:01 EST 2025
+46652	data/data_24h.json
+607149	data/data_all.json
+Wed 26 Nov 21:00:01 EST 2025
+46595	data/data_24h.json
+608124	data/data_all.json
+Wed 26 Nov 21:30:01 EST 2025
+46663	data/data_24h.json
+609099	data/data_all.json
+Wed 26 Nov 22:00:01 EST 2025
+46663	data/data_24h.json
+610074	data/data_all.json
+Wed 26 Nov 22:30:01 EST 2025
+46598	data/data_24h.json
+611049	data/data_all.json
+Wed 26 Nov 23:00:01 EST 2025
+46663	data/data_24h.json
+612024	data/data_all.json
+Wed 26 Nov 23:30:01 EST 2025
+46663	data/data_24h.json
+612999	data/data_all.json
+Thu 27 Nov 00:00:01 EST 2025
+46623	data/data_24h.json
+613974	data/data_all.json
+Thu 27 Nov 00:30:01 EST 2025
+46716	data/data_24h.json
+614949	data/data_all.json
+Thu 27 Nov 01:00:01 EST 2025
+46745	data/data_24h.json
+615923	data/data_all.json
+Thu 27 Nov 01:30:01 EST 2025
+46701	data/data_24h.json
+616888	data/data_all.json
+Thu 27 Nov 02:00:01 EST 2025
+46711	data/data_24h.json
+617851	data/data_all.json
+Thu 27 Nov 02:30:01 EST 2025
+46710	data/data_24h.json
+618804	data/data_all.json
+Thu 27 Nov 03:00:01 EST 2025
+46725	data/data_24h.json
+619764	data/data_all.json
+Thu 27 Nov 03:30:01 EST 2025
+46728	data/data_24h.json
+620712	data/data_all.json
+Thu 27 Nov 04:00:01 EST 2025
+46716	data/data_24h.json
+621658	data/data_all.json
+Thu 27 Nov 04:30:01 EST 2025
+46705	data/data_24h.json
+622610	data/data_all.json
+Thu 27 Nov 05:00:01 EST 2025
+46694	data/data_24h.json
+623559	data/data_all.json
+Thu 27 Nov 05:30:01 EST 2025
+46679	data/data_24h.json
+624504	data/data_all.json
+Thu 27 Nov 06:00:01 EST 2025
+46662	data/data_24h.json
+625449	data/data_all.json
+Thu 27 Nov 06:30:01 EST 2025
+46647	data/data_24h.json
+626407	data/data_all.json
+Thu 27 Nov 07:00:01 EST 2025
+46636	data/data_24h.json
+627367	data/data_all.json
+Thu 27 Nov 07:30:01 EST 2025
+46623	data/data_24h.json
+628329	data/data_all.json
+Thu 27 Nov 08:00:01 EST 2025
+46608	data/data_24h.json
+629289	data/data_all.json
+Thu 27 Nov 08:30:01 EST 2025
+46598	data/data_24h.json
+630249	data/data_all.json
+Thu 27 Nov 09:00:01 EST 2025
+46665	data/data_24h.json
+631216	data/data_all.json
+Thu 27 Nov 09:30:01 EST 2025
+46665	data/data_24h.json
+632191	data/data_all.json
+Thu 27 Nov 10:00:01 EST 2025
+46592	data/data_24h.json
+633158	data/data_all.json
+Thu 27 Nov 10:30:01 EST 2025
+46582	data/data_24h.json
+634123	data/data_all.json
+Thu 27 Nov 11:00:01 EST 2025
+46582	data/data_24h.json
+635098	data/data_all.json
+Thu 27 Nov 11:30:01 EST 2025
+46647	data/data_24h.json
+636073	data/data_all.json
+Thu 27 Nov 12:00:01 EST 2025
+46637	data/data_24h.json
+637038	data/data_all.json
+Thu 27 Nov 12:30:01 EST 2025
+46630	data/data_24h.json
+638006	data/data_all.json
+Thu 27 Nov 13:00:01 EST 2025
+46630	data/data_24h.json
+638981	data/data_all.json
+Thu 27 Nov 13:30:01 EST 2025
+46582	data/data_24h.json
+639956	data/data_all.json
+Thu 27 Nov 14:00:01 EST 2025
+46582	data/data_24h.json
+640931	data/data_all.json
+Thu 27 Nov 14:30:01 EST 2025
+46582	data/data_24h.json
+641906	data/data_all.json
+Thu 27 Nov 15:00:01 EST 2025
+46582	data/data_24h.json
+642881	data/data_all.json
+Thu 27 Nov 15:30:01 EST 2025
+46647	data/data_24h.json
+643856	data/data_all.json
+Thu 27 Nov 16:00:01 EST 2025
+46587	data/data_24h.json
+644831	data/data_all.json
+Thu 27 Nov 16:30:01 EST 2025
+46588	data/data_24h.json
+645806	data/data_all.json
+Thu 27 Nov 17:00:01 EST 2025
+46653	data/data_24h.json
+646781	data/data_all.json
+Thu 27 Nov 17:30:01 EST 2025
+46588	data/data_24h.json
+647756	data/data_all.json
+Thu 27 Nov 18:00:01 EST 2025
+46653	data/data_24h.json
+648731	data/data_all.json
+Thu 27 Nov 18:30:01 EST 2025
+46609	data/data_24h.json
+649702	data/data_all.json
+Thu 27 Nov 19:00:01 EST 2025
+46614	data/data_24h.json
+650677	data/data_all.json
+Thu 27 Nov 19:30:01 EST 2025
+46679	data/data_24h.json
+651652	data/data_all.json
+Thu 27 Nov 20:00:01 EST 2025
+46679	data/data_24h.json
+652627	data/data_all.json
+Thu 27 Nov 20:30:01 EST 2025
+46614	data/data_24h.json
+653602	data/data_all.json
+Thu 27 Nov 21:00:01 EST 2025
+46614	data/data_24h.json
+654577	data/data_all.json
+Thu 27 Nov 21:30:01 EST 2025
+46614	data/data_24h.json
+655552	data/data_all.json
+Thu 27 Nov 22:00:01 EST 2025
+46614	data/data_24h.json
+656527	data/data_all.json
+Thu 27 Nov 22:30:01 EST 2025
+46679	data/data_24h.json
+657502	data/data_all.json
+Thu 27 Nov 23:00:01 EST 2025
+46614	data/data_24h.json
+658477	data/data_all.json
+Thu 27 Nov 23:30:01 EST 2025
+46614	data/data_24h.json
+659452	data/data_all.json
+Fri 28 Nov 00:00:01 EST 2025
+46614	data/data_24h.json
+660427	data/data_all.json
+Fri 28 Nov 00:30:01 EST 2025
+46614	data/data_24h.json
+661402	data/data_all.json
+Fri 28 Nov 01:00:01 EST 2025
+46615	data/data_24h.json
+662377	data/data_all.json
+Fri 28 Nov 01:30:01 EST 2025
+46689	data/data_24h.json
+663352	data/data_all.json
+Fri 28 Nov 02:00:01 EST 2025
+46694	data/data_24h.json
+664320	data/data_all.json
+Fri 28 Nov 02:30:01 EST 2025
+46701	data/data_24h.json
+665280	data/data_all.json
+Fri 28 Nov 03:00:01 EST 2025
+46642	data/data_24h.json
+666245	data/data_all.json
+Fri 28 Nov 03:30:01 EST 2025
+46723	data/data_24h.json
+667211	data/data_all.json
+Fri 28 Nov 04:00:01 EST 2025
+46753	data/data_24h.json
+668186	data/data_all.json
+Fri 28 Nov 04:30:01 EST 2025
+46712	data/data_24h.json
+669161	data/data_all.json
+Fri 28 Nov 05:00:01 EST 2025
+46790	data/data_24h.json
+670125	data/data_all.json
+Fri 28 Nov 05:30:01 EST 2025
+46742	data/data_24h.json
+671085	data/data_all.json
+Fri 28 Nov 06:00:01 EST 2025
+46825	data/data_24h.json
+672050	data/data_all.json
+Fri 28 Nov 06:30:01 EST 2025
+46776	data/data_24h.json
+673022	data/data_all.json
+Fri 28 Nov 07:00:01 EST 2025
+46776	data/data_24h.json
+673982	data/data_all.json
+Fri 28 Nov 07:30:01 EST 2025
+46838	data/data_24h.json
+674942	data/data_all.json
+Fri 28 Nov 08:00:01 EST 2025
+46779	data/data_24h.json
+675907	data/data_all.json
+Fri 28 Nov 08:30:01 EST 2025
+46791	data/data_24h.json
+676879	data/data_all.json
+Fri 28 Nov 09:00:01 EST 2025
+46799	data/data_24h.json
+677854	data/data_all.json
+Fri 28 Nov 09:30:01 EST 2025
+46798	data/data_24h.json
+678828	data/data_all.json
+Fri 28 Nov 10:00:01 EST 2025
+46806	data/data_24h.json
+679803	data/data_all.json
+Fri 28 Nov 10:30:01 EST 2025
+46816	data/data_24h.json
+680778	data/data_all.json
+Fri 28 Nov 11:00:01 EST 2025
+46816	data/data_24h.json
+681753	data/data_all.json
+Fri 28 Nov 11:30:01 EST 2025
+46816	data/data_24h.json
+682728	data/data_all.json
+Fri 28 Nov 12:00:01 EST 2025
+46826	data/data_24h.json
+683703	data/data_all.json
+Fri 28 Nov 12:30:01 EST 2025
+46833	data/data_24h.json
+684678	data/data_all.json
+Fri 28 Nov 13:00:01 EST 2025
+46833	data/data_24h.json
+685653	data/data_all.json
+Fri 28 Nov 13:30:01 EST 2025
+46833	data/data_24h.json
+686628	data/data_all.json
+Fri 28 Nov 14:00:01 EST 2025
+46833	data/data_24h.json
+687603	data/data_all.json
+Fri 28 Nov 14:30:01 EST 2025
+46833	data/data_24h.json
+688578	data/data_all.json
+Fri 28 Nov 15:00:01 EST 2025
+46827	data/data_24h.json
+689547	data/data_all.json
+Fri 28 Nov 15:30:01 EST 2025
+46827	data/data_24h.json
+690522	data/data_all.json
+Fri 28 Nov 16:00:01 EST 2025
+46816	data/data_24h.json
+691486	data/data_all.json
+Fri 28 Nov 16:30:01 EST 2025
+46881	data/data_24h.json
+692461	data/data_all.json
+Fri 28 Nov 17:00:01 EST 2025
+46816	data/data_24h.json
+693436	data/data_all.json
+Fri 28 Nov 17:30:01 EST 2025
+46881	data/data_24h.json
+694411	data/data_all.json
+Fri 28 Nov 18:00:01 EST 2025
+46816	data/data_24h.json
+695386	data/data_all.json
+Fri 28 Nov 18:30:01 EST 2025
+46820	data/data_24h.json
+696361	data/data_all.json
+Fri 28 Nov 19:00:01 EST 2025
+46885	data/data_24h.json
+697336	data/data_all.json
+Fri 28 Nov 19:30:01 EST 2025
+46820	data/data_24h.json
+698311	data/data_all.json
+Fri 28 Nov 20:00:01 EST 2025
+46803	data/data_24h.json
+699269	data/data_all.json
+Fri 28 Nov 20:30:01 EST 2025
+46868	data/data_24h.json
+700244	data/data_all.json
+Fri 28 Nov 21:00:01 EST 2025
+46803	data/data_24h.json
+701219	data/data_all.json
+Fri 28 Nov 21:30:01 EST 2025
+46803	data/data_24h.json
+702194	data/data_all.json
+Fri 28 Nov 22:00:01 EST 2025
+46868	data/data_24h.json
+703169	data/data_all.json
+Fri 28 Nov 22:30:01 EST 2025
+46803	data/data_24h.json
+704144	data/data_all.json
+Fri 28 Nov 23:00:01 EST 2025
+46803	data/data_24h.json
+705119	data/data_all.json
+Fri 28 Nov 23:30:01 EST 2025
+46803	data/data_24h.json
+706094	data/data_all.json
+Sat 29 Nov 00:00:01 EST 2025
+46868	data/data_24h.json
+707069	data/data_all.json
+Sat 29 Nov 00:30:01 EST 2025
+46868	data/data_24h.json
+708044	data/data_all.json
+Sat 29 Nov 01:00:01 EST 2025
+46803	data/data_24h.json
+709019	data/data_all.json
+Sat 29 Nov 01:30:01 EST 2025
+46803	data/data_24h.json
+709994	data/data_all.json
+Sat 29 Nov 02:00:01 EST 2025
+46810	data/data_24h.json
+710969	data/data_all.json
+Sat 29 Nov 02:30:01 EST 2025
+46825	data/data_24h.json
+711944	data/data_all.json
+Sat 29 Nov 03:00:01 EST 2025
+46835	data/data_24h.json
+712919	data/data_all.json
+Sat 29 Nov 03:30:01 EST 2025
+46843	data/data_24h.json
+713893	data/data_all.json
+Sat 29 Nov 04:00:01 EST 2025
+46841	data/data_24h.json
+714866	data/data_all.json
+Sat 29 Nov 04:30:01 EST 2025
+46905	data/data_24h.json
+715840	data/data_all.json
+Sat 29 Nov 05:00:01 EST 2025
+46851	data/data_24h.json
+716815	data/data_all.json
+Sat 29 Nov 05:30:01 EST 2025
+46930	data/data_24h.json
+717790	data/data_all.json
+Sat 29 Nov 06:00:01 EST 2025
+46876	data/data_24h.json
+718765	data/data_all.json
+Sat 29 Nov 06:30:01 EST 2025
+46879	data/data_24h.json
+719740	data/data_all.json
+Sat 29 Nov 07:00:01 EST 2025
+46958	data/data_24h.json
+720715	data/data_all.json
+Sat 29 Nov 07:30:01 EST 2025
+46909	data/data_24h.json
+721690	data/data_all.json
+Sat 29 Nov 08:00:01 EST 2025
+46919	data/data_24h.json
+722665	data/data_all.json
+Sat 29 Nov 08:30:01 EST 2025
+46987	data/data_24h.json
+723640	data/data_all.json
+Sat 29 Nov 09:00:01 EST 2025
+46922	data/data_24h.json
+724615	data/data_all.json
+Sat 29 Nov 09:30:01 EST 2025
+46923	data/data_24h.json
+725590	data/data_all.json
+Sat 29 Nov 10:00:01 EST 2025
+46988	data/data_24h.json
+726565	data/data_all.json
+Sat 29 Nov 10:30:01 EST 2025
+46988	data/data_24h.json
+727540	data/data_all.json
+Sat 29 Nov 11:00:01 EST 2025
+46988	data/data_24h.json
+728515	data/data_all.json
+Sat 29 Nov 11:30:01 EST 2025
+46903	data/data_24h.json
+729470	data/data_all.json
+Sat 29 Nov 12:00:01 EST 2025
+46853	data/data_24h.json
+730395	data/data_all.json
+Sat 29 Nov 12:30:01 EST 2025
+46910	data/data_24h.json
+731362	data/data_all.json
+Sat 29 Nov 13:00:01 EST 2025
+46845	data/data_24h.json
+732337	data/data_all.json
+Sat 29 Nov 13:30:01 EST 2025
+46910	data/data_24h.json
+733312	data/data_all.json
+Sat 29 Nov 14:00:01 EST 2025
+46902	data/data_24h.json
+734279	data/data_all.json
+Sat 29 Nov 14:30:01 EST 2025
+46899	data/data_24h.json
+735251	data/data_all.json
+Sat 29 Nov 15:00:01 EST 2025
+46902	data/data_24h.json
+736226	data/data_all.json
+Sat 29 Nov 15:30:01 EST 2025
+46840	data/data_24h.json
+737201	data/data_all.json
+Sat 29 Nov 16:00:01 EST 2025
+46916	data/data_24h.json
+738176	data/data_all.json
+Sat 29 Nov 16:30:01 EST 2025
+46916	data/data_24h.json
+739151	data/data_all.json
+Sat 29 Nov 17:00:01 EST 2025
+46851	data/data_24h.json
+740126	data/data_all.json
+Sat 29 Nov 17:30:01 EST 2025
+46845	data/data_24h.json
+741095	data/data_all.json
+Sat 29 Nov 18:00:01 EST 2025
+46845	data/data_24h.json
+742070	data/data_all.json
+Sat 29 Nov 18:30:01 EST 2025
+46910	data/data_24h.json
+743045	data/data_all.json
+Sat 29 Nov 19:00:01 EST 2025
+46910	data/data_24h.json
+744020	data/data_all.json
+Sat 29 Nov 19:30:01 EST 2025
+46845	data/data_24h.json
+744995	data/data_all.json
+Sat 29 Nov 20:00:01 EST 2025
+46862	data/data_24h.json
+745970	data/data_all.json
+Sat 29 Nov 20:30:01 EST 2025
+46862	data/data_24h.json
+746945	data/data_all.json
+Sat 29 Nov 21:00:01 EST 2025
+46862	data/data_24h.json
+747920	data/data_all.json
+Sat 29 Nov 21:30:01 EST 2025
+46862	data/data_24h.json
+748895	data/data_all.json
+Sat 29 Nov 22:00:01 EST 2025
+46862	data/data_24h.json
+749870	data/data_all.json
+Sat 29 Nov 22:30:01 EST 2025
+46862	data/data_24h.json
+750845	data/data_all.json
+Sat 29 Nov 23:00:01 EST 2025
+46927	data/data_24h.json
+751820	data/data_all.json
+Sat 29 Nov 23:30:01 EST 2025
+46927	data/data_24h.json
+752795	data/data_all.json
+Sun 30 Nov 00:00:01 EST 2025
+46862	data/data_24h.json
+753770	data/data_all.json
+Sun 30 Nov 00:30:01 EST 2025
+46862	data/data_24h.json
+754745	data/data_all.json
+Sun 30 Nov 01:00:01 EST 2025
+46862	data/data_24h.json
+755720	data/data_all.json
+Sun 30 Nov 01:30:01 EST 2025
+46862	data/data_24h.json
+756695	data/data_all.json
+Sun 30 Nov 02:00:01 EST 2025
+46927	data/data_24h.json
+757670	data/data_all.json
+Sun 30 Nov 02:30:01 EST 2025
+46862	data/data_24h.json
+758645	data/data_all.json
+Sun 30 Nov 03:00:01 EST 2025
+46927	data/data_24h.json
+759620	data/data_all.json
+Sun 30 Nov 03:30:01 EST 2025
+46927	data/data_24h.json
+760595	data/data_all.json
+Sun 30 Nov 04:00:01 EST 2025
+46865	data/data_24h.json
+761570	data/data_all.json
+Sun 30 Nov 04:30:01 EST 2025
+46866	data/data_24h.json
+762545	data/data_all.json
+Sun 30 Nov 05:00:01 EST 2025
+46931	data/data_24h.json
+763520	data/data_all.json
+Sun 30 Nov 05:30:01 EST 2025
+46861	data/data_24h.json
+764490	data/data_all.json
+Sun 30 Nov 06:00:01 EST 2025
+46926	data/data_24h.json
+765465	data/data_all.json
+Sun 30 Nov 06:30:01 EST 2025
+46926	data/data_24h.json
+766440	data/data_all.json
+Sun 30 Nov 07:00:01 EST 2025
+46861	data/data_24h.json
+767415	data/data_all.json
+Sun 30 Nov 07:30:01 EST 2025
+46861	data/data_24h.json
+768390	data/data_all.json
+Sun 30 Nov 08:00:01 EST 2025
+46861	data/data_24h.json
+769365	data/data_all.json
+Sun 30 Nov 08:30:01 EST 2025
+46861	data/data_24h.json
+770340	data/data_all.json
+Sun 30 Nov 09:00:01 EST 2025
+46926	data/data_24h.json
+771315	data/data_all.json
+Sun 30 Nov 09:30:01 EST 2025
+46861	data/data_24h.json
+772290	data/data_all.json
+Sun 30 Nov 10:00:01 EST 2025
+46861	data/data_24h.json
+773265	data/data_all.json
+Sun 30 Nov 10:30:01 EST 2025
+46861	data/data_24h.json
+774240	data/data_all.json
+Sun 30 Nov 11:00:01 EST 2025
+46861	data/data_24h.json
+775215	data/data_all.json
+Sun 30 Nov 11:30:01 EST 2025
+46941	data/data_24h.json
+776190	data/data_all.json
+Sun 30 Nov 12:00:01 EST 2025
+46931	data/data_24h.json
+777165	data/data_all.json
+Sun 30 Nov 12:30:01 EST 2025
+46939	data/data_24h.json
+778140	data/data_all.json
+Sun 30 Nov 13:00:01 EST 2025
+46939	data/data_24h.json
+779115	data/data_all.json
+Sun 30 Nov 13:30:01 EST 2025
+47004	data/data_24h.json
+780090	data/data_all.json
+Sun 30 Nov 14:00:01 EST 2025
+46947	data/data_24h.json
+781065	data/data_all.json
+Sun 30 Nov 14:30:01 EST 2025
+46950	data/data_24h.json
+782040	data/data_all.json
+Sun 30 Nov 15:00:01 EST 2025
+46950	data/data_24h.json
+783015	data/data_all.json
+Sun 30 Nov 15:30:01 EST 2025
+46950	data/data_24h.json
+783990	data/data_all.json
+Sun 30 Nov 16:00:01 EST 2025
+46950	data/data_24h.json
+784965	data/data_all.json
+Sun 30 Nov 16:30:01 EST 2025
+46950	data/data_24h.json
+785940	data/data_all.json
+Sun 30 Nov 17:00:01 EST 2025
+47015	data/data_24h.json
+786915	data/data_all.json
+Sun 30 Nov 17:30:01 EST 2025
+46956	data/data_24h.json
+787890	data/data_all.json
+Sun 30 Nov 18:00:01 EST 2025
+46956	data/data_24h.json
+788865	data/data_all.json
+Sun 30 Nov 18:30:01 EST 2025
+46955	data/data_24h.json
+789839	data/data_all.json
+Sun 30 Nov 19:00:01 EST 2025
+46952	data/data_24h.json
+790811	data/data_all.json
+Sun 30 Nov 19:30:01 EST 2025
+46952	data/data_24h.json
+791786	data/data_all.json
+Sun 30 Nov 20:00:01 EST 2025
+46952	data/data_24h.json
+792761	data/data_all.json
+Sun 30 Nov 20:30:01 EST 2025
+47017	data/data_24h.json
+793736	data/data_all.json
+Sun 30 Nov 21:00:01 EST 2025
+46952	data/data_24h.json
+794711	data/data_all.json
+Sun 30 Nov 21:30:01 EST 2025
+46952	data/data_24h.json
+795686	data/data_all.json
+Sun 30 Nov 22:00:01 EST 2025
+47017	data/data_24h.json
+796661	data/data_all.json
+Sun 30 Nov 22:30:01 EST 2025
+46952	data/data_24h.json
+797636	data/data_all.json
+Sun 30 Nov 23:00:01 EST 2025
+46952	data/data_24h.json
+798611	data/data_all.json
+Sun 30 Nov 23:30:01 EST 2025
+46952	data/data_24h.json
+799586	data/data_all.json
+Mon  1 Dec 00:00:01 EST 2025
+46952	data/data_24h.json
+800561	data/data_all.json
+Mon  1 Dec 00:30:01 EST 2025
+46952	data/data_24h.json
+801536	data/data_all.json
+Mon  1 Dec 01:00:01 EST 2025
+47017	data/data_24h.json
+802511	data/data_all.json
+Mon  1 Dec 01:30:01 EST 2025
+46950	data/data_24h.json
+803484	data/data_all.json
+Mon  1 Dec 02:00:01 EST 2025
+46939	data/data_24h.json
+804448	data/data_all.json
+Mon  1 Dec 02:30:01 EST 2025
+46985	data/data_24h.json
+805404	data/data_all.json
+Mon  1 Dec 03:00:01 EST 2025
+46903	data/data_24h.json
+806362	data/data_all.json
+Mon  1 Dec 03:30:01 EST 2025
+46888	data/data_24h.json
+807322	data/data_all.json
+Mon  1 Dec 04:00:01 EST 2025
+46862	data/data_24h.json
+808271	data/data_all.json
+Mon  1 Dec 04:30:01 EST 2025
+46903	data/data_24h.json
+809222	data/data_all.json
+Mon  1 Dec 05:00:01 EST 2025
+46878	data/data_24h.json
+810172	data/data_all.json
+Mon  1 Dec 05:30:01 EST 2025
+46860	data/data_24h.json
+811124	data/data_all.json
+Mon  1 Dec 06:00:01 EST 2025
+46766	data/data_24h.json
+812070	data/data_all.json
+Mon  1 Dec 06:30:01 EST 2025
+46745	data/data_24h.json
+813024	data/data_all.json
+Mon  1 Dec 07:00:01 EST 2025
+46786	data/data_24h.json
+813975	data/data_all.json
+Mon  1 Dec 07:30:01 EST 2025
+46771	data/data_24h.json
+814935	data/data_all.json
+Mon  1 Dec 08:00:01 EST 2025
+46761	data/data_24h.json
+815900	data/data_all.json
+Mon  1 Dec 08:30:01 EST 2025
+46682	data/data_24h.json
+816861	data/data_all.json
+Mon  1 Dec 09:00:01 EST 2025
+46743	data/data_24h.json
+817832	data/data_all.json
+Mon  1 Dec 09:30:01 EST 2025
+46674	data/data_24h.json
+818803	data/data_all.json
+Mon  1 Dec 10:00:01 EST 2025
+46668	data/data_24h.json
+819772	data/data_all.json
+Mon  1 Dec 10:30:01 EST 2025
+46668	data/data_24h.json
+820747	data/data_all.json
+Mon  1 Dec 11:00:01 EST 2025
+46668	data/data_24h.json
+821722	data/data_all.json
+Mon  1 Dec 11:30:01 EST 2025
+46668	data/data_24h.json
+822697	data/data_all.json
+Mon  1 Dec 12:00:01 EST 2025
+46668	data/data_24h.json
+823672	data/data_all.json
+Mon  1 Dec 12:30:01 EST 2025
+46668	data/data_24h.json
+824647	data/data_all.json
+Mon  1 Dec 13:00:01 EST 2025
+46733	data/data_24h.json
+825622	data/data_all.json
+Mon  1 Dec 13:30:01 EST 2025
+46668	data/data_24h.json
+826597	data/data_all.json
+Mon  1 Dec 14:00:01 EST 2025
+46668	data/data_24h.json
+827572	data/data_all.json
+Mon  1 Dec 14:30:01 EST 2025
+46668	data/data_24h.json
+828547	data/data_all.json
+Mon  1 Dec 15:00:01 EST 2025
+46668	data/data_24h.json
+829522	data/data_all.json
+Mon  1 Dec 15:30:01 EST 2025
+46668	data/data_24h.json
+830497	data/data_all.json
+Mon  1 Dec 16:00:01 EST 2025
+46668	data/data_24h.json
+831472	data/data_all.json
+Mon  1 Dec 16:30:01 EST 2025
+46668	data/data_24h.json
+832447	data/data_all.json
+Mon  1 Dec 17:00:01 EST 2025
+46667	data/data_24h.json
+833421	data/data_all.json
+Mon  1 Dec 17:30:01 EST 2025
+46724	data/data_24h.json
+834388	data/data_all.json
+Mon  1 Dec 18:00:01 EST 2025
+46718	data/data_24h.json
+835357	data/data_all.json
+Mon  1 Dec 18:30:01 EST 2025
+46709	data/data_24h.json
+836322	data/data_all.json
+Mon  1 Dec 19:00:01 EST 2025
+46647	data/data_24h.json
+837297	data/data_all.json
+Mon  1 Dec 19:30:01 EST 2025
+46647	data/data_24h.json
+838272	data/data_all.json
+Mon  1 Dec 20:00:01 EST 2025
+46647	data/data_24h.json
+839247	data/data_all.json
