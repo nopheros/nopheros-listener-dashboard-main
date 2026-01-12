@@ -147,6 +147,27 @@ h1 {
   font-size:16px;
 }
 .stat-box strong { font-weight:700; color:#e9e9ee; }
+/* Hover-reveal Pi health panel */
+.health-hover { position: relative; display: inline-block; }
+.health-panel {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: #121217;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 260px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 10;
+}
+.health-hover:hover .health-panel { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.health-title { font-weight: 600; color: #e9e9ee; margin-bottom: 6px; }
+.health-row { display: flex; justify-content: space-between; margin: 6px 0; font-size: 13px; color: #ccc; }
 button {
   border:1px solid #333;
   background:#121217;
@@ -197,10 +218,27 @@ canvas {
     <div class="controls">
       <button data-range="24h" class="active">Last 24h</button>
       <button data-range="all">All Time</button>
+      <select id="archive-select" class="badge" style="padding:6px 10px;">
+        <option value="">Archives…</option>
+      </select>
       <button id="refresh">Refresh Now</button>
+      <button id="export-csv">Export Current CSV</button>
+      <button id="download-json">Download Current JSON</button>
+      <div class="health-hover" style="margin-left:8px;">
+        <span class="badge">Pi Health ⓘ</span>
+        <div class="health-panel">
+          <div class="health-title">Raspberry Pi Status</div>
+          <div class="health-row"><span>Temperature</span><span id="pi-temp">—</span></div>
+          <div class="health-row"><span>Disk</span><span id="pi-disk">—</span></div>
+          <div class="health-row"><span>Memory</span><span id="pi-mem">—</span></div>
+          <div class="health-row"><span>Load (1/5/15)</span><span id="pi-load">—</span></div>
+          <div class="health-row"><span>Updated</span><span id="pi-health-updated">—</span></div>
+        </div>
+      </div>
     </div>
     <div class="stats">
       <div id="total-box" class="stat-box">Total listeners: <strong id="total-value">—</strong></div>
+      <div id="pi-health" class="stat-box">Pi: <strong id="pi-summary">—</strong></div>
     </div>
     <p>Total listeners is the bold line. Click series names in the legend to toggle visibility.</p>
     <div class="chart-wrapper">
@@ -253,6 +291,12 @@ canvas {
 
     async function fetchData(kind) {
       const url = paths[kind];
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to load " + url);
+      return await res.json();
+    }
+
+    async function fetchJSON(url) {
       const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to load " + url);
       return await res.json();
@@ -350,11 +394,150 @@ canvas {
     });
     document.getElementById("refresh").addEventListener("click", () => loadRange(currentRange));
 
+    // Export current range as CSV
+    document.getElementById("export-csv").addEventListener("click", async () => {
+      try {
+        const payload = await fetchData(currentRange);
+        // Build a timestamp-indexed map
+        const tsSet = new Set();
+        const seriesNames = payload.series.map(s => s.name);
+        const seriesMap = {};
+        payload.series.forEach(s => {
+          seriesMap[s.name] = s.points;
+          s.points.forEach(([x, _]) => tsSet.add(x));
+        });
+        const timestamps = Array.from(tsSet).sort((a,b)=>a-b);
+        const rows = [];
+        // Header
+        rows.push(["timestamp_ms", ...seriesNames]);
+        const lookup = {};
+        for (const name of seriesNames) {
+          lookup[name] = new Map(seriesMap[name]);
+        }
+        for (const ts of timestamps) {
+          const row = [ts];
+          for (const name of seriesNames) {
+            row.push(lookup[name].get(ts) ?? "");
+          }
+          rows.push(row);
+        }
+        const csv = rows.map(r => r.join(",")).join("\n");
+        const blob = new Blob([csv], { type: "text/csv" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `listeners_${currentRange}.csv`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      } catch (e) {
+        alert("Failed to export CSV: " + e.message);
+      }
+    });
+
+    // Download current JSON
+    document.getElementById("download-json").addEventListener("click", async () => {
+      try {
+        const payload = await fetchData(currentRange);
+        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `listeners_${currentRange}.json`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      } catch (e) {
+        alert("Failed to download JSON: " + e.message);
+      }
+    });
+
     // Auto-refresh every 60 seconds
     setInterval(() => loadRange(currentRange), 60000);
 
     // Initial load
     loadRange(currentRange);
+  </script><script>
+  // ====== Pi Health Display ======
+  async function updatePiHealth() {
+    try {
+      const data = await fetchJSON("data/pi_health.json");
+      const el = document.getElementById("pi-summary");
+      if (!el) return;
+      const parts = [];
+      if (data.temp_c != null) parts.push(`${data.temp_c}°C`);
+      if (data.disk_free_gb != null && data.disk_total_gb != null) parts.push(`${data.disk_free_gb}GB free / ${data.disk_total_gb}GB`);
+      if (data.mem_available_mb != null && data.mem_total_mb != null) parts.push(`${data.mem_available_mb}MB free / ${data.mem_total_mb}MB`);
+      el.textContent = parts.length ? parts.join(" • ") : "—";
+
+      // Fill hover panel details
+      const set = (id, text) => { const n = document.getElementById(id); if (n) n.textContent = text; };
+      set("pi-temp", data.temp_c != null ? `${data.temp_c}°C` : "—");
+      set("pi-disk", (data.disk_free_gb != null && data.disk_total_gb != null) ? `${data.disk_free_gb}GB free / ${data.disk_total_gb}GB` : "—");
+      set("pi-mem", (data.mem_available_mb != null && data.mem_total_mb != null) ? `${data.mem_available_mb}MB free / ${data.mem_total_mb}MB` : "—");
+      const l = data.loadavg || {};
+      set("pi-load", (l["1"] != null && l["5"] != null && l["15"] != null) ? `${l["1"]} / ${l["5"]} / ${l["15"]}` : "—");
+      set("pi-health-updated", data.timestamp_iso || "—");
+    } catch (e) {
+      const el = document.getElementById("pi-summary");
+      if (el) el.textContent = "—";
+      ["pi-temp","pi-disk","pi-mem","pi-load","pi-health-updated"].forEach(id => {
+        const n = document.getElementById(id); if (n) n.textContent = "—";
+      });
+    }
+  }
+  updatePiHealth();
+  setInterval(updatePiHealth, 60000);
+
+  // ====== Populate Archive Selector (monthly/yearly) ======
+  async function populateArchives() {
+    try {
+      const select = document.getElementById("archive-select");
+      const months = await fetchJSON("data/monthly_index.json");
+      const years = await fetchJSON("data/yearly_index.json");
+      // Clear existing options except placeholder
+      [...select.options].slice(1).forEach(o => o.remove());
+      // Years
+      if (years && Array.isArray(years.years)) {
+        years.years.forEach(y => {
+          const opt = document.createElement("option");
+          opt.value = `year:${y}`;
+          opt.textContent = `Year ${y}`;
+          select.appendChild(opt);
+        });
+      }
+      // Months
+      if (months && Array.isArray(months.months)) {
+        months.months.forEach(m => {
+          const opt = document.createElement("option");
+          opt.value = `month:${m}`;
+          opt.textContent = `Month ${m}`;
+          select.appendChild(opt);
+        });
+      }
+      // Handle selection
+      select.addEventListener("change", async () => {
+        const v = select.value;
+        if (!v) return;
+        try {
+          let url = null;
+          if (v.startsWith("year:")) {
+            const y = v.split(":")[1];
+            url = `data/yearly/${y}.json`;
+          } else if (v.startsWith("month:")) {
+            const m = v.split(":")[1];
+            url = `data/monthly/${m}.json`;
+          }
+          if (url) {
+            const payload = await fetchJSON(url);
+            buildChart(payload);
+            document.getElementById('updated').textContent = "Updated: " + (payload.generated_at || new Date().toISOString());
+          }
+        } catch (e) {
+          alert("Failed to load archive: " + e.message);
+        }
+      });
+    } catch (e) {
+      // silently ignore if archives don't exist yet
+    }
+  }
+  populateArchives();
   </script><script>
 // ========== NOW PLAYING FETCH LOOP ==========
 
