@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Annals of the Signal - Nopheros Historical Data</title>
+    <meta name="description" content="Historical listener data and analytics for Nopheros radio towers">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <img src="img/logo.jpg" alt="Nopheros" class="header-logo">
+                <span class="site-title">Nopheros</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Live Dashboard</a>
+                <a href="annals.html" class="nav-link active">Annals of the Signal</a>
+            </nav>
+            <div class="header-badges">
+                <span class="badge">Historical Data</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- ========== PAGE TITLE ========== -->
+        <section class="page-title">
+            <h1>Annals of the Signal</h1>
+            <p>Historical listener data for Tower 1 and Tower 2. Tower 3 is excluded from all historical records.</p>
+        </section>
+
+        <!-- ========== ARCHIVE CONTROLS ========== -->
+        <section class="archive-controls-section">
+            <div class="archive-controls">
+                <div class="control-group">
+                    <label for="year-select">Year:</label>
+                    <select id="year-select" class="archive-select">
+                        <option value="">Select Year...</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="month-select">Month:</label>
+                    <select id="month-select" class="archive-select">
+                        <option value="">Select Month...</option>
+                    </select>
+                </div>
+
+                <div class="timezone-toggle">
+                    <button class="tz-btn active" data-tz="est">EST</button>
+                    <button class="tz-btn" data-tz="uk">UK London</button>
+                </div>
+
+                <button class="btn-secondary" id="load-data">Load Data</button>
+            </div>
+        </section>
+
+        <!-- ========== HISTORICAL CHART ========== -->
+        <section class="historical-chart-section">
+            <div class="panel-header">
+                <h2>Listener History</h2>
+                <div class="chart-info">
+                    <span class="current-view" id="current-view-label">Select a time period above</span>
+                </div>
+            </div>
+
+            <div class="historical-chart-wrapper">
+                <canvas id="historical-chart"></canvas>
+                <div class="no-data" id="no-data-message">
+                    <div class="no-data-icon">📊</div>
+                    <p>Select a year or month to view historical data</p>
+                </div>
+            </div>
+
+            <!-- Chart Legend -->
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #3498db;"></span>
+                    <span>Tower 1</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #9b59b6;"></span>
+                    <span>Tower 2</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #f1c40f;"></span>
+                    <span>Total</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color dj-show"></span>
+                    <span>DJ Show</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color crash"></span>
+                    <span>Crash/Dip</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== EVENTS PANEL ========== -->
+        <section class="events-section">
+            <div class="events-grid">
+                <!-- Detected Crashes -->
+                <div class="events-panel">
+                    <h3>Detected Crashes/Dips</h3>
+                    <p class="events-description">
+                        A crash is detected when listeners drop from 200+ to below 10 within 5 minutes.
+                    </p>
+                    <ul class="event-list" id="crash-events-list">
+                        <li class="event-item no-events">
+                            <span class="event-details">No crashes detected in selected period</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- DJ Shows (Manual Configuration) -->
+                <div class="events-panel">
+                    <h3>DJ Show Schedule</h3>
+                    <p class="events-description">
+                        Scheduled DJ shows are overlaid on the chart. Edit <code>js/dj-shows.js</code> to configure.
+                    </p>
+                    <ul class="event-list" id="dj-shows-list">
+                        <li class="event-item no-events">
+                            <span class="event-details">No DJ shows configured for selected period</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== DATA EXPORT ========== -->
+        <section class="export-section">
+            <div class="panel-header">
+                <h2>Export Data</h2>
+            </div>
+            <div class="export-buttons">
+                <button class="btn-secondary" id="export-historical-csv">Export CSV</button>
+                <button class="btn-secondary" id="export-historical-json">Download JSON</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="img/logo.jpg" alt="Nopheros" class="footer-logo">
+                <span>Nopheros Radio Network</span>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html">Live Dashboard</a>
+                <a href="annals.html">Annals of the Signal</a>
+            </nav>
+            <div class="footer-info">
+                <p>Historical data archive</p>
+                <p class="footer-credit">Powered by Icecast</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="js/config.js"></script>
+    <script src="js/dj-shows.js"></script>
+    <script src="js/historical-dashboard.js"></script>
+</body>
+</html>

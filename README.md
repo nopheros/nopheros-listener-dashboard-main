@@ -1,101 +1,272 @@
-Taken from: https://github.com/Doct3rWatson/listener-dashboard
+# Nopheros Listener Dashboard
 
+A two-page listener dashboard for Icecast2 radio streams, designed for GitHub Pages hosting with data collected via Raspberry Pi.
 
-# Listener Dashboard (Icecast)
+## Features
 
-A tiny, free-to-host listener-count dashboard. Scrape one or more Icecast `status.xsl` pages every ~15–30 minutes,
-commit JSON timeseries into this repo, and render a static Chart.js dashboard on GitHub Pages.
+### Live Dashboard (`index.html`)
+- **Embedded Tower 1 Player** with resync button for live playback
+- **Tower Cards** showing:
+  - Tower 1 & Tower 2: Current listeners, peak listeners, now playing
+  - Tower 3: Info-only (flavor text + now playing, no charts/history)
+- **Total Overall Listeners** (Tower 1 + Tower 2 combined)
+- **Live Chart** with 24h and All Time views
+- **Weekly Schedule** with EST and UK London times
+- **Pi Health Monitor** (optional)
 
-## How it works
+### Historical Page (`annals.html`) - "Annals of the Signal"
+- **Year/Month Archive Selector** for deep chart views
+- **DJ Show Overlays** on historical charts
+- **Crash/Dip Detection** (>=200 to <10 listeners within 5 minutes)
+- **Timezone Toggle** between EST and UK London
+- Tower 1 + Tower 2 only (Tower 3 excluded from all history)
 
-- **scraper/**: Python script `scrape_and_push.py` runs on a Raspberry Pi (or any always-on machine).
-  It fetches each URL, parses the current listener count, appends to a CSV history, and writes two JSON files:
-    - `site/data/data_24h.json` — only the last 24 hours
-    - `site/data/data_all.json` — the entire history
-  Then it commits and pushes these to your GitHub repo.
+## Architecture
 
-- **site/**: A static site (Chart.js) that visualizes the JSON. Host this on GitHub Pages (Settings → Pages →
-  deploy from `main` branch / `site` folder). The site auto-refreshes every 60 seconds.
-
-## Quick start
-
-1. **Create a new, private GitHub repo** (or public if you like). Clone it onto your Pi:
-   ```bash
-   git clone https://github.com/<you>/listener-dashboard.git
-   cd listener-dashboard
-   ```
-
-2. Copy this folder's contents into the repo root so paths match:
-   ```bash
-   # If you're reading this README locally, ensure the structure is:
-   scraper/
-   site/
-   README.md
-   ```
-
-3. **Install Python deps** on the Pi:
-   ```bash
-   sudo apt-get update && sudo apt-get install -y python3-pip
-   pip3 install -r scraper/requirements.txt
-   ```
-
-4. **Set environment variables** (edit `~/.bashrc` or export inline in cron):
-   ```bash
-   export LISTENER_URLS="https://radio.turtle-music.org/status.xsl,https://sgradio.turtle-music.org/status.xsl"
-   export LISTENER_LABELS="Tower 1,Tower 2"
-   # Optional: export WINDOW_HOURS=24
-   ```
-
-5. **Test run**:
-   ```bash
-   python3 scraper/scrape_and_push.py
-   ```
-   You should see `site/data/data_*.json` update and a `scraper/history.csv` appear. Commit/push happens automatically.
-
-6. **Schedule with cron (every 30 min)**:
-   ```bash
-   crontab -e
-   # Add a line like (adjust paths):
-   */30 * * * * LISTENER_URLS="https://radio.turtle-music.org/status.xsl,https://sgradio.turtle-music.org/status.xsl" LISTENER_LABELS="Tower 1,Tower 2" /usr/bin/python3 /home/pi/listener-dashboard/scraper/scrape_and_push.py >> /home/pi/listener-dashboard/scraper/cron.log 2>&1
-   ```
-
-7. **Enable GitHub Pages**:
-   - On GitHub: Settings → Pages → Build and deployment
-   - Source: **Deploy from a branch**
-   - Branch: `main` (or your default) / Folder: `/site`
-   - Save. Your site will publish at `https://<you>.github.io/<repo>/`
-
-## Authentication notes
-
-The script simply calls `git add/commit/push` in the repo. You have options:
-
-- **SSH keys (recommended)**: Set up SSH on the Pi and clone via `git@github.com:<you>/<repo>.git`.
-- **HTTPS + PAT**: Clone using `https://<TOKEN>@github.com/<you>/<repo>.git` (token must have `repo` scope).
-- **Skip pushes**: For testing, set `SKIP_GIT=1` to skip commit/push.
-
-## Customization
-
-- Add/remove streams by changing `LISTENER_URLS` and matching `LISTENER_LABELS`.
-- Change the 24h window via `WINDOW_HOURS` env var.
-- Tweak the look in `site/index.html` (pure static—no build step).
-
-## Local development
-
-You can open `site/index.html` directly in a browser, but some browsers restrict `file://` fetches.
-Serving with a tiny HTTP server avoids that:
-```bash
-cd site
-python3 -m http.server 8000
-# then open http://localhost:8000
 ```
+nopheros-listener-dashboard/
+├── index.html              # Live dashboard
+├── annals.html             # Historical "Annals of the Signal"
+├── css/
+│   └── styles.css          # Shared styles
+├── js/
+│   ├── config.js           # Configuration (Icecast URL, mountpoints, etc.)
+│   ├── icecast.js          # Icecast API module
+│   ├── live-dashboard.js   # Live page controller
+│   ├── dj-shows.js         # DJ show schedule configuration
+│   └── historical-dashboard.js  # Historical page controller
+├── img/
+│   └── logo.jpg            # Site logo
+├── data/                   # Generated by scraper (served via GitHub Pages)
+│   ├── data_24h.json       # Last 24 hours
+│   ├── data_all.json       # Full history
+│   ├── pi_health.json      # Pi health telemetry
+│   ├── monthly_index.json  # Available months
+│   ├── yearly_index.json   # Available years
+│   ├── monthly/            # Monthly archives (YYYY-MM.json)
+│   └── yearly/             # Yearly archives (YYYY.json)
+└── scraper/
+    ├── scrape_and_push.py  # Icecast scraper script
+    ├── requirements.txt    # Python dependencies
+    ├── history.csv         # Local backup
+    └── cron_example.txt    # Cron setup example
+```
+
+## Configuration
+
+### 1. Icecast Settings (`js/config.js`)
+
+Edit `js/config.js` to match your Icecast server:
+
+```javascript
+// Base URL for the Icecast server (no trailing slash)
+ICECAST_BASE_URL: "http://your-icecast-server:8000",
+
+// Tower definitions
+TOWERS: {
+    tower1: {
+        mountpoint: "/tower1",  // As it appears in Icecast
+        // ...
+    },
+    tower2: {
+        mountpoint: "/tower2",
+        // ...
+    },
+    tower3: {
+        mountpoint: "/tower3",
+        includeInCharts: false,  // INFO ONLY
+        includeInHistory: false,
+        // ...
+    }
+}
+```
+
+### 2. Archive Base URL
+
+For future-proofing (e.g., offloading archives to a CDN), configure in one place:
+
+```javascript
+// In js/config.js
+ARCHIVE_BASE_URL: "data/",  // Change to CDN URL later
+```
+
+### 3. DJ Shows (`js/dj-shows.js`)
+
+Configure recurring and special DJ shows for historical chart overlays:
+
+```javascript
+recurring: [
+    {
+        name: "Morning Waves",
+        dj: "DJ Neptus",
+        dayOfWeek: 1,  // Monday
+        startHour: 8,
+        startMinute: 0,
+        durationMinutes: 120,
+        color: "rgba(52, 152, 219, 0.3)"
+    },
+    // ...
+]
+```
+
+### 4. Weekly Schedule
+
+Edit the schedule table directly in `index.html` - it's a static HTML table for easy manual updates.
+
+## Scraper Setup (Raspberry Pi)
+
+### Prerequisites
+
+```bash
+sudo apt-get update && sudo apt-get install -y python3-pip git
+```
+
+### Installation
+
+```bash
+cd ~
+git clone https://github.com/YOUR_USERNAME/nopheros-listener-dashboard.git
+cd nopheros-listener-dashboard
+pip3 install -r scraper/requirements.txt
+```
+
+### Environment Variables
+
+```bash
+# Required: Icecast server URL
+export ICECAST_BASE_URL="http://your-server:8000"
+
+# Optional: Override labels
+export LISTENER_LABELS="Tower 1,Tower 2"
+
+# Optional: Time window for 24h view (default: 24)
+export WINDOW_HOURS=24
+
+# Optional: Skip git commit/push (for testing)
+export SKIP_GIT=1
+
+# Optional: Filter data_all.json to only this year and later
+export ARCHIVE_CUTOFF_YEAR=2026
+
+# Optional: Enable Pi health telemetry
+export ENABLE_PI_HEALTH=1
+```
+
+### Test Run
+
+```bash
+ICECAST_BASE_URL="http://your-server:8000" SKIP_GIT=1 python3 scraper/scrape_and_push.py
+```
+
+### Cron Setup
+
+Run every 15-30 minutes:
+
+```bash
+crontab -e
+```
+
+Add:
+
+```
+*/15 * * * * ICECAST_BASE_URL="http://your-server:8000" ENABLE_PI_HEALTH=1 /usr/bin/python3 /home/pi/nopheros-listener-dashboard/scraper/scrape_and_push.py >> /home/pi/nopheros-listener-dashboard/scraper/cron.log 2>&1
+```
+
+## GitHub Pages Setup
+
+1. Go to repository Settings > Pages
+2. Source: Deploy from branch
+3. Branch: `main` / `/ (root)`
+4. Save
+
+Your dashboard will be available at: `https://YOUR_USERNAME.github.io/nopheros-listener-dashboard/`
+
+## Data Format
+
+### JSON Time Series (`data_24h.json`, `data_all.json`)
+
+```json
+{
+    "generated_at": "2026-01-19T12:00:00.000000+00:00",
+    "series": [
+        {
+            "name": "Tower 1",
+            "points": [[1737288000000, 150], [1737288900000, 155], ...]
+        },
+        {
+            "name": "Tower 2",
+            "points": [[1737288000000, 75], [1737288900000, 80], ...]
+        },
+        {
+            "name": "Total",
+            "points": [[1737288000000, 225], [1737288900000, 235], ...]
+        }
+    ]
+}
+```
+
+### Crash Detection Rule
+
+A crash is detected when:
+- Previous reading: >= 200 listeners
+- Current reading: < 10 listeners
+- Time difference: <= 5 minutes
+
+Configure in `js/config.js`:
+```javascript
+CRASH_THRESHOLD_HIGH: 200,
+CRASH_THRESHOLD_LOW: 10,
+CRASH_TIME_WINDOW_MS: 5 * 60 * 1000  // 5 minutes
+```
+
+## Tower 3 Policy
+
+**Tower 3 is INFORMATIONAL ONLY:**
+- Displays on live dashboard with flavor text and now playing
+- Optional play link available
+- **NOT** included in charts
+- **NOT** included in historical data
+- **NOT** included in archives
+
+This is enforced in both the scraper and frontend configuration.
+
+## Timezone Support
+
+Both EST (America/New_York) and UK London (Europe/London) are supported:
+
+- **Live Page**: Schedule table shows both timezones
+- **Historical Page**: Toggle button switches all chart axes, tooltips, and event timestamps
+
+## Browser Compatibility
+
+- Modern browsers with ES6+ support
+- Requires JavaScript enabled
+- Uses Chart.js for visualization
 
 ## Troubleshooting
 
-- **No data on the chart?** Ensure `scraper/scrape_and_push.py` has run at least once and the JSON files exist.
-- **CORS?** Not an issue here—data is served from the same origin (GitHub Pages).
-- **status-json.xsl missing?** The scraper falls back to parsing HTML `status.xsl`.
-- **Multiple mounts** on one Icecast? The script sums listeners across mounts.
-- **Time is wrong**? The scraper timestamps in UTC (ms). Chart uses browser-local time display.
+### No data on charts
+- Ensure scraper has run at least once
+- Check that `data/data_24h.json` exists
+- Verify Icecast server is accessible
+
+### CORS errors
+- Icecast status endpoints may need CORS headers
+- Consider using a proxy or running from same origin
+
+### Peak listeners showing "--"
+- `listener_peak` may not be available in all Icecast configurations
+- The dashboard handles this gracefully
+
+### Scraper fails to connect
+- Verify `ICECAST_BASE_URL` is correct
+- Check firewall/network access from Pi to Icecast server
+- Try accessing `/status-json.xsl` directly in browser
+
+## License
+
+MIT License - See LICENSE file for details.
 
 ---
-Made with ❤️ for simple radio dashboards.
+
+Made for Nopheros Radio Network
