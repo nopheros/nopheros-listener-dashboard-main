@@ -8,11 +8,16 @@
 const IcecastAPI = {
     /**
      * Fetch and parse status from Icecast status-json.xsl endpoint
+     * @param {string} baseUrl - Optional base URL to fetch from (defaults to CONFIG.ICECAST_BASE_URL)
      * @returns {Promise<Object>} Parsed status data by mountpoint
      */
-    async fetchStatus() {
+    async fetchStatus(baseUrl = null) {
         try {
-            const response = await fetch(CONFIG.ICECAST_STATUS_JSON, {
+            const url = baseUrl
+                ? `${baseUrl}/status-json.xsl`
+                : CONFIG.ICECAST_STATUS_JSON;
+
+            const response = await fetch(url, {
                 cache: "no-store",
                 mode: "cors"
             });
@@ -24,9 +29,50 @@ const IcecastAPI = {
             const data = await response.json();
             return this.parseStatusJSON(data);
         } catch (error) {
-            console.warn("[Icecast] Failed to fetch status:", error.message);
+            console.warn("[Icecast] Failed to fetch status from", baseUrl || CONFIG.ICECAST_BASE_URL, ":", error.message);
             return null;
         }
+    },
+
+    /**
+     * Get all unique base URLs from tower configuration
+     * @returns {string[]} Array of unique base URLs
+     */
+    getUniqueBaseUrls() {
+        const urls = new Set();
+        for (const tower of Object.values(CONFIG.TOWERS)) {
+            urls.add(tower.baseUrl || CONFIG.ICECAST_BASE_URL);
+        }
+        return Array.from(urls);
+    },
+
+    /**
+     * Fetch status from all configured Icecast servers
+     * @returns {Promise<Object>} Combined status with mounts from all servers
+     */
+    async fetchAllServersStatus() {
+        const baseUrls = this.getUniqueBaseUrls();
+        const results = await Promise.all(
+            baseUrls.map(url => this.fetchStatus(url))
+        );
+
+        // Combine all mounts into a single result
+        const combined = {
+            mounts: {},
+            serverInfo: null,
+            fetchedAt: Date.now()
+        };
+
+        for (const result of results) {
+            if (result && result.mounts) {
+                Object.assign(combined.mounts, result.mounts);
+            }
+            if (result && result.serverInfo && !combined.serverInfo) {
+                combined.serverInfo = result.serverInfo;
+            }
+        }
+
+        return combined;
     },
 
     /**
@@ -153,7 +199,9 @@ const IcecastAPI = {
             return null;
         }
 
-        const status = await this.fetchStatus();
+        // Fetch from the tower's specific server
+        const baseUrl = tower.baseUrl || CONFIG.ICECAST_BASE_URL;
+        const status = await this.fetchStatus(baseUrl);
         if (!status || !status.mounts) {
             return null;
         }
@@ -173,52 +221,69 @@ const IcecastAPI = {
 
     /**
      * Get status for all configured towers
+     * Fetches from each tower's specific server to handle multi-server setups
      * @returns {Promise<Object>} Status keyed by tower ID
      */
     async getAllTowerStatus() {
-        const status = await this.fetchStatus();
         const result = {
             towers: {},
             totalListeners: 0,
             chartTowersTotal: 0,
-            fetchedAt: status?.fetchedAt || Date.now()
+            fetchedAt: Date.now()
         };
 
-        if (!status || !status.mounts) {
-            return result;
+        // Group towers by their base URL to minimize requests
+        const towersByUrl = {};
+        for (const [towerId, tower] of Object.entries(CONFIG.TOWERS)) {
+            const baseUrl = tower.baseUrl || CONFIG.ICECAST_BASE_URL;
+            if (!towersByUrl[baseUrl]) {
+                towersByUrl[baseUrl] = [];
+            }
+            towersByUrl[baseUrl].push({ towerId, tower });
         }
 
-        for (const [towerId, tower] of Object.entries(CONFIG.TOWERS)) {
-            const mount = status.mounts[tower.mountpoint];
+        // Fetch status from each unique server in parallel
+        const fetchPromises = Object.entries(towersByUrl).map(async ([baseUrl, towers]) => {
+            const status = await this.fetchStatus(baseUrl);
+            return { baseUrl, towers, status };
+        });
 
-            if (mount) {
-                result.towers[towerId] = {
-                    ...mount,
-                    towerId: towerId,
-                    towerName: tower.name,
-                    includeInCharts: tower.includeInCharts,
-                    includeInHistory: tower.includeInHistory
-                };
+        const serverResults = await Promise.all(fetchPromises);
 
-                result.totalListeners += mount.listeners || 0;
+        // Process results from each server
+        for (const { towers, status } of serverResults) {
+            for (const { towerId, tower } of towers) {
+                const mount = status?.mounts?.[tower.mountpoint];
 
-                // Only count Tower 1 + Tower 2 for chart total
-                if (tower.includeInCharts) {
-                    result.chartTowersTotal += mount.listeners || 0;
+                if (mount) {
+                    result.towers[towerId] = {
+                        ...mount,
+                        towerId: towerId,
+                        towerName: tower.name,
+                        includeInCharts: tower.includeInCharts,
+                        includeInHistory: tower.includeInHistory
+                    };
+
+                    result.totalListeners += mount.listeners || 0;
+
+                    // Only count towers marked for charts in chart total
+                    if (tower.includeInCharts) {
+                        result.chartTowersTotal += mount.listeners || 0;
+                    }
+                } else {
+                    // Mount not found - tower may be offline
+                    result.towers[towerId] = {
+                        towerId: towerId,
+                        towerName: tower.name,
+                        mountpoint: tower.mountpoint,
+                        listeners: 0,
+                        listenerPeak: null,
+                        title: null,
+                        offline: true,
+                        includeInCharts: tower.includeInCharts,
+                        includeInHistory: tower.includeInHistory
+                    };
                 }
-            } else {
-                // Mount not found - tower may be offline
-                result.towers[towerId] = {
-                    towerId: towerId,
-                    towerName: tower.name,
-                    mountpoint: tower.mountpoint,
-                    listeners: 0,
-                    listenerPeak: null,
-                    title: null,
-                    offline: true,
-                    includeInCharts: tower.includeInCharts,
-                    includeInHistory: tower.includeInHistory
-                };
             }
         }
 

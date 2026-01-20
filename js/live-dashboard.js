@@ -247,18 +247,17 @@ const LiveDashboard = {
      */
     async updateNowPlaying() {
         try {
-            const status = await IcecastAPI.fetchStatus();
-            if (!status || !status.mounts) return;
+            const status = await IcecastAPI.getAllTowerStatus();
+            if (!status || !status.towers) return;
 
-            for (const [towerId, tower] of Object.entries(CONFIG.TOWERS)) {
-                const mount = status.mounts[tower.mountpoint];
-                const title = mount?.title || "(no metadata)";
+            for (const [towerId, towerStatus] of Object.entries(status.towers)) {
+                const title = towerStatus?.title || "(no metadata)";
 
                 switch (towerId) {
                     case "tower1":
                         this.setText(this.elements.tower1Np, title);
                         this.setText(this.elements.tower1NowPlaying,
-                            mount?.title ? `Now Playing: ${title}` : "Now Playing: (no metadata)");
+                            towerStatus?.title ? `Now Playing: ${title}` : "Now Playing: (no metadata)");
                         break;
                     case "tower2":
                         this.setText(this.elements.tower2Np, title);

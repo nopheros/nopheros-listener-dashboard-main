@@ -48,19 +48,22 @@ except ImportError:
 
 # --------------------------- Configuration ---------------------------
 
-# Icecast server base URL
-ICECAST_BASE_URL = os.getenv("ICECAST_BASE_URL", "http://***REMOVED***:8000")
+# Default Icecast server base URL (used when tower has no specific base_url)
+ICECAST_BASE_URL = os.getenv("ICECAST_BASE_URL", "https://radio.turtle-music.org")
 
 # Mountpoints to track (Tower 1 and Tower 2 ONLY - Tower 3 excluded from history)
+# Each tower can have its own base_url for multi-server setups
 TRACKED_MOUNTPOINTS = {
     "tower1": {
-        "mountpoint": "/tower1",
+        "mountpoint": "/stream",
         "label": "Tower 1",
         "include_in_charts": True,
         "include_in_history": True
+        # Uses default ICECAST_BASE_URL
     },
     "tower2": {
-        "mountpoint": "/tower2",
+        "base_url": "https://sgradio.turtle-music.org",
+        "mountpoint": "/stream",
         "label": "Tower 2",
         "include_in_charts": True,
         "include_in_history": True
@@ -114,12 +117,17 @@ def safe_int(value: Any, default: Optional[int] = None) -> Optional[int]:
 
 # --------------------------- Icecast Parsing ---------------------------
 
-def fetch_icecast_status_json() -> Optional[Dict[str, Any]]:
+def fetch_icecast_status_json(base_url: Optional[str] = None) -> Optional[Dict[str, Any]]:
     """
     Fetch and parse Icecast status-json.xsl endpoint.
+
+    Args:
+        base_url: Base URL of the Icecast server (defaults to ICECAST_BASE_URL)
+
     Returns dict with per-mount data or None on failure.
     """
-    url = f"{ICECAST_BASE_URL}/status-json.xsl"
+    server_url = base_url or ICECAST_BASE_URL
+    url = f"{server_url}/status-json.xsl"
 
     try:
         response = requests.get(
@@ -132,17 +140,17 @@ def fetch_icecast_status_json() -> Optional[Dict[str, Any]]:
         # Check content type
         content_type = response.headers.get("Content-Type", "")
         if "json" not in content_type.lower():
-            print(f"[warn] Unexpected content type: {content_type}")
+            print(f"[warn] Unexpected content type from {server_url}: {content_type}")
             # Try parsing anyway
 
         data = response.json()
         return parse_icecast_json(data)
 
     except requests.RequestException as e:
-        print(f"[warn] Failed to fetch Icecast JSON status: {e}")
+        print(f"[warn] Failed to fetch Icecast JSON status from {server_url}: {e}")
         return None
     except json.JSONDecodeError as e:
-        print(f"[warn] Failed to parse Icecast JSON: {e}")
+        print(f"[warn] Failed to parse Icecast JSON from {server_url}: {e}")
         return None
 
 def parse_icecast_json(data: Dict[str, Any]) -> Dict[str, Any]:
@@ -190,7 +198,7 @@ def parse_mount_source(source: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     Parse a single mount source object from Icecast.
 
     Extracts:
-    - mountpoint (path only, e.g., /tower1)
+    - mountpoint (path only, e.g., /stream)
     - listeners (current count)
     - listener_peak (peak count, may not exist in all configs)
     - title (now playing metadata)
@@ -237,15 +245,19 @@ def parse_mount_source(source: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         print(f"[warn] Error parsing mount source: {e}")
         return None
 
-def fetch_icecast_status_html() -> Optional[Dict[str, Any]]:
+def fetch_icecast_status_html(base_url: Optional[str] = None) -> Optional[Dict[str, Any]]:
     """
     Fallback: Fetch and parse Icecast status.xsl HTML page.
     Less reliable than JSON but works as backup.
+
+    Args:
+        base_url: Base URL of the Icecast server (defaults to ICECAST_BASE_URL)
     """
     if not HAS_BS4:
         return None
 
-    url = f"{ICECAST_BASE_URL}/status.xsl"
+    server_url = base_url or ICECAST_BASE_URL
+    url = f"{server_url}/status.xsl"
 
     try:
         response = requests.get(
@@ -258,7 +270,7 @@ def fetch_icecast_status_html() -> Optional[Dict[str, Any]]:
         return parse_icecast_html(response.text)
 
     except requests.RequestException as e:
-        print(f"[warn] Failed to fetch Icecast HTML status: {e}")
+        print(f"[warn] Failed to fetch Icecast HTML status from {server_url}: {e}")
         return None
 
 def parse_icecast_html(html: str) -> Dict[str, Any]:
@@ -335,55 +347,78 @@ def parse_icecast_html(html: str) -> Dict[str, Any]:
 
     return result
 
-def fetch_listener_data() -> Dict[str, Any]:
+def fetch_status_for_server(base_url: Optional[str] = None) -> Dict[str, Any]:
     """
-    Fetch listener data from Icecast.
+    Fetch status from a single Icecast server.
     Tries JSON first, falls back to HTML.
 
-    Returns dict with:
-        mounts: {mountpoint: {listeners, peak, ...}}
-        towers: {tower_id: {label, listeners, peak, ...}} (only tracked towers)
-        total: combined listeners for tracked towers
+    Args:
+        base_url: Base URL of the Icecast server (defaults to ICECAST_BASE_URL)
+
+    Returns dict with mounts data or empty mounts on failure.
     """
     # Try JSON first
-    status = fetch_icecast_status_json()
+    status = fetch_icecast_status_json(base_url)
 
     # Fallback to HTML
     if not status or not status.get("mounts"):
-        status = fetch_icecast_status_html()
+        status = fetch_icecast_status_html(base_url)
 
     if not status:
         status = {"mounts": {}, "fetched_at": iso_now()}
 
-    # Map to tracked towers
+    return status
+
+
+def fetch_listener_data() -> Dict[str, Any]:
+    """
+    Fetch listener data from all configured Icecast servers.
+    Supports multi-server setups where towers may be on different servers.
+
+    Returns dict with:
+        towers: {tower_id: {label, listeners, peak, ...}} (only tracked towers)
+        total: combined listeners for tracked towers
+    """
     result = {
-        "mounts": status.get("mounts", {}),
         "towers": {},
         "total": 0,
-        "fetched_at": status.get("fetched_at", iso_now())
+        "fetched_at": iso_now()
     }
 
+    # Group towers by their base URL to minimize requests
+    towers_by_url: Dict[str, list] = {}
     for tower_id, config in TRACKED_MOUNTPOINTS.items():
-        mountpoint = config["mountpoint"]
-        mount_data = status.get("mounts", {}).get(mountpoint, {})
+        base_url = config.get("base_url") or ICECAST_BASE_URL
+        if base_url not in towers_by_url:
+            towers_by_url[base_url] = []
+        towers_by_url[base_url].append((tower_id, config))
 
-        listeners = mount_data.get("listeners", 0)
-        peak = mount_data.get("listener_peak")
+    # Fetch status from each unique server
+    for base_url, towers in towers_by_url.items():
+        status = fetch_status_for_server(base_url)
+        mounts = status.get("mounts", {})
 
-        result["towers"][tower_id] = {
-            "id": tower_id,
-            "label": config["label"],
-            "mountpoint": mountpoint,
-            "listeners": listeners,
-            "listener_peak": peak,
-            "title": mount_data.get("title"),
-            "include_in_charts": config["include_in_charts"],
-            "include_in_history": config["include_in_history"]
-        }
+        for tower_id, config in towers:
+            mountpoint = config["mountpoint"]
+            mount_data = mounts.get(mountpoint, {})
 
-        # Only count toward total if included in charts
-        if config["include_in_charts"]:
-            result["total"] += listeners
+            listeners = mount_data.get("listeners", 0)
+            peak = mount_data.get("listener_peak")
+
+            result["towers"][tower_id] = {
+                "id": tower_id,
+                "label": config["label"],
+                "mountpoint": mountpoint,
+                "listeners": listeners,
+                "listener_peak": peak,
+                "title": mount_data.get("title"),
+                "include_in_charts": config["include_in_charts"],
+                "include_in_history": config["include_in_history"]
+            }
+
+            # Only count toward total if included in charts
+            if config["include_in_charts"]:
+                result["total"] += listeners
 
     return result
 

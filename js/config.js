@@ -39,6 +39,7 @@ const CONFIG = {
         tower2: {
             id: "tower2",
             name: "Tower 2",
+            baseUrl: "https://sgradio.turtle-music.org",
             mountpoint: "/stream",
             description: "Secondary Relay Tower",
             includeInCharts: true,
@@ -61,7 +62,8 @@ const CONFIG = {
     getStreamUrl(towerId) {
         const tower = this.TOWERS[towerId];
         if (!tower) return null;
-        return `${this.ICECAST_BASE_URL}${tower.mountpoint}`;
+        const baseUrl = tower.baseUrl || this.ICECAST_BASE_URL;
+        return `${baseUrl}${tower.mountpoint}`;
     },
 
     // Get towers that should appear in charts
