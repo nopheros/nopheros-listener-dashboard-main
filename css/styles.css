@@ -454,24 +454,23 @@ img {
     font-size: var(--font-size-md);
 }
 
-/* ========== CHART & SCHEDULE SECTION ========== */
-.chart-schedule-section {
+/* ========== CHART SECTION ========== */
+.chart-section {
     margin-bottom: var(--spacing-xl);
 }
 
-.chart-schedule-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-lg);
+.chart-panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
 }
 
-@media (max-width: 900px) {
-    .chart-schedule-grid {
-        grid-template-columns: 1fr;
-    }
+/* ========== SCHEDULE SECTION ========== */
+.schedule-section {
+    margin-bottom: var(--spacing-xl);
 }
 
-.chart-panel,
 .schedule-panel {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -541,7 +540,7 @@ img {
 
 .chart-wrapper {
     position: relative;
-    height: 350px;
+    height: 400px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);

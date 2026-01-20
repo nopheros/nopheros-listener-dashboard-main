@@ -119,101 +119,100 @@
             </div>
         </section>
 
-        <!-- ========== LIVE CHART + WEEKLY SCHEDULE ========== -->
-        <section class="chart-schedule-section">
-            <div class="chart-schedule-grid">
-                <!-- Live Chart -->
-                <div class="chart-panel">
-                    <div class="panel-header">
-                        <h2>Listener Activity</h2>
-                        <div class="chart-controls">
-                            <button class="range-btn active" data-range="24h">Last 24h</button>
-                            <button class="range-btn" data-range="all">All Time</button>
-                            <button class="btn-icon" id="refresh-chart" title="Refresh now">
-                                🔄
-                            </button>
-                        </div>
-                    </div>
-                    <p class="chart-note">Tower 1 + Tower 2 only. Total listeners shown as bold line. Click legend to toggle.</p>
-                    <div class="chart-wrapper">
-                        <canvas id="listeners-chart"></canvas>
-                    </div>
-                    <div class="chart-footer">
-                        <button class="btn-secondary" id="export-csv">Export CSV</button>
-                        <button class="btn-secondary" id="download-json">Download JSON</button>
+        <!-- ========== LIVE CHART ========== -->
+        <section class="chart-section">
+            <div class="chart-panel">
+                <div class="panel-header">
+                    <h2>Listener Activity</h2>
+                    <div class="chart-controls">
+                        <button class="range-btn active" data-range="24h">Last 24h</button>
+                        <button class="range-btn" data-range="all">All Time</button>
+                        <button class="btn-icon" id="refresh-chart" title="Refresh now">
+                            🔄
+                        </button>
                     </div>
                 </div>
+                <p class="chart-note">Tower 1 + Tower 2 only. Total listeners shown as bold line. Click legend to toggle.</p>
+                <div class="chart-wrapper">
+                    <canvas id="listeners-chart"></canvas>
+                </div>
+                <div class="chart-footer">
+                    <button class="btn-secondary" id="export-csv">Export CSV</button>
+                    <button class="btn-secondary" id="download-json">Download JSON</button>
+                </div>
+            </div>
+        </section>
 
-                <!-- Weekly Schedule -->
-                <div class="schedule-panel">
-                    <div class="panel-header">
-                        <h2>Weekly Schedule</h2>
-                    </div>
-                    <p class="schedule-note">All times shown in EST and UK London</p>
-                    <div class="schedule-table-wrapper">
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th>Day</th>
-                                    <th>Show</th>
-                                    <th>DJ</th>
-                                    <th>EST</th>
-                                    <th>UK</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Monday</td>
-                                    <td>Treehab with DJ Nopheros</td>
-                                    <td>Nopheros</td>
-                                    <td>11:00 AM</td>
-                                    <td>16:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Monday</td>
-                                    <td>Living in the Past</td>
-                                    <td>Leto</td>
-                                    <td>6:00 PM</td>
-                                    <td>23:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Tuesday</td>
-                                    <td>Groovin' in the Graveyard</td>
-                                    <td>Crustman</td>
-                                    <td>3:00 PM</td>
-                                    <td>20:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Tuesday</td>
-                                    <td>The Whiski Lounge</td>
-                                    <td>Whiski</td>
-                                    <td>9:00 PM</td>
-                                    <td>3:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Wednesday</td>
-                                    <td>The Deeprun Classix & Mashups with Kando</td>
-                                    <td>Kando</td>
-                                    <td>04:00 PM</td>
-                                    <td>22:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Friday</td>
-                                    <td>Pilgrim of the Signal</td>
-                                    <td>Nopheros</td>
-                                    <td>06:00 PM</td>
-                                    <td>23:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Saturday</td>
-                                    <td>Tavern Talks with Sheal</td>
-                                    <td>Sheal</td>
-                                    <td>3:00 PM</td>
-                                    <td>20:00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+        <!-- ========== WEEKLY SCHEDULE ========== -->
+        <section class="schedule-section">
+            <div class="schedule-panel">
+                <div class="panel-header">
+                    <h2>Weekly Schedule</h2>
+                </div>
+                <p class="schedule-note">All times shown in EST and UK London</p>
+                <div class="schedule-table-wrapper">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Show</th>
+                                <th>DJ</th>
+                                <th>EST</th>
+                                <th>UK</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Monday</td>
+                                <td>Treehab with DJ Nopheros</td>
+                                <td>Nopheros</td>
+                                <td>11:00 AM</td>
+                                <td>16:00</td>
+                            </tr>
+                            <tr>
+                                <td>Monday</td>
+                                <td>Living in the Past</td>
+                                <td>Leto</td>
+                                <td>6:00 PM</td>
+                                <td>23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td>Groovin' in the Graveyard</td>
+                                <td>Crustman</td>
+                                <td>3:00 PM</td>
+                                <td>20:00</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td>The Whiski Lounge</td>
+                                <td>Whiski</td>
+                                <td>9:00 PM</td>
+                                <td>3:00</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td>The Deeprun Classix & Mashups with Kando</td>
+                                <td>Kando</td>
+                                <td>04:00 PM</td>
+                                <td>22:00</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td>Pilgrim of the Signal</td>
+                                <td>Nopheros</td>
+                                <td>06:00 PM</td>
+                                <td>23:00</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>Tavern Talks with Sheal</td>
+                                <td>Sheal</td>
+                                <td>3:00 PM</td>
+                                <td>20:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
