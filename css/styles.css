@@ -429,6 +429,7 @@ img {
     text-overflow: ellipsis;
 }
 
+.tower-play-link,
 .tower3-play-link {
     display: inline-flex;
     align-items: center;
@@ -442,6 +443,7 @@ img {
     transition: all 0.2s ease;
 }
 
+.tower-play-link:hover,
 .tower3-play-link:hover {
     background: var(--accent-secondary);
     color: var(--bg-primary);

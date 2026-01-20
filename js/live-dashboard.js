@@ -48,6 +48,8 @@ const LiveDashboard = {
             tower2Peak: document.getElementById("tower2-peak"),
             tower2Np: document.getElementById("tower2-np"),
             tower3Np: document.getElementById("tower3-np"),
+            tower1PlayLink: document.getElementById("tower1-play-link"),
+            tower2PlayLink: document.getElementById("tower2-play-link"),
             tower3PlayLink: document.getElementById("tower3-play-link"),
             totalListeners: document.getElementById("total-listeners"),
 
@@ -80,7 +82,17 @@ const LiveDashboard = {
             this.elements.playerSource.src = streamUrl;
         }
 
-        // Setup Tower 3 play link
+        // Setup tower play links
+        const tower1Url = IcecastAPI.getStreamUrl("tower1");
+        if (tower1Url && this.elements.tower1PlayLink) {
+            this.elements.tower1PlayLink.href = tower1Url;
+        }
+
+        const tower2Url = IcecastAPI.getStreamUrl("tower2");
+        if (tower2Url && this.elements.tower2PlayLink) {
+            this.elements.tower2PlayLink.href = tower2Url;
+        }
+
         const tower3Url = IcecastAPI.getStreamUrl("tower3");
         if (tower3Url && this.elements.tower3PlayLink) {
             this.elements.tower3PlayLink.href = tower3Url;

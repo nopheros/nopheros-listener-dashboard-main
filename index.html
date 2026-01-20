@@ -31,26 +31,6 @@
     </header>
 
     <main class="main-content">
-        <!-- ========== TOWER 1 EMBEDDED PLAYER ========== -->
-        <section class="player-section">
-            <div class="player-card primary-player">
-                <div class="player-header">
-                    <h2>Tower 1 - Primary Broadcast</h2>
-                    <button class="reload-btn" id="player-reload" title="Re-sync to live stream">
-                        <span class="reload-icon">🔄</span>
-                        <span class="reload-text">Re-sync</span>
-                    </button>
-                </div>
-                <div class="player-controls">
-                    <audio id="tower1-player" controls preload="none">
-                        <source src="" type="audio/mpeg" id="tower1-source">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <p class="now-playing" id="tower1-now-playing">Loading track...</p>
-            </div>
-        </section>
-
         <!-- ========== TOWER CARDS ========== -->
         <section class="tower-cards-section">
             <div class="section-header">
@@ -83,6 +63,10 @@
                         <span class="np-label">Now Playing:</span>
                         <span class="np-value" id="tower1-np">--</span>
                     </div>
+                    <a href="#" class="tower-play-link" id="tower1-play-link" target="_blank" rel="noopener noreferrer">
+                        <span class="play-icon">▶</span>
+                        <span>Listen to Tower 1</span>
+                    </a>
                 </div>
 
                 <!-- Tower 2 Card -->
@@ -106,6 +90,10 @@
                         <span class="np-label">Now Playing:</span>
                         <span class="np-value" id="tower2-np">--</span>
                     </div>
+                    <a href="#" class="tower-play-link" id="tower2-play-link" target="_blank" rel="noopener noreferrer">
+                        <span class="play-icon">▶</span>
+                        <span>Listen to Tower 2</span>
+                    </a>
                 </div>
 
                 <!-- Tower 3 Card (INFO ONLY) -->
@@ -260,6 +248,26 @@
                         <span id="pi-health-updated">--</span>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ========== EMBEDDED PLAYER (BOTTOM) ========== -->
+        <section class="player-section">
+            <div class="player-card primary-player">
+                <div class="player-header">
+                    <h2>Tower 1 - Primary Broadcast</h2>
+                    <button class="reload-btn" id="player-reload" title="Re-sync to live stream">
+                        <span class="reload-icon">🔄</span>
+                        <span class="reload-text">Re-sync</span>
+                    </button>
+                </div>
+                <div class="player-controls">
+                    <audio id="tower1-player" controls preload="none">
+                        <source src="" type="audio/mpeg" id="tower1-source">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <p class="now-playing" id="tower1-now-playing">Loading track...</p>
             </div>
         </section>
     </main>
