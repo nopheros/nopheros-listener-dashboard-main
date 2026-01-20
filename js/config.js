@@ -30,7 +30,7 @@ const CONFIG = {
         tower1: {
             id: "tower1",
             name: "Tower 1",
-            mountpoint: "/tower1",
+            mountpoint: "/stream",
             description: "Primary Broadcast Tower",
             includeInCharts: true,
             includeInHistory: true,
@@ -39,7 +39,7 @@ const CONFIG = {
         tower2: {
             id: "tower2",
             name: "Tower 2",
-            mountpoint: "/tower2",
+            mountpoint: "/stream",
             description: "Secondary Relay Tower",
             includeInCharts: true,
             includeInHistory: true,
