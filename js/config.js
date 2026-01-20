@@ -11,7 +11,7 @@ const CONFIG = {
     // =========================================================================
 
     // Base URL for the Icecast server (no trailing slash)
-    ICECAST_BASE_URL: "http://***REMOVED***:8000",
+    ICECAST_BASE_URL: "https://radio.turtle-music.org", //"http://***REMOVED***:8000",
 
     // Icecast status endpoints
     get ICECAST_STATUS_JSON() {
