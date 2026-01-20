@@ -15,81 +15,81 @@ const DJ_SHOWS = {
      */
     recurring: [
         {
-            id: "morning-waves",
-            name: "Morning Waves",
-            dj: "DJ Neptus",
-            dayOfWeek: 1, // Monday (0=Sunday, 1=Monday, etc.)
-            startHour: 8,
+            id: "treehab",
+            name: "Treehab with DJ Nopheros",
+            dj: "Nopheros",
+            dayOfWeek: 1, // Monday (0=Sunday)
+            startHour: 11,
             startMinute: 0,
-            durationMinutes: 120, // 2 hours
-            color: "rgba(52, 152, 219, 0.3)",
-            borderColor: "rgba(52, 152, 219, 0.8)"
+            durationMinutes: 120, // default 2h slot
+            color: "rgba(52, 152, 219, 0.25)",
+            borderColor: "rgba(52, 152, 219, 0.9)"
         },
         {
-            id: "deep-currents",
-            name: "Deep Currents",
-            dj: "Aquatic Soul",
-            dayOfWeek: 2, // Tuesday
-            startHour: 21, // 9 PM
-            startMinute: 0,
-            durationMinutes: 180, // 3 hours
-            color: "rgba(155, 89, 182, 0.3)",
-            borderColor: "rgba(155, 89, 182, 0.8)"
-        },
-        {
-            id: "midweek-drift",
-            name: "Midweek Drift",
-            dj: "The Mariner",
-            dayOfWeek: 3, // Wednesday
-            startHour: 18, // 6 PM
+            id: "living-in-the-past",
+            name: "Living in the Past",
+            dj: "Leto",
+            dayOfWeek: 1, // Monday
+            startHour: 18,
             startMinute: 0,
             durationMinutes: 120,
-            color: "rgba(46, 204, 113, 0.3)",
-            borderColor: "rgba(46, 204, 113, 0.8)"
+            color: "rgba(241, 196, 15, 0.25)",
+            borderColor: "rgba(241, 196, 15, 0.9)"
         },
         {
-            id: "tidal-grooves",
-            name: "Tidal Grooves",
-            dj: "Captain Sync",
-            dayOfWeek: 4, // Thursday
-            startHour: 19, // 7 PM
+            id: "groovin-in-the-graveyard",
+            name: "Groovin' in the Graveyard",
+            dj: "Crustman",
+            dayOfWeek: 2, // Tuesday
+            startHour: 15,
             startMinute: 0,
-            durationMinutes: 150, // 2.5 hours
-            color: "rgba(241, 196, 15, 0.3)",
-            borderColor: "rgba(241, 196, 15, 0.8)"
+            durationMinutes: 120,
+            color: "rgba(155, 89, 182, 0.25)",
+            borderColor: "rgba(155, 89, 182, 0.9)"
         },
         {
-            id: "weekend-launch",
-            name: "Weekend Launch",
-            dj: "DJ Coral",
+            id: "the-whiski-lounge",
+            name: "The Whiski Lounge",
+            dj: "Whiski",
+            dayOfWeek: 2, // Tuesday
+            startHour: 21,
+            startMinute: 0,
+            durationMinutes: 120,
+            color: "rgba(230, 126, 34, 0.25)",
+            borderColor: "rgba(230, 126, 34, 0.9)"
+        },
+        {
+            id: "deeprun-classix",
+            name: "The Deeprun Classix & Mashups with Kando",
+            dj: "Kando",
+            dayOfWeek: 3, // Wednesday
+            startHour: 16,
+            startMinute: 0,
+            durationMinutes: 120,
+            color: "rgba(46, 204, 113, 0.25)",
+            borderColor: "rgba(46, 204, 113, 0.9)"
+        },
+        {
+            id: "pilgrim-of-the-signal",
+            name: "Pilgrim of the Signal",
+            dj: "Nopheros",
             dayOfWeek: 5, // Friday
-            startHour: 22, // 10 PM
+            startHour: 18,
             startMinute: 0,
-            durationMinutes: 240, // 4 hours
-            color: "rgba(231, 76, 60, 0.3)",
-            borderColor: "rgba(231, 76, 60, 0.8)"
+            durationMinutes: 120,
+            color: "rgba(231, 76, 60, 0.25)",
+            borderColor: "rgba(231, 76, 60, 0.9)"
         },
         {
-            id: "all-day-vibes",
-            name: "All Day Vibes",
-            dj: "Various",
+            id: "tavern-talks",
+            name: "Tavern Talks with Sheal",
+            dj: "Sheal",
             dayOfWeek: 6, // Saturday
-            startHour: 12, // 12 PM
+            startHour: 15,
             startMinute: 0,
-            durationMinutes: 480, // 8 hours
-            color: "rgba(26, 188, 156, 0.3)",
-            borderColor: "rgba(26, 188, 156, 0.8)"
-        },
-        {
-            id: "chill-horizons",
-            name: "Chill Horizons",
-            dj: "Seabreeze",
-            dayOfWeek: 0, // Sunday
-            startHour: 16, // 4 PM
-            startMinute: 0,
-            durationMinutes: 180, // 3 hours
-            color: "rgba(52, 73, 94, 0.3)",
-            borderColor: "rgba(52, 73, 94, 0.8)"
+            durationMinutes: 120,
+            color: "rgba(26, 188, 156, 0.25)",
+            borderColor: "rgba(26, 188, 156, 0.9)"
         }
     ],
 
