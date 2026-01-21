@@ -14,6 +14,7 @@ const LiveDashboard = {
     currentRange: "24h",
     refreshInterval: null,
     nowPlayingInterval: null,
+    currentPlayerTower: "tower1",
 
     // DOM element cache
     elements: {},
@@ -38,7 +39,10 @@ const LiveDashboard = {
             player: document.getElementById("tower1-player"),
             playerSource: document.getElementById("tower1-source"),
             playerReload: document.getElementById("player-reload"),
-            tower1NowPlaying: document.getElementById("tower1-now-playing"),
+            playerNowPlaying: document.getElementById("player-now-playing"),
+            playerSelect: document.getElementById("player-stream-select"),
+            playerPopupWindow: document.getElementById("player-popup-window"),
+            playerPopupModal: document.getElementById("player-popup-modal"),
 
             // Tower cards
             tower1Listeners: document.getElementById("tower1-listeners"),
@@ -47,10 +51,9 @@ const LiveDashboard = {
             tower2Listeners: document.getElementById("tower2-listeners"),
             tower2Peak: document.getElementById("tower2-peak"),
             tower2Np: document.getElementById("tower2-np"),
+            tower3Listeners: document.getElementById("tower3-listeners"),
+            tower3Peak: document.getElementById("tower3-peak"),
             tower3Np: document.getElementById("tower3-np"),
-            tower1PlayLink: document.getElementById("tower1-play-link"),
-            tower2PlayLink: document.getElementById("tower2-play-link"),
-            tower3PlayLink: document.getElementById("tower3-play-link"),
             totalListeners: document.getElementById("total-listeners"),
 
             // Chart
@@ -77,25 +80,16 @@ const LiveDashboard = {
      * Setup the Tower 1 audio player
      */
     setupPlayer() {
-        const streamUrl = IcecastAPI.getStreamUrl("tower1");
-        if (streamUrl && this.elements.playerSource) {
-            this.elements.playerSource.src = streamUrl;
-        }
+        this.setPlayerSource(this.currentPlayerTower);
 
-        // Setup tower play links
-        const tower1Url = IcecastAPI.getStreamUrl("tower1");
-        if (tower1Url && this.elements.tower1PlayLink) {
-            this.elements.tower1PlayLink.href = tower1Url;
-        }
-
-        const tower2Url = IcecastAPI.getStreamUrl("tower2");
-        if (tower2Url && this.elements.tower2PlayLink) {
-            this.elements.tower2PlayLink.href = tower2Url;
-        }
-
-        const tower3Url = IcecastAPI.getStreamUrl("tower3");
-        if (tower3Url && this.elements.tower3PlayLink) {
-            this.elements.tower3PlayLink.href = tower3Url;
+        // Hook tower selector
+        if (this.elements.playerSelect) {
+            this.elements.playerSelect.value = this.currentPlayerTower;
+            this.elements.playerSelect.addEventListener("change", (e) => {
+                const nextTower = e.target.value || "tower1";
+                this.setPlayerSource(nextTower);
+                this.updateNowPlaying();
+            });
         }
     },
 
@@ -109,7 +103,7 @@ const LiveDashboard = {
         if (!player || !source) return;
 
         const wasPlaying = !player.paused;
-        const streamUrl = IcecastAPI.getStreamUrl("tower1");
+        const streamUrl = IcecastAPI.getStreamUrl(this.currentPlayerTower);
 
         // Add cache-busting parameter
         const bustUrl = `${streamUrl}?_t=${Date.now()}`;
@@ -126,6 +120,156 @@ const LiveDashboard = {
     },
 
     /**
+     * Set player stream by tower ID
+     * @param {string} towerId
+     */
+    setPlayerSource(towerId) {
+        const player = this.elements.player;
+        const source = this.elements.playerSource;
+        if (!player || !source) return;
+
+        const streamUrl = IcecastAPI.getStreamUrl(towerId);
+        if (!streamUrl) return;
+
+        const wasPlaying = !player.paused;
+        player.pause();
+        source.src = streamUrl;
+        player.load();
+
+        this.currentPlayerTower = towerId;
+
+        if (wasPlaying) {
+            player.play().catch(() => {});
+        }
+    },
+    /**
+     * Open the current stream in a new browser window
+     */
+    openPlayerWindow() {
+        const streamUrl = CONFIG.getStreamUrl(this.currentPlayerTower);
+        if (!streamUrl) return;
+
+        window.open(streamUrl, "elbc_player", "width=500,height=300,noopener,noreferrer");
+    },
+
+    /**
+     * Open a modal overlay player window
+     */
+    openPlayerModal() {
+        const streamUrl = CONFIG.getStreamUrl(this.currentPlayerTower);
+        if (!streamUrl) return;
+
+        const towerId = this.currentPlayerTower;
+        const tower = CONFIG.TOWERS[towerId];
+        const towerName = tower?.name || "Unknown Tower";
+
+        // Create modal HTML
+        const modalHTML = `
+            <div id="player-modal-overlay" class="modal-overlay">
+                <div class="modal-player">
+                    <div class="modal-header">
+                        <h3>${towerName} - Pop-out Player</h3>
+                        <button class="modal-close" id="modal-close-btn" title="Close">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <audio controls autoplay style="width: 100%;">
+                            <source src="${streamUrl}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="modal-info">
+                            <p><strong>Now Playing:</strong> <span id="modal-np">(loading...)</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Remove any existing modal
+        const existingModal = document.getElementById("player-modal-overlay");
+        if (existingModal) existingModal.remove();
+
+        // Add modal to DOM
+        document.body.insertAdjacentHTML("beforeend", modalHTML);
+
+        // Get close button and add listener
+        const closeBtn = document.getElementById("modal-close-btn");
+        const overlay = document.getElementById("player-modal-overlay");
+
+        closeBtn?.addEventListener("click", () => overlay.remove());
+        overlay?.addEventListener("click", (e) => {
+            if (e.target === overlay) overlay.remove();
+        });
+
+        // Update now playing
+        this.updateModalNowPlaying(towerId);
+        this.modalNowPlayingInterval = setInterval(() => {
+            this.updateModalNowPlaying(towerId);
+        }, CONFIG.NOW_PLAYING_REFRESH_INTERVAL_MS);
+    },
+
+    /**
+     * Update now playing text in modal
+     */
+    async updateModalNowPlaying(towerId) {
+        const npElement = document.getElementById("modal-np");
+        if (!npElement) return;
+
+        try {
+            const status = await IcecastAPI.getAllTowerStatus();
+            const towerStatus = status.towers[towerId];
+            const title = towerStatus?.title || "(no metadata)";
+            this.setText(npElement, title);
+        } catch (error) {
+            console.error("[Dashboard] Failed to update modal now playing:", error);
+        }
+    },
+
+    /**
+     * Close any open modal player
+     */
+    closePlayerModal() {
+        const modal = document.getElementById("player-modal-overlay");
+        if (modal) modal.remove();
+        if (this.modalNowPlayingInterval) {
+            clearInterval(this.modalNowPlayingInterval);
+        }
+    },
+
+    /**
+     * Set active state on range buttons
+     */
+    setRangeButtonActive(range) {
+        this.elements.rangeButtons.forEach(b => {
+            if (b.dataset.range === range) {
+                b.classList.add("active");
+            } else {
+                b.classList.remove("active");
+            }
+        });
+        this.currentRange = range;
+    },
+
+    /**
+     * Update now playing label for the selected tower
+     */
+    updatePlayerNowPlayingFromStatus(towers) {
+        const current = towers?.[this.currentPlayerTower];
+        const title = current?.title || "(no metadata)";
+        this.setPlayerNowPlaying(title);
+    },
+
+    /**
+     * Set the player now playing text
+     */
+    setPlayerNowPlaying(title) {
+        if (!this.elements.playerNowPlaying) return;
+        this.setText(
+            this.elements.playerNowPlaying,
+            title ? `Now Playing: ${title}` : "Now Playing: (no metadata)"
+        );
+    },
+
+    /**
      * Setup event listeners
      */
     setupEventListeners() {
@@ -136,12 +280,24 @@ const LiveDashboard = {
             });
         }
 
+        // Pop-out player - new window
+        if (this.elements.playerPopupWindow) {
+            this.elements.playerPopupWindow.addEventListener("click", () => {
+                this.openPlayerWindow();
+            });
+        }
+
+        // Pop-out player - modal overlay
+        if (this.elements.playerPopupModal) {
+            this.elements.playerPopupModal.addEventListener("click", () => {
+                this.openPlayerModal();
+            });
+        }
+
         // Chart range buttons
         this.elements.rangeButtons.forEach(btn => {
             btn.addEventListener("click", () => {
-                this.elements.rangeButtons.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                this.currentRange = btn.dataset.range;
+                this.setRangeButtonActive(btn.dataset.range);
                 this.loadChartData();
             });
         });
@@ -213,8 +369,6 @@ const LiveDashboard = {
                 this.setText(this.elements.tower1Listeners, t1.listeners ?? "--");
                 this.setText(this.elements.tower1Peak, t1.listenerPeak ?? "--");
                 this.setText(this.elements.tower1Np, t1.title || "(no metadata)");
-                this.setText(this.elements.tower1NowPlaying,
-                    t1.title ? `Now Playing: ${t1.title}` : "Now Playing: (no metadata)");
             }
 
             // Update Tower 2
@@ -225,14 +379,24 @@ const LiveDashboard = {
                 this.setText(this.elements.tower2Np, t2.title || "(no metadata)");
             }
 
-            // Update Tower 3 (info only - just now playing)
+            // Update Tower 3 (now with live listener data + now playing)
             if (status.towers.tower3) {
                 const t3 = status.towers.tower3;
+                const tower3Config = CONFIG.TOWERS.tower3;
+                
+                // Only show listener stats if configured to show live status
+                if (tower3Config.showLiveStatus) {
+                    this.setText(this.elements.tower3Listeners, t3.listeners ?? "--");
+                    this.setText(this.elements.tower3Peak, t3.listenerPeak ?? "--");
+                }
                 this.setText(this.elements.tower3Np, t3.title || "(no metadata)");
             }
 
             // Update Total (Tower 1 + Tower 2 only)
             this.setText(this.elements.totalListeners, status.chartTowersTotal);
+
+            // Sync player now playing with current selection
+            this.updatePlayerNowPlayingFromStatus(status.towers);
 
             // Update timestamp
             this.updateLastUpdated();
@@ -256,8 +420,6 @@ const LiveDashboard = {
                 switch (towerId) {
                     case "tower1":
                         this.setText(this.elements.tower1Np, title);
-                        this.setText(this.elements.tower1NowPlaying,
-                            towerStatus?.title ? `Now Playing: ${title}` : "Now Playing: (no metadata)");
                         break;
                     case "tower2":
                         this.setText(this.elements.tower2Np, title);
@@ -267,6 +429,8 @@ const LiveDashboard = {
                         break;
                 }
             }
+
+            this.updatePlayerNowPlayingFromStatus(status.towers);
         } catch (error) {
             // Silently fail for now playing updates
         }
@@ -277,16 +441,35 @@ const LiveDashboard = {
      */
     async loadChartData() {
         try {
-            const url = this.currentRange === "24h"
+            const targetRange = this.currentRange;
+            const url = targetRange === "24h"
                 ? CONFIG.getArchiveUrl("data24h")
                 : CONFIG.getArchiveUrl("dataAll");
 
-            const response = await fetch(url, { cache: "no-store" });
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
+            let payload;
+            try {
+                const response = await fetch(url, { cache: "no-store" });
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                payload = await response.json();
+            } catch (err) {
+                // If all-time fails, fall back to 24h
+                if (targetRange === "all") {
+                    console.warn("[Dashboard] All-time data unavailable, falling back to 24h", err?.message);
+                    this.setRangeButtonActive("24h");
+                    return this.loadChartData();
+                }
+                throw err;
             }
 
-            const payload = await response.json();
+            const hasSeries = Array.isArray(payload.series) && payload.series.some(s => Array.isArray(s.points) && s.points.length);
+            if (!hasSeries && targetRange === "all") {
+                console.warn("[Dashboard] All-time dataset empty, falling back to 24h");
+                this.setRangeButtonActive("24h");
+                return this.loadChartData();
+            }
+
             this.renderChart(payload);
 
         } catch (error) {

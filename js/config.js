@@ -49,11 +49,13 @@ const CONFIG = {
         tower3: {
             id: "tower3",
             name: "Tower 3",
-            mountpoint: "/tower3",
+            baseUrl: "http://***REMOVED***:8000",
+            mountpoint: "/testdj",
             description: "Atlantean Testing Relay",
             flavorText: "That rickety old tower those skeezy Gnomes wouldn't even touch...",
             includeInCharts: false,  // INFO ONLY - no charts
             includeInHistory: false, // INFO ONLY - no history
+            showLiveStatus: true,    // Show live listener count in card
             color: "#27ae60"  // Green
         }
     },
