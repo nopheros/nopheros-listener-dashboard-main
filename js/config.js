@@ -49,7 +49,7 @@ const CONFIG = {
         tower3: {
             id: "tower3",
                name: "Tower 3 - Atlantean Testing Relay",
-            baseUrl: "http://***REMOVED***:8000",
+            baseUrl: "http://romeblue7.myvnc.com:8000",
             mountpoint: "/tower3",
                description: "Atlantean Testing Relay",
             flavorText: "That rickety old tower those skeezy Gnomes wouldn't even touch...",

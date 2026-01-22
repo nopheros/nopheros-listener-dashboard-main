@@ -158,6 +158,11 @@ const IcecastAPI = {
                 return null;
             }
 
+            // Debug logging for Tower 3 to diagnose metadata issue
+            if (mountpoint === '/tower3') {
+                console.log('[Icecast DEBUG] Tower 3 raw source data:', source);
+            }
+
             return {
                 mountpoint: mountpoint,
                 listeners: this.safeInt(source.listeners, 0),
