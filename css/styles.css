@@ -186,8 +186,8 @@ img {
 }
 
 .header-logo {
-    width: 640px;
-    height: 640px;
+    width: 120px;
+    height: 120px;
     border-radius: var(--radius-sm);
     object-fit: cover;
 }
