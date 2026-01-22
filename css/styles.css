@@ -3,9 +3,39 @@
  * Dark/Light theme with ELBC green & gold accents
  */
 
-/* ========== CSS VARIABLES - DARK MODE (DEFAULT) ========== */
+/* ========== CSS VARIABLES - SHARED ========== */
 :root {
-    /* Colors */
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-round: 999px;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+    /* Typography */
+    --font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    --font-size-xs: 11px;
+    --font-size-sm: 13px;
+    --font-size-md: 15px;
+    --font-size-lg: 18px;
+    --font-size-xl: 22px;
+
+    /* Layout */
+    --max-width: 1200px;
+    --header-height: 64px;
+
+    /* Colors - DARK MODE (DEFAULT) */
     --bg-primary: #0b0b0d;
     --bg-secondary: #121217;
     --bg-tertiary: #1a1a22;
@@ -53,36 +83,6 @@
     --accent-red: #e74c3c;
 
     color-scheme: light;
-
-    /* Spacing */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
-
-    /* Border radius */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 18px;
-    --radius-round: 999px;
-
-    /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-
-    /* Typography */
-    --font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-    --font-size-xs: 11px;
-    --font-size-sm: 13px;
-    --font-size-md: 15px;
-    --font-size-lg: 18px;
-    --font-size-xl: 22px;
-
-    /* Layout */
-    --max-width: 1200px;
-    --header-height: 64px;
 }
 
 /* ========== RESET & BASE ========== */
