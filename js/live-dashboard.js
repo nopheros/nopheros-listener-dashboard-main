@@ -23,11 +23,17 @@ const LiveDashboard = {
      * Initialize the dashboard
      */
     init() {
+        console.log("[Dashboard] Initializing LiveDashboard");
         this.cacheElements();
+        console.log("[Dashboard] Elements cached");
         this.setupPlayer();
+        console.log("[Dashboard] Player setup complete");
         this.setupEventListeners();
+        console.log("[Dashboard] Event listeners setup complete");
         this.loadInitialData();
+        console.log("[Dashboard] Initial data loaded");
         this.startRefreshLoop();
+        console.log("[Dashboard] Refresh loop started");
     },
 
     /**
@@ -427,7 +433,9 @@ const LiveDashboard = {
      */
     async updateTowerStatus() {
         try {
+            console.log("[Dashboard] updateTowerStatus() called");
             const status = await IcecastAPI.getAllTowerStatus();
+            console.log("[Dashboard] getAllTowerStatus() returned:", status);
 
             // Update Tower 1
             if (status.towers.tower1) {
@@ -507,6 +515,7 @@ const LiveDashboard = {
      */
     async loadChartData() {
         try {
+            console.log("[Dashboard] loadChartData() called, range:", this.currentRange);
             const targetRange = this.currentRange;
             
             // Map range to data file
@@ -892,5 +901,6 @@ const LiveDashboard = {
 
 // Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("[Dashboard] DOMContentLoaded event fired, initializing LiveDashboard");
     LiveDashboard.init();
 });
