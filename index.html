@@ -165,31 +165,7 @@
                     </div>
                 </section>
 
-                <!-- ========== LIVE CHART ========== -->
-                <section class="chart-section">
-                    <div class="chart-panel">
-                        <div class="panel-header">
-                            <h2>Listener Activity</h2>
-                            <div class="chart-controls">
-                                <button class="range-btn" data-range="2h">2 Hours</button>
-                                <button class="range-btn active" data-range="24h">24 Hours</button>
-                                <button class="range-btn" data-range="3d">3 Days</button>
-                                <button class="range-btn" data-range="week">Week</button>
-                                <button class="btn-icon" id="refresh-chart" title="Refresh now">
-                                    🔄
-                                </button>
-                            </div>
-                        </div>
-                        <p class="chart-note">Tower 1 + Tower 2 only. Total listeners shown as bold line. Click legend to toggle.</p>
-                        <div class="chart-wrapper">
-                            <canvas id="listeners-chart"></canvas>
-                        </div>
-                        <div class="chart-footer">
-                            <button class="btn-secondary" id="export-csv">Export CSV</button>
-                            <button class="btn-secondary" id="download-json">Download JSON</button>
-                        </div>
-                    </div>
-                </section>WEEKLY SCHEDULE ========== -->
+                <!-- ========== WEEKLY SCHEDULE ========== -->
                 <section class="schedule-section-full">
                     <div class="schedule-panel">
                         <div class="panel-header">
@@ -258,9 +234,37 @@
                                         <td>8:00 PM</td>
                                     </tr>
                                 </tbody>
-                            </tablespan>Updated</span>
-                                <span id="pi-health-updated">--</span>
+                            </table>
+                        </div>
+                        <p class="schedule-notes">
+                            <strong>Live panel refreshes every 60 seconds</strong> | Pi scraper every 5 minutes<br>
+                            Powered by Icecast
+                        </p>
+                    </div>
+                </section>
+
+                <!-- ========== LIVE CHART ========== -->
+                <section class="chart-section">
+                    <div class="chart-panel">
+                        <div class="panel-header">
+                            <h2>Listener Activity</h2>
+                            <div class="chart-controls">
+                                <button class="range-btn" data-range="2h">2 Hours</button>
+                                <button class="range-btn active" data-range="24h">24 Hours</button>
+                                <button class="range-btn" data-range="3d">3 Days</button>
+                                <button class="range-btn" data-range="week">Week</button>
+                                <button class="btn-icon" id="refresh-chart" title="Refresh now">
+                                    🔄
+                                </button>
                             </div>
+                        </div>
+                        <p class="chart-note">Tower 1 + Tower 2 only. Total listeners shown as bold line. Click legend to toggle.</p>
+                        <div class="chart-wrapper">
+                            <canvas id="listeners-chart"></canvas>
+                        </div>
+                        <div class="chart-footer">
+                            <button class="btn-secondary" id="export-csv">Export CSV</button>
+                            <button class="btn-secondary" id="download-json">Download JSON</button>
                         </div>
                     </div>
                 </section>

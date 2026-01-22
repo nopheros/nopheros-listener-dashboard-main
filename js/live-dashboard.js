@@ -325,9 +325,13 @@ const LiveDashboard = {
         // Tower 3 play button
         const tower3PlayBtn = document.getElementById("tower3-play-btn");
         if (tower3PlayBtn) {
-            tower3PlayBtn.addEventListener("click", () => {
+            tower3PlayBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                console.log("[Dashboard] Tower 3 play button clicked");
                 this.playTower3();
             });
+        } else {
+            console.warn("[Dashboard] Tower 3 play button not found");
         }
 
         // Chart range buttons
