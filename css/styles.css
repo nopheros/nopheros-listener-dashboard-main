@@ -118,13 +118,19 @@ img {
 .logo-link {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
     color: var(--text-primary);
     font-weight: 700;
 }
 
 .logo-link:hover {
     color: var(--accent-primary);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
 }
 
 .header-logo {
@@ -136,6 +142,25 @@ img {
 
 .site-title {
     font-size: var(--font-size-xl);
+    line-height: 1.2;
+}
+
+.by-nopheros {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: transparent;
+    background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.by-nopheros:hover {
+    background: linear-gradient(135deg, #2ecc71 0%, #3498db 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    transform: translateX(2px);
 }
 
 .main-nav {
@@ -210,7 +235,7 @@ img {
 }
 
 .schedule-sidebar {
-    flex: 0 0 320px;
+    flex: 0 0 380px;
     position: sticky;
     top: calc(var(--header-height) + var(--spacing-lg));
     height: fit-content;
@@ -728,12 +753,12 @@ img {
 .schedule-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
 }
 
 .schedule-table th,
 .schedule-table td {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md);
     text-align: left;
     border-bottom: 1px solid var(--border-color);
 }
