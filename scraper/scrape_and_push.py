@@ -424,9 +424,18 @@ def fetch_listener_data() -> Dict[str, Any]:
 
 # --------------------------- Data Storage ---------------------------
 
+# Minimum valid timestamp: 2020-01-01 00:00:00 UTC in milliseconds
+# Any timestamp before this is considered corrupted data
+MIN_VALID_TIMESTAMP_MS = 1577836800000  # 2020-01-01
+
+def is_valid_timestamp(ts_ms: int) -> bool:
+    """Check if a timestamp in milliseconds is valid (after 2020-01-01)."""
+    return ts_ms >= MIN_VALID_TIMESTAMP_MS
+
 def load_history() -> List[Dict[str, Any]]:
-    """Load historical data from CSV."""
+    """Load historical data from CSV, filtering out corrupted rows."""
     rows: List[Dict[str, Any]] = []
+    skipped = 0
 
     if not os.path.exists(HISTORY_CSV):
         return rows
@@ -435,6 +444,20 @@ def load_history() -> List[Dict[str, Any]]:
         with open(HISTORY_CSV, "r", newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
+                # Validate and parse timestamp_ms
+                try:
+                    ts_ms = int(row.get("timestamp_ms", 0))
+                except (ValueError, TypeError):
+                    skipped += 1
+                    continue  # Skip rows with invalid timestamp_ms
+
+                # Skip corrupted timestamps (before 2020)
+                if not is_valid_timestamp(ts_ms):
+                    skipped += 1
+                    continue
+
+                row["timestamp_ms"] = ts_ms
+
                 # Coerce numeric fields
                 for k in row:
                     if k not in ("timestamp_iso", "timestamp_ms"):
@@ -442,8 +465,12 @@ def load_history() -> List[Dict[str, Any]]:
                             row[k] = int(row[k])
                         except (ValueError, TypeError):
                             pass
-                row["timestamp_ms"] = int(row["timestamp_ms"])
+
                 rows.append(row)
+
+        if skipped > 0:
+            print(f"[info] Skipped {skipped} corrupted rows from history.csv")
+
     except Exception as e:
         print(f"[warn] Failed to load history: {e}")
 
@@ -461,11 +488,19 @@ def save_history(rows: List[Dict[str, Any]], fieldnames: List[str]) -> None:
         print(f"[error] Failed to save history: {e}")
 
 def build_series_map(rows: List[Dict[str, Any]], names: List[str]) -> Dict[str, List[Tuple[int, int]]]:
-    """Build time series map from rows."""
+    """Build time series map from rows, filtering out corrupted timestamps."""
     series_map: Dict[str, List[Tuple[int, int]]] = {name: [] for name in names}
 
     for row in rows:
-        ts = int(row.get("timestamp_ms", 0))
+        try:
+            ts = int(row.get("timestamp_ms", 0))
+        except (ValueError, TypeError):
+            continue  # Skip rows with invalid timestamp_ms
+
+        # Skip corrupted timestamps (before 2020)
+        if not is_valid_timestamp(ts):
+            continue
+
         for name in names:
             if name in row:
                 try:
@@ -544,8 +579,16 @@ def write_archives(rows: List[Dict[str, Any]], names: List[str]) -> None:
     months_set = set()
 
     for row in rows:
+        # Validate timestamp before processing
+        try:
+            ts_ms = int(row.get("timestamp_ms", 0))
+        except (ValueError, TypeError):
+            continue  # Skip rows with invalid timestamp_ms
+
+        if not is_valid_timestamp(ts_ms):
+            continue  # Skip corrupted timestamps (before 2020)
+
         year = row_year(row)
-        ts_ms = int(row.get("timestamp_ms", 0))
         dt = datetime.fromtimestamp(ts_ms / 1000.0, tz=timezone.utc)
         month_key = f"{dt.year:04d}-{dt.month:02d}"
 
