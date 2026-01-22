@@ -489,6 +489,91 @@ const LiveDashboard = {
     },
 
     /**
+     * Load and display current & upcoming events from schedule
+     */
+    async loadEvents() {
+        const eventsList = document.getElementById("events-list");
+        if (!eventsList) return;
+
+        try {
+            const schedule = [
+                { day: 1, show: "Treehab", dj: "Nopheros", startHour: 11, startMin: 0, endHour: 16, endMin: 0 },
+                { day: 1, show: "Living in the Past", dj: "Leto", startHour: 18, startMin: 0, endHour: 23, endMin: 0 },
+                { day: 2, show: "Groovin' Graveyard", dj: "Crustman", startHour: 15, startMin: 0, endHour: 20, endMin: 0 },
+                { day: 2, show: "The Whiski Lounge", dj: "Whiski", startHour: 21, startMin: 0, endHour: 26, endMin: 0 },
+                { day: 3, show: "Deeprun Classix", dj: "Kando", startHour: 16, startMin: 0, endHour: 21, endMin: 0 },
+                { day: 5, show: "Pilgrim of Signal", dj: "Nopheros", startHour: 12, startMin: 0, endHour: 17, endMin: 0 },
+                { day: 6, show: "Tavern Talks", dj: "Sheal", startHour: 15, startMin: 0, endHour: 20, endMin: 0 }
+            ];
+
+            const now = new Date();
+            const currentDay = now.getDay();
+            const currentHour = now.getHours();
+            const currentTime = currentHour * 60 + now.getMinutes();
+
+            const events = [];
+            const currentEvent = schedule.find(e => {
+                if (e.day !== currentDay) return false;
+                const startTime = e.startHour * 60 + e.startMin;
+                const endTime = e.endHour * 60 + e.endMin;
+                return currentTime >= startTime && currentTime < endTime;
+            });
+
+            if (currentEvent) {
+                events.push({ ...currentEvent, isCurrent: true, date: now });
+            }
+
+            for (let dayOffset = 0; dayOffset <= 3; dayOffset++) {
+                const checkDate = new Date(now);
+                checkDate.setDate(checkDate.getDate() + dayOffset);
+                const checkDay = checkDate.getDay();
+
+                schedule.filter(e => e.day === checkDay).forEach(event => {
+                    const eventDate = new Date(checkDate);
+                    eventDate.setHours(event.startHour, event.startMin, 0, 0);
+                    if (dayOffset === 0 && currentTime >= event.startHour * 60 + event.startMin) return;
+                    events.push({ ...event, isCurrent: false, date: eventDate });
+                });
+            }
+
+            events.sort((a, b) => a.date - b.date);
+            const displayEvents = events.slice(0, 5);
+
+            if (displayEvents.length === 0) {
+                eventsList.innerHTML = '<p class="events-loading">No upcoming events</p>';
+                return;
+            }
+
+            eventsList.innerHTML = displayEvents.map(event => {
+                const timeStr = this.formatEventTime(event.date, event.startHour, event.endHour);
+                const badge = event.isCurrent ? '<span class="event-badge">Live Now</span>' : '';
+                const currentClass = event.isCurrent ? ' current' : '';
+                return `<div class="event-item${currentClass}">
+                    <div class="event-info">
+                        <div class="event-show">${event.show}${badge}</div>
+                        <div class="event-dj">with ${event.dj}</div>
+                    </div>
+                    <div class="event-time">${timeStr}</div>
+                </div>`;
+            }).join('');
+        } catch (error) {
+            console.error("[Dashboard] Failed to load events:", error);
+            eventsList.innerHTML = '<p class="events-loading">Unable to load events</p>';
+        }
+    },
+
+    formatEventTime(date, startHour, endHour) {
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const dayName = dayNames[date.getDay()];
+        const formatHour = (h) => {
+            const hour12 = h > 12 ? h - 12 : (h === 0 ? 12 : h);
+            const ampm = h >= 12 ? "PM" : "AM";
+            return `${hour12}:00 ${ampm}`;
+        };
+        return `${dayName} ${formatHour(startHour)} - ${formatHour(endHour)}`;
+    },
+
+    /**
      * Update live total and peak listener badges in player header
      */
     async updateLiveTotals() {
