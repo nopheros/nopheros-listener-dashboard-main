@@ -34,83 +34,7 @@
     </header>
 
     <main class="main-content">
-        <div class="content-wrapper">
-            <!-- ========== SIDEBAR (STICKY - SCHEDULE) ========== -->
-            <aside class="schedule-sidebar">
-                <div class="sidebar-content">
-                    <div class="schedule-panel">
-                        <div class="panel-header">
-                            <h2>Weekly Schedule</h2>
-                        </div>
-                        <p class="schedule-note">EST & UTC</p>
-                        <div class="schedule-table-wrapper">
-                            <table class="schedule-table">
-                                <thead>
-                                    <tr>
-                                        <th>Day</th>
-                                        <th>Show</th>
-                                        <th>DJ</th>
-                                        <th>EST</th>
-                                        <th>ST</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Monday</td>
-                                        <td>Treehab</td>
-                                        <td>Nopheros</td>
-                                        <td>11:00 AM</td>
-                                        <td>4:00 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Monday</td>
-                                        <td>Living in the Past</td>
-                                        <td>Leto</td>
-                                        <td>6:00 PM</td>
-                                        <td>11:00 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tuesday</td>
-                                        <td>Groovin' Graveyard</td>
-                                        <td>Crustman</td>
-                                        <td>3:00 PM</td>
-                                        <td>8:00 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tuesday</td>
-                                        <td>The Whiski Lounge</td>
-                                        <td>Whiski</td>
-                                        <td>9:00 PM</td>
-                                        <td>2:00 AM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wednesday</td>
-                                        <td>Deeprun Classix</td>
-                                        <td>Kando</td>
-                                        <td>4:00 PM</td>
-                                        <td>9:00 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Friday</td>
-                                        <td>Pilgrim of Signal</td>
-                                        <td>Nopheros</td>
-                                        <td>12:00 PM</td>
-                                        <td>5:00 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Saturday</td>
-                                        <td>Tavern Talks</td>
-                                        <td>Sheal</td>
-                                        <td>3:00 PM</td>
-                                        <td>8:00 PM</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
+        <div class="content-wrapper-single">
             <!-- ========== MAIN CONTENT AREA ========== -->
             <div class="main-area">
                 <!-- ========== EMBEDDED PLAYER (TOP) ========== -->
@@ -247,8 +171,10 @@
                         <div class="panel-header">
                             <h2>Listener Activity</h2>
                             <div class="chart-controls">
-                                <button class="range-btn active" data-range="24h">Last 24h</button>
-                                <button class="range-btn" data-range="all">All Time</button>
+                                <button class="range-btn" data-range="2h">2 Hours</button>
+                                <button class="range-btn active" data-range="24h">24 Hours</button>
+                                <button class="range-btn" data-range="3d">3 Days</button>
+                                <button class="range-btn" data-range="week">Week</button>
                                 <button class="btn-icon" id="refresh-chart" title="Refresh now">
                                     🔄
                                 </button>
@@ -263,35 +189,76 @@
                             <button class="btn-secondary" id="download-json">Download JSON</button>
                         </div>
                     </div>
-                </section>
-
-                <!-- ========== PI HEALTH (OPTIONAL) ========== -->
-                <section class="pi-health-section">
-                    <div class="health-toggle">
-                        <span class="badge health-badge">
-                            Pi Health
-                            <span class="health-indicator" id="pi-status-indicator"></span>
-                        </span>
-                        <div class="health-panel" id="pi-health-panel">
-                            <div class="health-title">Raspberry Pi Status</div>
-                            <div class="health-row">
-                                <span>Temperature</span>
-                                <span id="pi-temp">--</span>
-                            </div>
-                            <div class="health-row">
-                                <span>Disk</span>
-                                <span id="pi-disk">--</span>
-                            </div>
-                            <div class="health-row">
-                                <span>Memory</span>
-                                <span id="pi-mem">--</span>
-                            </div>
-                            <div class="health-row">
-                                <span>Load (1/5/15)</span>
-                                <span id="pi-load">--</span>
-                            </div>
-                            <div class="health-row">
-                                <span>Updated</span>
+                </section>WEEKLY SCHEDULE ========== -->
+                <section class="schedule-section-full">
+                    <div class="schedule-panel">
+                        <div class="panel-header">
+                            <h2>Weekly Schedule</h2>
+                            <span class="schedule-subtitle">EST & UTC</span>
+                        </div>
+                        <div class="schedule-table-wrapper-full">
+                            <table class="schedule-table">
+                                <thead>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Show</th>
+                                        <th>DJ</th>
+                                        <th>EST</th>
+                                        <th>ST</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Monday</td>
+                                        <td>Treehab</td>
+                                        <td>Nopheros</td>
+                                        <td>11:00 AM</td>
+                                        <td>4:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monday</td>
+                                        <td>Living in the Past</td>
+                                        <td>Leto</td>
+                                        <td>6:00 PM</td>
+                                        <td>11:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tuesday</td>
+                                        <td>Groovin' Graveyard</td>
+                                        <td>Crustman</td>
+                                        <td>3:00 PM</td>
+                                        <td>8:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tuesday</td>
+                                        <td>The Whiski Lounge</td>
+                                        <td>Whiski</td>
+                                        <td>9:00 PM</td>
+                                        <td>2:00 AM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wednesday</td>
+                                        <td>Deeprun Classix</td>
+                                        <td>Kando</td>
+                                        <td>4:00 PM</td>
+                                        <td>9:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Friday</td>
+                                        <td>Pilgrim of Signal</td>
+                                        <td>Nopheros</td>
+                                        <td>12:00 PM</td>
+                                        <td>5:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Saturday</td>
+                                        <td>Tavern Talks</td>
+                                        <td>Sheal</td>
+                                        <td>3:00 PM</td>
+                                        <td>8:00 PM</td>
+                                    </tr>
+                                </tbody>
+                            </tablespan>Updated</span>
                                 <span id="pi-health-updated">--</span>
                             </div>
                         </div>

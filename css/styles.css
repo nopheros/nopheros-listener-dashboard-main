@@ -236,6 +236,17 @@ img {
     gap: var(--spacing-lg);
 }
 
+/* Single column layout (no sidebar) */
+.content-wrapper-single {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+.content-wrapper-single .main-area {
+    width: 100%;
+}
+
 .schedule-sidebar {
     flex: 0 0 380px;
     position: sticky;
@@ -800,6 +811,50 @@ img {
 
 .schedule-table tr:hover td {
     background: var(--bg-card);
+}
+
+/* Full-width schedule section */
+.schedule-section-full {
+    margin-bottom: var(--spacing-xl);
+}
+
+.schedule-section-full .schedule-panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.schedule-section-full .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.schedule-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.schedule-table-wrapper-full {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.schedule-table-wrapper-full .schedule-table {
+    width: 100%;
+    table-layout: auto;
+    min-width: 600px;
+}
+
+.schedule-table-wrapper-full th,
+.schedule-table-wrapper-full td {
+    padding: var(--spacing-md);
+    white-space: nowrap;
 }
 
 /* ========== PI HEALTH SECTION ========== */

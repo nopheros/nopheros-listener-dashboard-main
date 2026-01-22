@@ -478,9 +478,21 @@ const LiveDashboard = {
     async loadChartData() {
         try {
             const targetRange = this.currentRange;
-            const url = targetRange === "24h"
-                ? CONFIG.getArchiveUrl("data24h")
-                : CONFIG.getArchiveUrl("dataAll");
+            
+            // Map range to data file
+            let url;
+            switch (targetRange) {
+                case "2h":
+                case "24h":
+                    url = CONFIG.getArchiveUrl("data24h");
+                    break;
+                case "3d":
+                case "week":
+                    url = CONFIG.getArchiveUrl("dataAll");
+                    break;
+                default:
+                    url = CONFIG.getArchiveUrl("data24h");
+            }
 
             let payload;
             try {
@@ -490,9 +502,9 @@ const LiveDashboard = {
                 }
                 payload = await response.json();
             } catch (err) {
-                // If all-time fails, fall back to 24h
-                if (targetRange === "all") {
-                    console.warn("[Dashboard] All-time data unavailable, falling back to 24h", err?.message);
+                // If all-time or week fails, fall back to 24h
+                if (targetRange === "week" || targetRange === "3d") {
+                    console.warn(`[Dashboard] ${targetRange} data unavailable, falling back to 24h`, err?.message);
                     this.setRangeButtonActive("24h");
                     return this.loadChartData();
                 }
@@ -500,8 +512,8 @@ const LiveDashboard = {
             }
 
             const hasSeries = Array.isArray(payload.series) && payload.series.some(s => Array.isArray(s.points) && s.points.length);
-            if (!hasSeries && targetRange === "all") {
-                console.warn("[Dashboard] All-time dataset empty, falling back to 24h");
+            if (!hasSeries && (targetRange === "week" || targetRange === "3d")) {
+                console.warn(`[Dashboard] ${targetRange} dataset empty, falling back to 24h`);
                 this.setRangeButtonActive("24h");
                 return this.loadChartData();
             }
@@ -510,6 +522,56 @@ const LiveDashboard = {
 
         } catch (error) {
             console.error("[Dashboard] Failed to load chart data:", error);
+        }
+    },
+
+    /**
+     * Filter data points based on selected time range
+     * @param {Array} points - Array of [timestamp, value] pairs
+     * @returns {Array} - Filtered array
+     */
+    filterDataByRange(points) {
+        if (!Array.isArray(points) || points.length === 0) return [];
+        
+        const now = Date.now();
+        let cutoff;
+        
+        switch (this.currentRange) {
+            case "2h":
+                cutoff = now - (2 * 60 * 60 * 1000); // 2 hours
+                break;
+            case "24h":
+                cutoff = now - (24 * 60 * 60 * 1000); // 24 hours
+                break;
+            case "3d":
+                cutoff = now - (3 * 24 * 60 * 60 * 1000); // 3 days
+                break;
+            case "week":
+                cutoff = now - (7 * 24 * 60 * 60 * 1000); // 7 days
+                break;
+            default:
+                return points; // No filtering
+        }
+        
+        return points.filter(([timestamp]) => timestamp >= cutoff);
+    },
+
+    /**
+     * Get appropriate Chart.js time unit for current range
+     * @returns {string} - Time unit (minute, hour, day)
+     */
+    getTimeUnit() {
+        switch (this.currentRange) {
+            case "2h":
+                return "minute";
+            case "24h":
+                return "hour";
+            case "3d":
+                return "hour";
+            case "week":
+                return "day";
+            default:
+                return "hour";
         }
     },
 
@@ -543,7 +605,7 @@ const LiveDashboard = {
 
             datasets.push({
                 label: series.name,
-                data: (series.points || []).map(([x, y]) => ({ x, y })),
+                data: this.filterDataByRange(series.points || []).map(([x, y]) => ({ x, y })),
                 borderColor: tower?.color || "#888",
                 backgroundColor: tower?.color || "#888",
                 borderWidth: 2,
@@ -557,7 +619,7 @@ const LiveDashboard = {
         if (totalSeries) {
             datasets.push({
                 label: "Total",
-                data: (totalSeries.points || []).map(([x, y]) => ({ x, y })),
+                data: this.filterDataByRange(totalSeries.points || []).map(([x, y]) => ({ x, y })),
                 borderColor: CONFIG.CHART_COLORS.total,
                 backgroundColor: CONFIG.CHART_COLORS.total,
                 borderWidth: 3,
@@ -584,7 +646,7 @@ const LiveDashboard = {
                     x: {
                         type: "time",
                         time: {
-                            unit: this.currentRange === "24h" ? "hour" : "day"
+                            unit: this.getTimeUnit()
                         },
                         ticks: { color: CONFIG.CHART_COLORS.text },
                         grid: { color: CONFIG.CHART_COLORS.grid }
