@@ -71,7 +71,7 @@
                                 <tr>
                                     <td>Monday</td>
                                     <td>Treehab</td>
-                                    <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros <svg class="twitch-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2H2v15h4v4l4-4h5l4-4V2h-8zm11 13l-4 4h-5l-4 4v-4H4V4h18v11z"/><rect x="11" y="7" width="2" height="5"/><rect x="15" y="7" width="2" height="5"/></svg></a></td>
+                                    <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros</a></td>
                                     <td>11 AM</td>
                                     <td>4 PM</td>
                                 </tr>
@@ -92,7 +92,7 @@
                                 <tr>
                                     <td>Tuesday</td>
                                     <td>The Whiski Lounge</td>
-                                    <td><a href="https://twitch.tv/DJWhiski" target="_blank" class="dj-link">Whiski <svg class="twitch-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2H2v15h4v4l4-4h5l4-4V2h-8zm11 13l-4 4h-5l-4 4v-4H4V4h18v11z"/><rect x="11" y="7" width="2" height="5"/><rect x="15" y="7" width="2" height="5"/></svg></a></td>
+                                    <td><a href="https://twitch.tv/DJWhiski" target="_blank" class="dj-link">Whiski</a></td>
                                     <td>9 PM</td>
                                     <td>2 AM</td>
                                 </tr>
@@ -106,14 +106,14 @@
                                 <tr>
                                     <td>Friday</td>
                                     <td>Pilgrim of Signal</td>
-                                    <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros <svg class="twitch-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2H2v15h4v4l4-4h5l4-4V2h-8zm11 13l-4 4h-5l-4 4v-4H4V4h18v11z"/><rect x="11" y="7" width="2" height="5"/><rect x="15" y="7" width="2" height="5"/></svg></a></td>
+                                    <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros</a></td>
                                     <td>12 PM</td>
                                     <td>5 PM</td>
                                 </tr>
                                 <tr>
                                     <td>Saturday</td>
                                     <td>Tavern Talks</td>
-                                    <td><a href="https://twitch.tv/DJ_Sheal" target="_blank" class="dj-link">Sheal <svg class="twitch-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2H2v15h4v4l4-4h5l4-4V2h-8zm11 13l-4 4h-5l-4 4v-4H4V4h18v11z"/><rect x="11" y="7" width="2" height="5"/><rect x="15" y="7" width="2" height="5"/></svg></a></td>
+                                    <td><a href="https://twitch.tv/DJ_Sheal" target="_blank" class="dj-link">Sheal</a></td>
                                     <td>3 PM</td>
                                     <td>8 PM</td>
                                 </tr>
@@ -134,6 +134,10 @@
                             <button class="play-btn-gold" id="tower1-play-btn" title="Play Tower 1">
                                 <span class="play-icon">▶</span>
                             </button>
+                            <p class="now-playing-text" id="player-now-playing">Loading...</p>
+                            <div class="player-stats-inline">
+                                <span id="player-listeners">--</span> listeners | Peak: <span id="player-peak">--</span>
+                            </div>
                             <audio id="tower1-player" preload="none" style="display:none;">
                                 <source src="" type="audio/mpeg" id="tower1-source">
                             </audio>

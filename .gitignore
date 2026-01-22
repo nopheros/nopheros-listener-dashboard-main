@@ -1,0 +1,46 @@
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables and secrets
+.env
+.env.local
+*.key
+*.pem
+secrets/
+
+# Log files
+*.log
+scraper/cron.log
+
+# CSV history (keep in git for now, but could exclude)
+# scraper/history.csv
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Node modules (if you add Node.js later)
+node_modules/

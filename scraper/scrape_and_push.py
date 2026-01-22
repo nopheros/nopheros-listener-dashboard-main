@@ -19,7 +19,7 @@ Features:
 - Optional Pi health telemetry
 
 Configuration via environment variables:
-    ICECAST_BASE_URL    - Base URL of Icecast server (e.g., http://***REMOVED***:8000)
+    ICECAST_BASE_URL    - Base URL of Icecast server (e.g., http://example.com:8000)
     LISTENER_LABELS     - Optional comma-separated labels (default: Tower 1,Tower 2)
     WINDOW_HOURS        - Hours for 24h view (default: 24)
     SKIP_GIT            - Set to "1" to skip git commit/push
