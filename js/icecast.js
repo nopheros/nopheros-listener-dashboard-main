@@ -256,8 +256,10 @@ const IcecastAPI = {
 
         // Process results from each server
         for (const { towers, status } of serverResults) {
+            console.log("[Icecast] Processing server results, towers:", towers.length, "status:", status);
             for (const { towerId, tower } of towers) {
                 const mount = status?.mounts?.[tower.mountpoint];
+                console.log(`[Icecast] Tower ${towerId}: mount found =`, !!mount, "mountpoint:", tower.mountpoint);
 
                 if (mount) {
                     result.towers[towerId] = {
@@ -291,6 +293,7 @@ const IcecastAPI = {
             }
         }
 
+        console.log("[Icecast] Final result:", result);
         return result;
     },
 

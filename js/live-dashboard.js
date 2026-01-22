@@ -437,6 +437,11 @@ const LiveDashboard = {
             const status = await IcecastAPI.getAllTowerStatus();
             console.log("[Dashboard] getAllTowerStatus() returned:", status);
 
+            if (!status || !status.towers) {
+                console.warn("[Dashboard] No tower status data available");
+                return;
+            }
+
             // Update Tower 1
             if (status.towers.tower1) {
                 const t1 = status.towers.tower1;
