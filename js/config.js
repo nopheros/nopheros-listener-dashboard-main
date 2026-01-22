@@ -34,7 +34,7 @@ const CONFIG = {
             description: "Primary Broadcast Tower",
             includeInCharts: true,
             includeInHistory: true,
-            color: "#3498db"  // Blue
+            color: "#2ecc71"  // Rich Green
         },
         tower2: {
             id: "tower2",
@@ -44,7 +44,7 @@ const CONFIG = {
             description: "Secondary Relay Tower",
             includeInCharts: true,
             includeInHistory: true,
-            color: "#9b59b6"  // Purple
+            color: "#27ae60"  // Deep Green
         },
         tower3: {
             id: "tower3",
@@ -152,7 +152,7 @@ const CONFIG = {
 
     // Chart colors
     CHART_COLORS: {
-        total: "#f1c40f",      // Yellow/Gold for total
+        total: "#f39c12",      // Rich orange-gold for total
         grid: "#222",
         text: "#aaa",
         legend: "#ddd"

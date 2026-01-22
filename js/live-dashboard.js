@@ -363,6 +363,33 @@ const LiveDashboard = {
                 this.downloadAsJSON();
             });
         }
+
+        // Theme toggle
+
+    /**
+     * Update theme toggle icon based on current theme
+     */
+    updateThemeIcon(theme) {
+        const themeIcon = document.querySelector(".theme-icon");
+        if (themeIcon) {
+            themeIcon.textContent = theme === "dark" ? "🌙" : "☀️";
+        }
+    },
+        const themeToggle = document.getElementById("theme-toggle");
+        if (themeToggle) {
+            // Load saved theme or default to dark
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            document.documentElement.setAttribute("data-theme", savedTheme);
+            this.updateThemeIcon(savedTheme);
+
+            themeToggle.addEventListener("click", () => {
+                const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+                const newTheme = currentTheme === "dark" ? "light" : "dark";
+                document.documentElement.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+                this.updateThemeIcon(newTheme);
+            });
+        }
     },
 
     /**
