@@ -186,8 +186,8 @@ img {
 }
 
 .header-logo {
-    width: 400px;
-    height: 400px;
+    width: 80px;
+    height: 80px;
     border-radius: var(--radius-sm);
     object-fit: cover;
 }
@@ -1796,8 +1796,8 @@ img {
 }
 
 .elbc-logo-large {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     object-fit: contain;
 }
 
