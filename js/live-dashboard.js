@@ -56,21 +56,21 @@ const LiveDashboard = {
             tower1Listeners: document.getElementById("tower1-listeners"),
             tower1Peak: document.getElementById("tower1-peak"),
             tower1Np: document.getElementById("tower1-np"),
-            tower1Mount: document.getElementById("tower1-mount"),
             tower1StreamName: document.getElementById("tower1-stream-name"),
             tower1StreamDesc: document.getElementById("tower1-stream-desc"),
+            tower1DescItem: document.getElementById("tower1-desc-item"),
             tower2Listeners: document.getElementById("tower2-listeners"),
             tower2Peak: document.getElementById("tower2-peak"),
             tower2Np: document.getElementById("tower2-np"),
-            tower2Mount: document.getElementById("tower2-mount"),
             tower2StreamName: document.getElementById("tower2-stream-name"),
             tower2StreamDesc: document.getElementById("tower2-stream-desc"),
+            tower2DescItem: document.getElementById("tower2-desc-item"),
             tower3Listeners: document.getElementById("tower3-listeners"),
             tower3Peak: document.getElementById("tower3-peak"),
             tower3Np: document.getElementById("tower3-np"),
-            tower3Mount: document.getElementById("tower3-mount"),
             tower3StreamName: document.getElementById("tower3-stream-name"),
             tower3StreamDesc: document.getElementById("tower3-stream-desc"),
+            tower3DescItem: document.getElementById("tower3-desc-item"),
             totalListeners: document.getElementById("total-listeners"),
 
             // Chart
@@ -603,9 +603,9 @@ const LiveDashboard = {
             return `${hour12}:00 ${ampm}`;
         };
         
-        // Convert EST to UK time (EST + 5 hours)
+        // Convert EST to UK time (EST + 5 hours) in 24-hour format
         const ukHour = (startHour + 5) % 24;
-        const ukFormatted = formatHour(ukHour);
+        const ukFormatted = `${String(ukHour).padStart(2, '0')}:00`;
         
         return `${dayName} ${formatHour(startHour)} EST<br>${ukFormatted} ST`;
     },
@@ -663,9 +663,20 @@ const LiveDashboard = {
                 this.setText(this.elements.tower1Listeners, t1.listeners ?? "--");
                 this.setText(this.elements.tower1Peak, t1.listenerPeak ?? "--");
                 this.setText(this.elements.tower1Np, t1.title || "(no metadata)");
-                this.setText(this.elements.tower1Mount, t1.mountpoint || "--");
                 this.setText(this.elements.tower1StreamName, t1.serverName || "--");
-                this.setText(this.elements.tower1StreamDesc, t1.description || "--");
+                
+                // Only show description if it exists and is not generic
+                const desc = t1.description || "";
+                if (desc && desc.toLowerCase() !== "unspecified description" && desc !== "--") {
+                    this.setText(this.elements.tower1StreamDesc, desc);
+                    if (this.elements.tower1DescItem) {
+                        this.elements.tower1DescItem.style.display = "flex";
+                    }
+                } else {
+                    if (this.elements.tower1DescItem) {
+                        this.elements.tower1DescItem.style.display = "none";
+                    }
+                }
                 
                 // Update player stats (Tower 1 Media Player section)
                 this.setText(this.elements.playerListeners, t1.listeners ?? "--");
@@ -678,9 +689,20 @@ const LiveDashboard = {
                 this.setText(this.elements.tower2Listeners, t2.listeners ?? "--");
                 this.setText(this.elements.tower2Peak, t2.listenerPeak ?? "--");
                 this.setText(this.elements.tower2Np, t2.title || "(no metadata)");
-                this.setText(this.elements.tower2Mount, t2.mountpoint || "--");
                 this.setText(this.elements.tower2StreamName, t2.serverName || "--");
-                this.setText(this.elements.tower2StreamDesc, t2.description || "--");
+                
+                // Only show description if it exists and is not generic
+                const desc = t2.description || "";
+                if (desc && desc.toLowerCase() !== "unspecified description" && desc !== "--") {
+                    this.setText(this.elements.tower2StreamDesc, desc);
+                    if (this.elements.tower2DescItem) {
+                        this.elements.tower2DescItem.style.display = "flex";
+                    }
+                } else {
+                    if (this.elements.tower2DescItem) {
+                        this.elements.tower2DescItem.style.display = "none";
+                    }
+                }
             }
 
             // Update Tower 3 (now with live listener data + now playing)
@@ -694,9 +716,20 @@ const LiveDashboard = {
                     this.setText(this.elements.tower3Peak, t3.listenerPeak ?? "--");
                 }
                 this.setText(this.elements.tower3Np, t3.title || "(no metadata)");
-                this.setText(this.elements.tower3Mount, t3.mountpoint || "--");
                 this.setText(this.elements.tower3StreamName, t3.serverName || "--");
-                this.setText(this.elements.tower3StreamDesc, t3.description || "--");
+                
+                // Only show description if it exists and is not generic
+                const desc = t3.description || "";
+                if (desc && desc.toLowerCase() !== "unspecified description" && desc !== "--") {
+                    this.setText(this.elements.tower3StreamDesc, desc);
+                    if (this.elements.tower3DescItem) {
+                        this.elements.tower3DescItem.style.display = "flex";
+                    }
+                } else {
+                    if (this.elements.tower3DescItem) {
+                        this.elements.tower3DescItem.style.display = "none";
+                    }
+                }
             }
 
             // Update Total (Tower 1 + Tower 2 only)
