@@ -755,7 +755,7 @@ img {
     width: 100%;
     border-collapse: collapse;
     font-size: var(--font-size-sm);
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 .schedule-table th,
@@ -763,8 +763,7 @@ img {
     padding: var(--spacing-sm) var(--spacing-xs);
     text-align: left;
     border-bottom: 1px solid var(--border-color);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    white-space: nowrap;
 }
 
 .schedule-table th {
