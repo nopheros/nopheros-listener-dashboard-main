@@ -357,7 +357,7 @@ const LiveDashboard = {
             });
         }
 
-                // Download JSON
+        // Download JSON
         if (this.elements.downloadJson) {
             this.elements.downloadJson.addEventListener("click", () => {
                 this.downloadAsJSON();
@@ -405,6 +405,9 @@ const LiveDashboard = {
     /**
      * Start the refresh loop
      */
+    startRefreshLoop() {
+        // Tower status and chart refresh
+        this.refreshInterval = setInterval(() => {
             this.updateTowerStatus();
             this.loadChartData();
             this.updatePiHealth();
