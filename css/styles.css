@@ -1460,3 +1460,121 @@ img {
     font-size: 18px;
     line-height: 1;
 }
+
+/* ========== EVENTS SECTION ========== */
+.events-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.events-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.event-item {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.event-item.current {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 12px rgba(241, 196, 15, 0.3);
+}
+
+.event-item:hover {
+    background: var(--bg-secondary);
+}
+
+.event-info {
+    flex: 1;
+}
+
+.event-show {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.event-dj {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.event-time {
+    text-align: right;
+    font-size: var(--font-size-sm);
+    color: var(--accent-gold);
+    font-weight: 500;
+}
+
+.event-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: var(--radius-round);
+    background: rgba(241, 196, 15, 0.15);
+    color: var(--accent-gold);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: var(--spacing-sm);
+}
+
+.events-loading {
+    text-align: center;
+    color: var(--text-muted);
+    padding: var(--spacing-lg);
+}
+
+/* ========== PLAYER LAYOUT FIXES ========== */
+.player-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.player-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.player-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.player-controls {
+    margin-top: var(--spacing-md);
+}
+
+.player-control-row {
+    margin-bottom: var(--spacing-md);
+}
+
+.now-playing {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}

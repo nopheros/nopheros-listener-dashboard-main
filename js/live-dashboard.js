@@ -423,6 +423,7 @@ const LiveDashboard = {
      */
     async loadInitialData() {
         await Promise.all([
+            this.loadEvents(),
             this.updateTowerStatus(),
             this.loadChartData(),
             this.updatePiHealth(),
