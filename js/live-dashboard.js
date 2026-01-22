@@ -47,6 +47,10 @@ const LiveDashboard = {
             playerTower3Btn: document.getElementById("player-tower3-btn"),
             playerLiveTotal: document.getElementById("player-live-total"),
             playerLivePeak: document.getElementById("player-live-peak"),
+            playerListeners: document.getElementById("player-listeners"),
+            playerPeak: document.getElementById("player-peak"),
+            tower1PlayBtn: document.getElementById("tower1-play-btn"),
+            tower3PlayBtn: document.getElementById("tower3-play-btn"),
 
             // Tower cards
             tower1Listeners: document.getElementById("tower1-listeners"),
@@ -96,7 +100,7 @@ const LiveDashboard = {
             });
         }
 
-        // Hook dual tower buttons
+        // Hook dual tower buttons (old layout - may not exist in new layout)
         const t1Btn = this.elements.playerTower1Btn;
         const t3Btn = this.elements.playerTower3Btn;
         if (t1Btn && t3Btn) {
@@ -118,6 +122,38 @@ const LiveDashboard = {
 
             t1Btn.addEventListener("click", () => setActive("tower1"));
             t3Btn.addEventListener("click", () => setActive("tower3"));
+        }
+
+        // Hook new gold play button (Tower 1) and cursed purple button (Tower 3)
+        const goldPlayBtn = this.elements.tower1PlayBtn;
+        const cursedPlayBtn = this.elements.tower3PlayBtn;
+
+        if (goldPlayBtn) {
+            goldPlayBtn.addEventListener("click", () => {
+                this.currentPlayerTower = "tower1";
+                this.setPlayerSource("tower1");
+                this.updateNowPlaying();
+                const player = this.elements.player;
+                if (player && player.paused) {
+                    player.play().catch(err => {
+                        console.warn("[Player] Autoplay blocked:", err.message);
+                    });
+                }
+            });
+        }
+
+        if (cursedPlayBtn) {
+            cursedPlayBtn.addEventListener("click", () => {
+                this.currentPlayerTower = "tower3";
+                this.setPlayerSource("tower3");
+                this.updateNowPlaying();
+                const player = this.elements.player;
+                if (player && player.paused) {
+                    player.play().catch(err => {
+                        console.warn("[Player] Autoplay blocked:", err.message);
+                    });
+                }
+            });
         }
     },
 
@@ -505,6 +541,10 @@ const LiveDashboard = {
                 this.setText(this.elements.tower1Listeners, t1.listeners ?? "--");
                 this.setText(this.elements.tower1Peak, t1.listenerPeak ?? "--");
                 this.setText(this.elements.tower1Np, t1.title || "(no metadata)");
+                
+                // Update player stats (Tower 1 Media Player section)
+                this.setText(this.elements.playerListeners, t1.listeners ?? "--");
+                this.setText(this.elements.playerPeak, t1.listenerPeak ?? "--");
             }
 
             // Update Tower 2

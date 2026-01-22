@@ -1578,3 +1578,309 @@ img {
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
 }
+
+/* ========================================
+   DASHBOARD GRID LAYOUT (Two Columns)
+   ======================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ========================================
+   UPCOMING SHOWS SECTION
+   ======================================== */
+.upcoming-shows-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.upcoming-shows-section .panel-header {
+    margin-bottom: 1rem;
+}
+
+.upcoming-shows-section .panel-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    margin: 0 0 0.5rem 0;
+}
+
+.upcoming-shows-section .schedule-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* ========================================
+   WEEKLY SCHEDULE COMPACT
+   ======================================== */
+.schedule-section-compact {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.schedule-section-compact .panel-header {
+    margin-bottom: 1rem;
+}
+
+.schedule-section-compact .panel-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    margin: 0 0 0.5rem 0;
+}
+
+.schedule-section-compact .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-section-compact .schedule-table th,
+.schedule-section-compact .schedule-table td {
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.schedule-section-compact .schedule-table th {
+    background: var(--table-header-bg);
+    color: var(--primary-green);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.schedule-section-compact .schedule-table tr:nth-child(even) {
+    background: var(--table-row-alt);
+}
+
+.schedule-section-compact .schedule-table tr:hover {
+    background: var(--table-row-hover);
+}
+
+/* ========================================
+   TOWER 1 MEDIA PLAYER SECTION
+   ======================================== */
+.tower1-player-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tower1-player-section .panel-header {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.tower1-player-section .panel-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    margin: 0;
+}
+
+.player-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.player-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.elbc-logo-large {
+    width: 192px;
+    height: 192px;
+    object-fit: contain;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+}
+
+.play-btn-gold {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+    transition: all 0.3s ease;
+}
+
+.play-btn-gold:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(241, 196, 15, 0.9);
+}
+
+.play-btn-gold .play-icon {
+    font-size: 2rem;
+    color: #2c3e50;
+}
+
+.now-playing-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.now-playing-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.5rem 0;
+}
+
+.now-playing-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin: 0;
+    max-height: 4.5em;
+    overflow: hidden;
+    line-height: 1.5em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.player-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.player-stats .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.player-stats .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.player-stats .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+/* ========================================
+   CURSED PLAY BUTTON (Tower 3)
+   ======================================== */
+.cursed-play-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background: linear-gradient(135deg, #8e44ad, #9b59b6);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 0 20px rgba(155, 89, 182, 0.6);
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cursed-play-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(155, 89, 182, 0.9);
+}
+
+.cursed-play-btn .play-icon {
+    font-size: 1.25rem;
+}
+
+.cursed-text {
+    font-weight: 600;
+}
+
+.tower-card-cursed {
+    position: relative;
+}
+
+.tower-card-cursed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
+    pointer-events: none;
+    animation: cursedPulse 2s ease-in-out infinite;
+}
+
+@keyframes cursedPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(155, 89, 182, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(155, 89, 182, 0.6); }
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .elbc-logo-large {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        gap: 1rem;
+    }
+    
+    .tower1-player-section {
+        padding: 1.5rem;
+    }
+    
+    .elbc-logo-large {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .play-btn-gold {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .play-btn-gold .play-icon {
+        font-size: 1.5rem;
+    }
+}

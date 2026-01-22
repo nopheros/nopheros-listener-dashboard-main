@@ -44,7 +44,7 @@ const CONFIG = {
             description: "Secondary Relay Tower",
             includeInCharts: true,
             includeInHistory: true,
-            color: "#27ae60"  // Deep Green
+            color: "#9b59b6"  // Purple (as per wireframe)
         },
         tower3: {
             id: "tower3",
