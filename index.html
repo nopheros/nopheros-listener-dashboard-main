@@ -27,7 +27,7 @@
             <div class="header-badges">
                 <button id="theme-toggle" class="theme-toggle-btn" title="Toggle light/dark mode">
                     <span class="theme-icon">🌙</span>
-                </button>
+                            <div class="player-actions">
                 <span class="badge badge-live">
                     <span class="live-dot"></span> Live
                 </span>
@@ -38,54 +38,61 @@
 
     <main class="main-content">
         <div class="content-wrapper-single">
+                                <div class="live-stats">
+                                    <span class="live-total-badge" id="player-live-total">--</span>
+                                    <span class="live-peak-badge" id="player-live-peak">Peak: --</span>
+                                </div>
             <!-- ========== MAIN CONTENT AREA ========== -->
             <div class="main-area">
                 <!-- ========== EMBEDDED PLAYER (TOP) ========== -->
-                <section class="player-section hero-player">
-                    <div class="player-card primary-player">
-                        <div class="player-header">
-                            <div class="player-brand">
-                                <img src="img/elbc_logo.png" alt="ELBC Everlook Logo" class="player-logo">
-                                <div class="player-brand-text">
-                                    <p class="eyebrow">Everlook Broadcasting Co.</p>
-                                    <h2>Statmographifier Live Player</h2>
+                            <div class="player-control-row">
+                                <div class="tower-toggle">
+                                    <button id="player-tower1-btn" class="tower-btn active" title="Play Tower 1">Tower 1 - NX78</button>
+                                    <button id="player-tower3-btn" class="tower-btn" title="Play Tower 3">Tower 3 - Atlantean</button>
                                 </div>
                             </div>
-                            <div class="player-actions">
-                                <button class="reload-btn" id="player-reload" title="Re-sync to live stream">
-                                    <span class="reload-icon">🔄</span>
-                                    <span class="reload-text">Re-sync</span>
-                                </button>
-                                <button class="popup-btn" id="player-popup-window" title="Open player in new window">
-                                    ↗ New Window
-                                </button>
-                                <button class="popup-btn" id="player-popup-modal" title="Open pop-out overlay player">
-                                    ⤢ Pop-out
-                                </button>
-                            </div>
+                                        <span class="listener-label">Live Listeners</span>
+                                        <span class="listener-count" id="live-listener-count">--</span>
+                                    </div>
+                                    <div class="listener-stat">
+                                        <span class="listener-label">Today's Peak</span>
+                                        <span class="listener-peak" id="live-listener-peak">--</span>
+                                    </div>
+                                </div>
+                                <div class="player-actions">
+                                    <button class="reload-btn" id="player-reload" title="Re-sync to live stream">
+                                        <span class="reload-icon">🔄</span>
+                                    </button>
+                                    <button class="popup-btn" id="player-popup-window" title="Open player in new window">
+                                        ↗
+                                    </button>
+                                    <button class="popup-btn" id="player-popup-modal" title="Open pop-out overlay player">
+                                        ⤢
+                                    </button>
+                                </div>
                         </div>
                         <div class="player-controls">
-                            <div class="player-control-row">
-                                <label for="player-stream-select">Choose Tower</label>
-                                <select id="player-stream-select">
-                                    <option value="tower1">Tower 1 — Primary Broadcast</option>
-                                    <option value="tower2">Tower 2 — Secondary Relay</option>
-                                    <option value="tower3">Tower 3 — Atlantean Testing</option>
-                                </select>
-                            </div>
+                               <div class="tower-selector">
+                                   <button class="tower-btn active" data-tower="tower1" id="tower1-btn">
+                                       Tower 1 - NX78
+                                   </button>
+                                   <button class="tower-btn" data-tower="tower3" id="tower3-btn">
+                                       Tower 3 - Atlantean
+                                   </button>
+                               </div>
                             <audio id="tower1-player" controls preload="none">
                                 <source src="" type="audio/mpeg" id="tower1-source">
                                 Your browser does not support the audio element.
                             </audio>
+                                                       <p class="now-playing" id="player-now-playing">Loading track...</p>
                         </div>
-                        <p class="now-playing" id="player-now-playing">Loading track...</p>
                     </div>
                 </section>
 
                 <!-- ========== TOWER CARDS ========== -->
                 <section class="tower-cards-section">
                     <div class="section-header">
-                        <h2>Tower Status</h2>
+                           <h2>Tale of Three Towers</h2>
                         <div class="total-listeners-badge">
                             <span class="label">Total Overall Listeners:</span>
                             <span class="value" id="total-listeners">--</span>
@@ -97,8 +104,8 @@
                         <div class="tower-card" data-tower="tower1">
                             <div class="tower-card-header">
                                 <div class="tower-indicator" style="background-color: #3498db;"></div>
-                                <h3>Tower 1</h3>
-                                <span class="tower-subtitle">Primary Broadcast Tower</span>
+                                   <h3>Tower 1 - NX78</h3>
+                                   <span class="tower-subtitle">Primary Broadcast Tower</span>
                             </div>
                             <div class="tower-stats">
                                 <div class="stat">
@@ -120,8 +127,8 @@
                         <div class="tower-card" data-tower="tower2">
                             <div class="tower-card-header">
                                 <div class="tower-indicator" style="background-color: #9b59b6;"></div>
-                                <h3>Tower 2</h3>
-                                <span class="tower-subtitle">Secondary Relay Tower</span>
+                                   <h3>Tower 2 - LG87</h3>
+                                   <span class="tower-subtitle">Secondary Relay Tower</span>
                             </div>
                             <div class="tower-stats">
                                 <div class="stat">
@@ -143,7 +150,7 @@
                         <div class="tower-card" data-tower="tower3">
                             <div class="tower-card-header">
                                 <div class="tower-indicator" style="background-color: #27ae60;"></div>
-                                <h3>Tower 3</h3>
+                                   <h3>Tower 3 - Atlantean Testing Relay</h3>
                                 <span class="tower-subtitle">Atlantean Testing Relay</span>
                             </div>
                             <div class="tower-stats">
@@ -190,7 +197,7 @@
                                     <tr>
                                         <td>Monday</td>
                                         <td>Treehab</td>
-                                        <td>Nopheros</td>
+                                           <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros <svg class="twitch-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2H2v15h4v4l4-4h5l4-4V2h-8zm11 13l-4 4h-5l-4 4v-4H4V4h18v11z"/><rect x="11" y="7" width="2" height="5"/><rect x="15" y="7" width="2" height="5"/></svg></a></td>
                                         <td>11:00 AM</td>
                                         <td>4:00 PM</td>
                                     </tr>
@@ -211,7 +218,7 @@
                                     <tr>
                                         <td>Tuesday</td>
                                         <td>The Whiski Lounge</td>
-                                        <td>Whiski</td>
+                                           <td><a href="https://twitch.tv/DJWhiski" target="_blank" class="dj-link">Whiski <svg class="twitch-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2H2v15h4v4l4-4h5l4-4V2h-8zm11 13l-4 4h-5l-4 4v-4H4V4h18v11z"/><rect x="11" y="7" width="2" height="5"/><rect x="15" y="7" width="2" height="5"/></svg></a></td>
                                         <td>9:00 PM</td>
                                         <td>2:00 AM</td>
                                     </tr>
@@ -232,7 +239,7 @@
                                     <tr>
                                         <td>Saturday</td>
                                         <td>Tavern Talks</td>
-                                        <td>Sheal</td>
+                                           <td><a href="https://twitch.tv/DJ_Sheal" target="_blank" class="dj-link">Sheal <svg class="twitch-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2H2v15h4v4l4-4h5l4-4V2h-8zm11 13l-4 4h-5l-4 4v-4H4V4h18v11z"/><rect x="11" y="7" width="2" height="5"/><rect x="15" y="7" width="2" height="5"/></svg></a></td>
                                         <td>3:00 PM</td>
                                         <td>8:00 PM</td>
                                     </tr>

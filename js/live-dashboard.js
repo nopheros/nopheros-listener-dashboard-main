@@ -49,6 +49,10 @@ const LiveDashboard = {
             playerSelect: document.getElementById("player-stream-select"),
             playerPopupWindow: document.getElementById("player-popup-window"),
             playerPopupModal: document.getElementById("player-popup-modal"),
+            playerTower1Btn: document.getElementById("player-tower1-btn"),
+            playerTower3Btn: document.getElementById("player-tower3-btn"),
+            playerLiveTotal: document.getElementById("player-live-total"),
+            playerLivePeak: document.getElementById("player-live-peak"),
 
             // Tower cards
             tower1Listeners: document.getElementById("tower1-listeners"),
@@ -96,6 +100,30 @@ const LiveDashboard = {
                 this.setPlayerSource(nextTower);
                 this.updateNowPlaying();
             });
+        }
+
+        // Hook dual tower buttons
+        const t1Btn = this.elements.playerTower1Btn;
+        const t3Btn = this.elements.playerTower3Btn;
+        if (t1Btn && t3Btn) {
+            const setActive = (tower) => {
+                this.currentPlayerTower = tower;
+                this.setPlayerSource(tower);
+                this.updateNowPlaying();
+                if (tower === "tower1") {
+                    t1Btn.classList.add("active");
+                    t3Btn.classList.remove("active");
+                } else {
+                    t3Btn.classList.add("active");
+                    t1Btn.classList.remove("active");
+                }
+            };
+
+            // Initialize active state
+            setActive(this.currentPlayerTower);
+
+            t1Btn.addEventListener("click", () => setActive("tower1"));
+            t3Btn.addEventListener("click", () => setActive("tower3"));
         }
     },
 
@@ -404,7 +432,8 @@ const LiveDashboard = {
         await Promise.all([
             this.updateTowerStatus(),
             this.loadChartData(),
-            this.updatePiHealth()
+            this.updatePiHealth(),
+            this.updateLiveTotals()
         ]);
     },
 
@@ -417,6 +446,7 @@ const LiveDashboard = {
             this.updateTowerStatus();
             this.loadChartData();
             this.updatePiHealth();
+            this.updateLiveTotals();
         }, CONFIG.LIVE_REFRESH_INTERVAL_MS);
 
         // Now playing updates (more frequent)
@@ -426,6 +456,41 @@ const LiveDashboard = {
 
         // Initial now playing update
         this.updateNowPlaying();
+    },
+
+    /**
+     * Update live total and peak listener badges in player header
+     */
+    async updateLiveTotals() {
+        try {
+            const status = await IcecastAPI.getAllTowerStatus();
+            const total = status?.chartTowersTotal ?? 0;
+            if (this.elements.playerLiveTotal) {
+                this.setText(this.elements.playerLiveTotal, `${total} Live`);
+            }
+
+            // Compute peak from last 24h total series
+            let peak = null;
+            try {
+                const url = CONFIG.getArchiveUrl("data24h");
+                const response = await fetch(url, { cache: "no-store" });
+                if (response.ok) {
+                    const payload = await response.json();
+                    const totalSeries = (payload.series || []).find(s => s.name.toLowerCase() === "total");
+                    if (totalSeries && Array.isArray(totalSeries.points)) {
+                        // Restrict to 2026 data per requirement
+                        const points = this.filterDataByRange(totalSeries.points);
+                        peak = points.length ? Math.max(...points.map(([_, y]) => y)) : 0;
+                    }
+                }
+            } catch {}
+
+            if (this.elements.playerLivePeak) {
+                this.setText(this.elements.playerLivePeak, `Peak: ${peak ?? "--"}`);
+            }
+        } catch (error) {
+            // Non-fatal
+        }
     },
 
     /**
@@ -577,27 +642,32 @@ const LiveDashboard = {
     filterDataByRange(points) {
         if (!Array.isArray(points) || points.length === 0) return [];
         
-        const now = Date.now();
-        let cutoff;
-        
-        switch (this.currentRange) {
-            case "2h":
-                cutoff = now - (2 * 60 * 60 * 1000); // 2 hours
-                break;
-            case "24h":
-                cutoff = now - (24 * 60 * 60 * 1000); // 24 hours
-                break;
-            case "3d":
-                cutoff = now - (3 * 24 * 60 * 60 * 1000); // 3 days
-                break;
-            case "week":
-                cutoff = now - (7 * 24 * 60 * 60 * 1000); // 7 days
-                break;
-            default:
-                return points; // No filtering
-        }
-        
-        return points.filter(([timestamp]) => timestamp >= cutoff);
+           // Filter to 2026 and later only
+           const jan1_2026 = new Date(2026, 0, 1).getTime();
+           const filteredByYear = points.filter(([timestamp]) => timestamp >= jan1_2026);
+       
+           // Then apply time range filter
+           const now = Date.now();
+           let cutoff;
+       
+           switch (this.currentRange) {
+               case "2h":
+                   cutoff = now - (2 * 60 * 60 * 1000); // 2 hours
+                   break;
+               case "24h":
+                   cutoff = now - (24 * 60 * 60 * 1000); // 24 hours
+                   break;
+               case "3d":
+                   cutoff = now - (3 * 24 * 60 * 60 * 1000); // 3 days
+                   break;
+               case "week":
+                   cutoff = now - (7 * 24 * 60 * 60 * 1000); // 7 days
+                   break;
+               default:
+                   return filteredByYear; // Only year filtering
+           }
+       
+           return filteredByYear.filter(([timestamp]) => timestamp >= cutoff);
     },
 
     /**
@@ -643,15 +713,15 @@ const LiveDashboard = {
 
         // Add Tower 1 and Tower 2
         for (const series of otherSeries) {
-            const tower = Object.values(CONFIG.TOWERS).find(
-                t => t.name.toLowerCase() === series.name.toLowerCase()
-            );
+            const nameLower = (series.name || "").toLowerCase();
+            const isTower1 = nameLower.includes("tower 1");
+            const color = isTower1 ? CONFIG.TOWERS.tower1.color : CONFIG.TOWERS.tower2.color;
 
             datasets.push({
                 label: series.name,
                 data: this.filterDataByRange(series.points || []).map(([x, y]) => ({ x, y })),
-                borderColor: tower?.color || "#888",
-                backgroundColor: tower?.color || "#888",
+                borderColor: color || "#888",
+                backgroundColor: color || "#888",
                 borderWidth: 2,
                 pointRadius: 0,
                 tension: 0.2,

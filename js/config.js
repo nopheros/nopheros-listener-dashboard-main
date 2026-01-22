@@ -29,7 +29,7 @@ const CONFIG = {
     TOWERS: {
         tower1: {
             id: "tower1",
-            name: "Tower 1",
+               name: "Tower 1 - NX78",
             mountpoint: "/stream",
             description: "Primary Broadcast Tower",
             includeInCharts: true,
@@ -38,7 +38,7 @@ const CONFIG = {
         },
         tower2: {
             id: "tower2",
-            name: "Tower 2",
+               name: "Tower 2 - LG87",
             baseUrl: "https://sgradio.turtle-music.org",
             mountpoint: "/stream",
             description: "Secondary Relay Tower",
@@ -48,10 +48,10 @@ const CONFIG = {
         },
         tower3: {
             id: "tower3",
-            name: "Tower 3",
+               name: "Tower 3 - Atlantean Testing Relay",
             baseUrl: "http://***REMOVED***:8000",
             mountpoint: "/tower3",
-            description: "Atlantean Testing Relay",
+               description: "Atlantean Testing Relay",
             flavorText: "That rickety old tower those skeezy Gnomes wouldn't even touch...",
             includeInCharts: false,  // INFO ONLY - no charts
             includeInHistory: false, // INFO ONLY - no history
