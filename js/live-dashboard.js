@@ -365,19 +365,16 @@ const LiveDashboard = {
         }
 
         // Theme toggle
-
-    /**
-     * Update theme toggle icon based on current theme
-     */
-    updateThemeIcon(theme) {
-        const themeIcon = document.querySelector(".theme-icon");
-        if (themeIcon) {
-            themeIcon.textContent = theme === "dark" ? "🌙" : "☀️";
+        // Download JSON
+        if (this.elements.downloadJson) {
+            this.elements.downloadJson.addEventListener("click", () => {
+                this.downloadAsJSON();
+            });
         }
-    },
+
+        // Theme toggle
         const themeToggle = document.getElementById("theme-toggle");
         if (themeToggle) {
-            // Load saved theme or default to dark
             const savedTheme = localStorage.getItem("theme") || "dark";
             document.documentElement.setAttribute("data-theme", savedTheme);
             this.updateThemeIcon(savedTheme);
@@ -393,16 +390,18 @@ const LiveDashboard = {
     },
 
     /**
-     * Load initial data on page load
+     * Update theme toggle icon based on current theme
      */
-    async loadInitialData() {
-        await Promise.all([
-            this.updateTowerStatus(),
-            this.loadChartData(),
-            this.updatePiHealth()
-        ]);
+    updateThemeIcon(theme) {
+        const themeIcon = document.querySelector(".theme-icon");
+        if (themeIcon) {
+            themeIcon.textContent = theme === "dark" ? "🌙" : "☀️";
+        }
     },
 
+    /**
+     * Load initial data on page load
+     */
     /**
      * Start the refresh loop
      */
