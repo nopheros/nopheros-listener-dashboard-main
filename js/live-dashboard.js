@@ -583,7 +583,7 @@ const LiveDashboard = {
                 return `<div class="event-item${currentClass}">
                     <div class="event-info">
                         <div class="event-show">${event.show}${badge}</div>
-                        <div class="event-dj">with ${event.dj}</div>
+                        <div class="event-dj">with DJ ${event.dj}</div>
                     </div>
                     <div class="event-time">${timeStr}</div>
                 </div>`;
@@ -602,7 +602,12 @@ const LiveDashboard = {
             const ampm = h >= 12 ? "PM" : "AM";
             return `${hour12}:00 ${ampm}`;
         };
-        return `${dayName} ${formatHour(startHour)} - ${formatHour(endHour)}`;
+        
+        // Convert EST to UK time (EST + 5 hours)
+        const ukHour = (startHour + 5) % 24;
+        const ukFormatted = formatHour(ukHour);
+        
+        return `${dayName} ${formatHour(startHour)} EST<br>${ukFormatted} ST`;
     },
 
     /**
