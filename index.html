@@ -26,7 +26,7 @@
             </nav>
             <div class="header-badges">
                 <button id="theme-toggle" class="theme-toggle-btn" title="Toggle light/dark mode">
-                    <span class="theme-icon">🌙</span>
+                    <span class="theme-icon">☀️</span>
                 </button>
                 <span class="badge badge-live">
                     <span class="live-dot"></span> Live
@@ -126,34 +126,16 @@
                 <div class="right-column">
                     <section class="tower1-player-section">
                         <div class="panel-header">
-                            <h2>Tower 1 Media Player</h2>
+                            <h2>Everlook Broadcasting Co.</h2>
                         </div>
                         <div class="player-content">
-                            <div class="player-logo">
-                                <img src="img/elbc_logo.png" alt="ELBC Logo" class="elbc-logo-large">
-                            </div>
-                            <div class="player-controls">
-                                <button class="play-btn-gold" id="tower1-play-btn" title="Play Tower 1">
-                                    <span class="play-icon">▶</span>
-                                </button>
-                            </div>
-                            <div class="now-playing-wrapper">
-                                <p class="now-playing-label">Now Playing:</p>
-                                <p class="now-playing-text" id="player-now-playing">Loading track...</p>
-                            </div>
-                            <div class="player-stats">
-                                <div class="stat-item">
-                                    <span class="stat-label">Listeners</span>
-                                    <span class="stat-value" id="player-listeners">--</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Peak Listeners</span>
-                                    <span class="stat-value" id="player-peak">--</span>
-                                </div>
-                            </div>
-                            <audio id="tower1-player" controls preload="none" style="width:100%; margin-top:1rem;">
+                            <img src="img/elbc_logo.png" alt="ELBC Logo" class="elbc-logo-large">
+                            <p class="tune-in-label">Tune in:</p>
+                            <button class="play-btn-gold" id="tower1-play-btn" title="Play Tower 1">
+                                <span class="play-icon">▶</span>
+                            </button>
+                            <audio id="tower1-player" preload="none" style="display:none;">
                                 <source src="" type="audio/mpeg" id="tower1-source">
-                                Your browser does not support the audio element.
                             </audio>
                         </div>
                     </section>
@@ -265,9 +247,7 @@
                     <div class="chart-footer">
                         <button class="btn-secondary" id="export-csv">Export CSV</button>
                         <button class="btn-secondary" id="download-json">Download JSON</button>
-                        <p class="chart-refresh-info">
-                            Live dashboard updates every 60 seconds | CRON scraper runs every 5 minutes
-                        </p>
+                        <p class="chart-refresh-info">Live updates every 60 seconds</p>
                     </div>
                 </div>
             </section>
@@ -286,7 +266,6 @@
                 <a href="annals.html">Annals of the Signal</a>
             </nav>
             <div class="footer-info">
-                <p>Live panel refreshes every 60 seconds; Pi scraper every 5 minutes</p>
                 <p class="footer-credit">Powered by Icecast</p>
             </div>
         </div>

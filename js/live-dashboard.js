@@ -129,17 +129,39 @@ const LiveDashboard = {
         const cursedPlayBtn = this.elements.tower3PlayBtn;
 
         if (goldPlayBtn) {
+            const player = this.elements.player;
+            
             goldPlayBtn.addEventListener("click", () => {
                 this.currentPlayerTower = "tower1";
                 this.setPlayerSource("tower1");
                 this.updateNowPlaying();
-                const player = this.elements.player;
-                if (player && player.paused) {
-                    player.play().catch(err => {
-                        console.warn("[Player] Autoplay blocked:", err.message);
-                    });
+                
+                if (player) {
+                    if (player.paused) {
+                        player.play().then(() => {
+                            goldPlayBtn.classList.add("active");
+                        }).catch(err => {
+                            console.warn("[Player] Autoplay blocked:", err.message);
+                        });
+                    } else {
+                        player.pause();
+                        goldPlayBtn.classList.remove("active");
+                    }
                 }
             });
+
+            // Listen to player state changes
+            if (player) {
+                player.addEventListener("play", () => {
+                    goldPlayBtn.classList.add("active");
+                });
+                player.addEventListener("pause", () => {
+                    goldPlayBtn.classList.remove("active");
+                });
+                player.addEventListener("ended", () => {
+                    goldPlayBtn.classList.remove("active");
+                });
+            }
         }
 
         if (cursedPlayBtn) {
@@ -450,7 +472,8 @@ const LiveDashboard = {
     updateThemeIcon(theme) {
         const themeIcon = document.querySelector(".theme-icon");
         if (themeIcon) {
-            themeIcon.textContent = theme === "dark" ? "🌙" : "☀️";
+            // Show sun when in dark mode (to switch to light), show moon when in light mode (to switch to dark)
+            themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
         }
     },
 

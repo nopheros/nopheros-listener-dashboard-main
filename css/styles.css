@@ -1701,10 +1701,11 @@ img {
     gap: 1.5rem;
 }
 
-.player-logo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.tune-in-label {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0;
 }
 
 .elbc-logo-large {
@@ -1722,23 +1723,35 @@ img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    background: linear-gradient(135deg, #555, #777);
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+    box-shadow: 0 0 10px rgba(100, 100, 100, 0.3);
     transition: all 0.3s ease;
+}
+
+.play-btn-gold.active {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
 }
 
 .play-btn-gold:hover {
     transform: scale(1.1);
+}
+
+.play-btn-gold.active:hover {
     box-shadow: 0 0 30px rgba(241, 196, 15, 0.9);
 }
 
 .play-btn-gold .play-icon {
     font-size: 2rem;
+    color: #2c3e50;
+}
+
+.play-btn-gold.active .play-icon {
     color: #2c3e50;
 }
 
@@ -1823,6 +1836,28 @@ img {
 
 .cursed-text {
     font-weight: 600;
+}
+
+.tower-card[data-tower="tower1"] {
+    position: relative;
+}
+
+.tower-card[data-tower="tower1"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+    pointer-events: none;
+    animation: greenGlow 2s ease-in-out infinite;
+}
+
+@keyframes greenGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(46, 204, 113, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(46, 204, 113, 0.6); }
 }
 
 .tower-card-cursed {
