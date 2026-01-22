@@ -218,10 +218,12 @@ const HistoricalDashboard = {
             // Hide no-data message, show chart
             this.showChart(true);
 
-            // Render chart and detect events
-            this.renderChart(data);
+            // Detect events BEFORE rendering chart (so annotations are ready)
             this.detectCrashes(data);
             this.findDJShows(data);
+
+            // Now render chart with annotations
+            this.renderChart(data);
             this.updateEventsDisplay();
 
         } catch (error) {
@@ -263,23 +265,30 @@ const HistoricalDashboard = {
         const totalSeries = filteredSeries.find(s => s.name.toLowerCase() === "total");
         const otherSeries = filteredSeries.filter(s => s !== totalSeries);
 
+        // Add tower lines with reduced opacity (so Total stands out)
         for (const series of otherSeries) {
             const tower = Object.values(CONFIG.TOWERS).find(
                 t => t.name.toLowerCase() === series.name.toLowerCase()
             );
 
+            // Convert hex color to rgba with 0.5 opacity
+            const hexColor = tower?.color || "#888888";
+            const rgbaColor = this.hexToRgba(hexColor, 0.5);
+
             datasets.push({
                 label: series.name,
                 data: (series.points || []).map(([x, y]) => ({ x, y })),
-                borderColor: tower?.color || "#888",
-                backgroundColor: tower?.color || "#888",
+                borderColor: rgbaColor,
+                backgroundColor: rgbaColor,
                 borderWidth: 2,
                 pointRadius: 0,
                 tension: 0.2,
-                fill: false
+                fill: false,
+                order: 2  // Higher order = rendered first (behind)
             });
         }
 
+        // Add Total line LAST so it renders on top
         if (totalSeries) {
             datasets.push({
                 label: "Total",
@@ -289,7 +298,8 @@ const HistoricalDashboard = {
                 borderWidth: 3,
                 pointRadius: 0,
                 tension: 0.2,
-                fill: false
+                fill: false,
+                order: 1  // Lower order = rendered last (on top)
             });
         }
 
@@ -702,6 +712,31 @@ const HistoricalDashboard = {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+    },
+
+    /**
+     * Helper: Convert hex color to rgba
+     * @param {string} hex - Hex color (e.g., "#2ecc71")
+     * @param {number} alpha - Alpha value (0-1)
+     * @returns {string} - rgba color string
+     */
+    hexToRgba(hex, alpha) {
+        // Remove # if present
+        hex = hex.replace(/^#/, "");
+
+        // Parse hex values
+        let r, g, b;
+        if (hex.length === 3) {
+            r = parseInt(hex[0] + hex[0], 16);
+            g = parseInt(hex[1] + hex[1], 16);
+            b = parseInt(hex[2] + hex[2], 16);
+        } else {
+            r = parseInt(hex.substring(0, 2), 16);
+            g = parseInt(hex.substring(2, 4), 16);
+            b = parseInt(hex.substring(4, 6), 16);
+        }
+
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     }
 };
 
