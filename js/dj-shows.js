@@ -18,6 +18,7 @@ const DJ_SHOWS = {
             id: "treehab",
             name: "Treehab with DJ Nopheros",
             dj: "Nopheros",
+            twitchUrl: "https://twitch.tv/Nopheros",
             dayOfWeek: 1, // Monday (0=Sunday)
             startHour: 11,
             startMinute: 0,
@@ -51,6 +52,7 @@ const DJ_SHOWS = {
             id: "the-whiski-lounge",
             name: "The Whiski Lounge",
             dj: "Whiski",
+            twitchUrl: "https://twitch.tv/DJWhiski",
             dayOfWeek: 2, // Tuesday
             startHour: 21,
             startMinute: 0,
@@ -73,8 +75,9 @@ const DJ_SHOWS = {
             id: "pilgrim-of-the-signal",
             name: "Pilgrim of the Signal",
             dj: "Nopheros",
+            twitchUrl: "https://twitch.tv/Nopheros",
             dayOfWeek: 5, // Friday
-            startHour: 18,
+            startHour: 12,
             startMinute: 0,
             durationMinutes: 120,
             color: "rgba(231, 76, 60, 0.25)",
@@ -84,6 +87,7 @@ const DJ_SHOWS = {
             id: "tavern-talks",
             name: "Tavern Talks with Sheal",
             dj: "Sheal",
+            twitchUrl: "https://twitch.tv/DJ_Sheal",
             dayOfWeek: 6, // Saturday
             startHour: 15,
             startMinute: 0,

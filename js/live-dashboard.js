@@ -76,20 +76,10 @@ const LiveDashboard = {
             // Chart
             chartCanvas: document.getElementById("listeners-chart"),
             refreshChart: document.getElementById("refresh-chart"),
-            exportCsv: document.getElementById("export-csv"),
-            downloadJson: document.getElementById("download-json"),
             rangeButtons: document.querySelectorAll(".range-btn[data-range]"),
 
             // Header
-            lastUpdated: document.getElementById("last-updated"),
-
-            // Pi health
-            piTemp: document.getElementById("pi-temp"),
-            piDisk: document.getElementById("pi-disk"),
-            piMem: document.getElementById("pi-mem"),
-            piLoad: document.getElementById("pi-load"),
-            piHealthUpdated: document.getElementById("pi-health-updated"),
-            piStatusIndicator: document.getElementById("pi-status-indicator")
+            lastUpdated: document.getElementById("last-updated")
         };
     },
 
@@ -444,20 +434,6 @@ const LiveDashboard = {
             });
         }
 
-        // Export CSV
-        if (this.elements.exportCsv) {
-            this.elements.exportCsv.addEventListener("click", () => {
-                this.exportAsCSV();
-            });
-        }
-
-        // Download JSON
-        if (this.elements.downloadJson) {
-            this.elements.downloadJson.addEventListener("click", () => {
-                this.downloadAsJSON();
-            });
-        }
-
         // Theme toggle
         const themeToggle = document.getElementById("theme-toggle");
         if (themeToggle) {
@@ -528,6 +504,13 @@ const LiveDashboard = {
         if (!eventsList) return;
 
         try {
+            // DJ Twitch URL mapping
+            const djTwitchUrls = {
+                "Nopheros": "https://twitch.tv/Nopheros",
+                "Whiski": "https://twitch.tv/DJWhiski",
+                "Sheal": "https://twitch.tv/DJ_Sheal"
+            };
+
             const schedule = [
                 { day: 1, show: "Treehab", dj: "Nopheros", startHour: 11, startMin: 0, endHour: 16, endMin: 0 },
                 { day: 1, show: "Living in the Past", dj: "Leto", startHour: 18, startMin: 0, endHour: 23, endMin: 0 },
@@ -580,10 +563,16 @@ const LiveDashboard = {
                 const timeStr = this.formatEventTime(event.date, event.startHour, event.endHour);
                 const badge = event.isCurrent ? '<span class="event-badge">Live Now</span>' : '';
                 const currentClass = event.isCurrent ? ' current' : '';
+                
+                // Add Twitch link if DJ has one
+                const djDisplay = djTwitchUrls[event.dj] 
+                    ? `<a href="${djTwitchUrls[event.dj]}" target="_blank" class="dj-link">DJ ${event.dj}</a>`
+                    : `DJ ${event.dj}`;
+                
                 return `<div class="event-item${currentClass}">
                     <div class="event-info">
                         <div class="event-show">${event.show}${badge}</div>
-                        <div class="event-dj">with DJ ${event.dj}</div>
+                        <div class="event-dj">${djDisplay}</div>
                     </div>
                     <div class="event-time">${timeStr}</div>
                 </div>`;
