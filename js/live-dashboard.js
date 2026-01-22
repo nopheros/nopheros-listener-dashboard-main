@@ -23,17 +23,11 @@ const LiveDashboard = {
      * Initialize the dashboard
      */
     init() {
-        console.log("[Dashboard] Initializing LiveDashboard");
         this.cacheElements();
-        console.log("[Dashboard] Elements cached");
         this.setupPlayer();
-        console.log("[Dashboard] Player setup complete");
         this.setupEventListeners();
-        console.log("[Dashboard] Event listeners setup complete");
         this.loadInitialData();
-        console.log("[Dashboard] Initial data loaded");
         this.startRefreshLoop();
-        console.log("[Dashboard] Refresh loop started");
     },
 
     /**
@@ -361,7 +355,6 @@ const LiveDashboard = {
         if (tower3PlayBtn) {
             tower3PlayBtn.addEventListener("click", (e) => {
                 e.preventDefault();
-                console.log("[Dashboard] Tower 3 play button clicked");
                 this.playTower3();
             });
         } else {
@@ -498,9 +491,7 @@ const LiveDashboard = {
      */
     async updateTowerStatus() {
         try {
-            console.log("[Dashboard] updateTowerStatus() called");
             const status = await IcecastAPI.getAllTowerStatus();
-            console.log("[Dashboard] getAllTowerStatus() returned:", status);
 
             if (!status || !status.towers) {
                 console.warn("[Dashboard] No tower status data available");
@@ -976,6 +967,5 @@ const LiveDashboard = {
 
 // Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("[Dashboard] DOMContentLoaded event fired, initializing LiveDashboard");
     LiveDashboard.init();
 });

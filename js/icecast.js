@@ -16,7 +16,6 @@ const IcecastAPI = {
             const url = baseUrl
                 ? `${baseUrl}/status-json.xsl`
                 : CONFIG.ICECAST_STATUS_JSON;
-            console.log("[Icecast] Fetching status from:", url);
 
             const response = await fetch(url, {
                 cache: "no-store",
@@ -28,7 +27,6 @@ const IcecastAPI = {
             }
 
             const data = await response.json();
-            console.log("[Icecast] Parsed status successfully");
             return this.parseStatusJSON(data);
         } catch (error) {
             console.warn("[Icecast] Failed to fetch status from", baseUrl || CONFIG.ICECAST_BASE_URL, ":", error.message);
@@ -227,7 +225,6 @@ const IcecastAPI = {
      * @returns {Promise<Object>} Status keyed by tower ID
      */
     async getAllTowerStatus() {
-        console.log("[Icecast] getAllTowerStatus() called");
         const result = {
             towers: {},
             totalListeners: 0,
@@ -252,14 +249,11 @@ const IcecastAPI = {
         });
 
         const serverResults = await Promise.all(fetchPromises);
-        console.log("[Icecast] Server results:", serverResults);
 
         // Process results from each server
         for (const { towers, status } of serverResults) {
-            console.log("[Icecast] Processing server results, towers:", towers.length, "status:", status);
             for (const { towerId, tower } of towers) {
                 const mount = status?.mounts?.[tower.mountpoint];
-                console.log(`[Icecast] Tower ${towerId}: mount found =`, !!mount, "mountpoint:", tower.mountpoint);
 
                 if (mount) {
                     result.towers[towerId] = {
@@ -293,7 +287,6 @@ const IcecastAPI = {
             }
         }
 
-        console.log("[Icecast] Final result:", result);
         return result;
     },
 

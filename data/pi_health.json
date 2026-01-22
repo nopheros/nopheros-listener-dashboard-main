@@ -1,0 +1,9 @@
+{
+  "temp_c": 50,
+  "disk_free_gb": 12.3,
+  "disk_total_gb": 64.0,
+  "mem_available_mb": 1024,
+  "mem_total_mb": 2048,
+  "loadavg": { "1": 0.35, "5": 0.40, "15": 0.45 },
+  "timestamp_iso": "2026-01-22T00:00:00Z"
+}
