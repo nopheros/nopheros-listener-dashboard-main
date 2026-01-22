@@ -56,12 +56,21 @@ const LiveDashboard = {
             tower1Listeners: document.getElementById("tower1-listeners"),
             tower1Peak: document.getElementById("tower1-peak"),
             tower1Np: document.getElementById("tower1-np"),
+            tower1Mount: document.getElementById("tower1-mount"),
+            tower1StreamName: document.getElementById("tower1-stream-name"),
+            tower1StreamDesc: document.getElementById("tower1-stream-desc"),
             tower2Listeners: document.getElementById("tower2-listeners"),
             tower2Peak: document.getElementById("tower2-peak"),
             tower2Np: document.getElementById("tower2-np"),
+            tower2Mount: document.getElementById("tower2-mount"),
+            tower2StreamName: document.getElementById("tower2-stream-name"),
+            tower2StreamDesc: document.getElementById("tower2-stream-desc"),
             tower3Listeners: document.getElementById("tower3-listeners"),
             tower3Peak: document.getElementById("tower3-peak"),
             tower3Np: document.getElementById("tower3-np"),
+            tower3Mount: document.getElementById("tower3-mount"),
+            tower3StreamName: document.getElementById("tower3-stream-name"),
+            tower3StreamDesc: document.getElementById("tower3-stream-desc"),
             totalListeners: document.getElementById("total-listeners"),
 
             // Chart
@@ -649,6 +658,9 @@ const LiveDashboard = {
                 this.setText(this.elements.tower1Listeners, t1.listeners ?? "--");
                 this.setText(this.elements.tower1Peak, t1.listenerPeak ?? "--");
                 this.setText(this.elements.tower1Np, t1.title || "(no metadata)");
+                this.setText(this.elements.tower1Mount, t1.mountpoint || "--");
+                this.setText(this.elements.tower1StreamName, t1.serverName || "--");
+                this.setText(this.elements.tower1StreamDesc, t1.description || "--");
                 
                 // Update player stats (Tower 1 Media Player section)
                 this.setText(this.elements.playerListeners, t1.listeners ?? "--");
@@ -661,6 +673,9 @@ const LiveDashboard = {
                 this.setText(this.elements.tower2Listeners, t2.listeners ?? "--");
                 this.setText(this.elements.tower2Peak, t2.listenerPeak ?? "--");
                 this.setText(this.elements.tower2Np, t2.title || "(no metadata)");
+                this.setText(this.elements.tower2Mount, t2.mountpoint || "--");
+                this.setText(this.elements.tower2StreamName, t2.serverName || "--");
+                this.setText(this.elements.tower2StreamDesc, t2.description || "--");
             }
 
             // Update Tower 3 (now with live listener data + now playing)
@@ -674,6 +689,9 @@ const LiveDashboard = {
                     this.setText(this.elements.tower3Peak, t3.listenerPeak ?? "--");
                 }
                 this.setText(this.elements.tower3Np, t3.title || "(no metadata)");
+                this.setText(this.elements.tower3Mount, t3.mountpoint || "--");
+                this.setText(this.elements.tower3StreamName, t3.serverName || "--");
+                this.setText(this.elements.tower3StreamDesc, t3.description || "--");
             }
 
             // Update Total (Tower 1 + Tower 2 only)
