@@ -271,9 +271,11 @@ const HistoricalDashboard = {
                 t => t.name.toLowerCase() === series.name.toLowerCase()
             );
 
-            // Convert hex color to rgba with 0.5 opacity
-            const hexColor = tower?.color || "#888888";
-            const rgbaColor = this.hexToRgba(hexColor, 0.5);
+            // Tower 1 uses lighter gray, Tower 2 keeps its purple color
+            // Both at 70% opacity to stay muted but distinguishable
+            const isTower1 = series.name.toLowerCase().includes("tower 1");
+            const hexColor = isTower1 ? "#aaaaaa" : (tower?.color || "#888888");
+            const rgbaColor = this.hexToRgba(hexColor, 0.7);
 
             datasets.push({
                 label: series.name,
