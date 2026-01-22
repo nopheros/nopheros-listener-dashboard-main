@@ -357,15 +357,7 @@ const LiveDashboard = {
             });
         }
 
-        // Download JSON
-        if (this.elements.downloadJson) {
-            this.elements.downloadJson.addEventListener("click", () => {
-                this.downloadAsJSON();
-            });
-        }
-
-        // Theme toggle
-        // Download JSON
+                // Download JSON
         if (this.elements.downloadJson) {
             this.elements.downloadJson.addEventListener("click", () => {
                 this.downloadAsJSON();
@@ -402,12 +394,17 @@ const LiveDashboard = {
     /**
      * Load initial data on page load
      */
+    async loadInitialData() {
+        await Promise.all([
+            this.updateTowerStatus(),
+            this.loadChartData(),
+            this.updatePiHealth()
+        ]);
+    },
+
     /**
      * Start the refresh loop
      */
-    startRefreshLoop() {
-        // Tower status and chart refresh
-        this.refreshInterval = setInterval(() => {
             this.updateTowerStatus();
             this.loadChartData();
             this.updatePiHealth();
