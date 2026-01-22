@@ -431,7 +431,7 @@ img {
 
 /* Enhanced media control styling for better visibility */
 .player-controls audio::-webkit-media-controls-play-button {
-    filter: brightness(2.5) saturate(1.5);
+    filter: brightness(2.5) saturate(1.5) sepia(0.5) hue-rotate(10deg);
     opacity: 1;
 }
 
@@ -767,6 +767,15 @@ img {
     display: flex;
     gap: var(--spacing-sm);
     margin-top: var(--spacing-md);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.chart-refresh-info {
+    margin-left: auto;
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    font-style: italic;
 }
 
 .btn-secondary {
