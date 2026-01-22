@@ -50,7 +50,7 @@ const CONFIG = {
             id: "tower3",
             name: "Tower 3",
             baseUrl: "http://***REMOVED***:8000",
-            mountpoint: "/testdj",
+            mountpoint: "/tower3",
             description: "Atlantean Testing Relay",
             flavorText: "That rickety old tower those skeezy Gnomes wouldn't even touch...",
             includeInCharts: false,  // INFO ONLY - no charts

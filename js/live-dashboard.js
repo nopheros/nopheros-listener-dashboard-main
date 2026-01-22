@@ -142,6 +142,34 @@ const LiveDashboard = {
             player.play().catch(() => {});
         }
     },
+
+    /**
+     * Play Tower 3 stream
+     */
+    playTower3() {
+        const streamUrl = CONFIG.getStreamUrl("tower3");
+        if (!streamUrl) {
+            console.error("[Dashboard] Failed to get Tower 3 stream URL");
+            return;
+        }
+
+        // Switch player to Tower 3
+        this.setPlayerSource("tower3");
+
+        // Start playing
+        const player = this.elements.player;
+        if (player) {
+            player.play().catch(error => {
+                console.error("[Dashboard] Failed to play Tower 3:", error);
+            });
+        }
+
+        // Update the player selector dropdown
+        if (this.elements.playerSelect) {
+            this.elements.playerSelect.value = "tower3";
+        }
+    },
+
     /**
      * Open the current stream in a new browser window
      */
@@ -291,6 +319,14 @@ const LiveDashboard = {
         if (this.elements.playerPopupModal) {
             this.elements.playerPopupModal.addEventListener("click", () => {
                 this.openPlayerModal();
+            });
+        }
+
+        // Tower 3 play button
+        const tower3PlayBtn = document.getElementById("tower3-play-btn");
+        if (tower3PlayBtn) {
+            tower3PlayBtn.addEventListener("click", () => {
+                this.playTower3();
             });
         }
 
