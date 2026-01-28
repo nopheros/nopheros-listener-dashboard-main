@@ -515,10 +515,10 @@ const LiveDashboard = {
                 { day: 1, show: "Treehab", dj: "Nopheros", startHour: 11, startMin: 0, endHour: 16, endMin: 0 },
                 { day: 1, show: "Living in the Past", dj: "Leto", startHour: 18, startMin: 0, endHour: 23, endMin: 0 },
                 { day: 2, show: "Groovin' Graveyard", dj: "Crustman", startHour: 15, startMin: 0, endHour: 20, endMin: 0 },
-                { day: 2, show: "The Whiski Lounge", dj: "Whiski", startHour: 21, startMin: 0, endHour: 26, endMin: 0 },
                 { day: 3, show: "Deeprun Classix", dj: "Kando", startHour: 16, startMin: 0, endHour: 21, endMin: 0 },
-                { day: 5, show: "Pilgrim of Signal", dj: "Nopheros", startHour: 12, startMin: 0, endHour: 17, endMin: 0 },
-                { day: 6, show: "Tavern Talks", dj: "Sheal", startHour: 15, startMin: 0, endHour: 20, endMin: 0 }
+                { day: 5, show: "Pilgrim of Signal", dj: "Nopheros", startHour: 20, startMin: 0, endHour: 25, endMin: 0 },
+                { day: 6, show: "Tavern Talks", dj: "Sheal", startHour: 15, startMin: 0, endHour: 20, endMin: 0 },
+                { day: 0, show: "The Whiski Lounge", dj: "Whiski", startHour: 14, startMin: 0, endHour: 19, endMin: 0 }
             ];
 
             const now = new Date();
