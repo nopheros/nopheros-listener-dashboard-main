@@ -212,7 +212,24 @@ const IcecastAPI = {
         }
 
         // Find mount matching this tower's mountpoint
-        const mount = status.mounts[tower.mountpoint];
+        let mount = status.mounts[tower.mountpoint];
+
+        // Special fallback for Tower 3: if /stream has no metadata, try /autodj
+        if (
+            towerId === "tower3" &&
+            (!mount || !(mount.title || mount.serverName)) &&
+            status.mounts["/autodj"]
+        ) {
+            // Use /autodj metadata for display, but keep listeners from /stream
+            const autodj = status.mounts["/autodj"];
+            mount = {
+                ...autodj,
+                listeners: mount ? mount.listeners : autodj.listeners,
+                listenerPeak: mount ? mount.listenerPeak : autodj.listenerPeak,
+                mountpoint: tower.mountpoint // keep as /stream for UI
+            };
+        }
+
         if (mount) {
             return {
                 ...mount,
