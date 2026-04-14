@@ -164,16 +164,11 @@ const LiveDashboard = {
         }
 
         if (cursedPlayBtn) {
-            cursedPlayBtn.addEventListener("click", () => {
-                this.currentPlayerTower = "tower3";
-                this.setPlayerSource("tower3");
-                this.updateNowPlaying();
-                const player = this.elements.player;
-                if (player && player.paused) {
-                    player.play().catch(err => {
-                        console.warn("[Player] Autoplay blocked:", err.message);
-                    });
-                }
+            cursedPlayBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                // Open Tower 3 stream in a new window
+                const streamUrl = CONFIG.getStreamUrl("tower3");
+                window.open(streamUrl, "tower3_player", "width=500,height=300,noopener,noreferrer");
             });
         }
     },
