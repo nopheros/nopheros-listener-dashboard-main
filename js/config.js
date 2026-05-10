@@ -49,7 +49,7 @@ const CONFIG = {
         tower3: {
             id: "tower3",
             name: "Tower 3 - Out of Bounds",
-            baseUrl: "http://romeblue7.myvnc.com:8088",
+            baseUrl: "https://romeblue7.myvnc.com:8443",
             mountpoint: "/stream",
             description: "Primary Broadcast Relay",
             flavorText: "Primary production stream for Out of Bounds.",
