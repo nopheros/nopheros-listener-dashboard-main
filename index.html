@@ -42,168 +42,17 @@
 
     <main class="main-content">
         <div class="content-wrapper-single">
-            <!-- ========== TOP LAYOUT ========== -->
-            <div class="dashboard-grid">
-                <div class="left-column">
-                    <section class="schedule-section-compact">
-                        <div class="panel-header">
-                            <h2>Weekly Schedule</h2>
-                        </div>
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th>Day</th>
-                                    <th>Show</th>
-                                    <th>DJ</th>
-                                    <th>EST</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Monday</td>
-                                    <td>Living in the Past</td>
-                                    <td><a href="https://twitch.tv/danination" target="_blank" class="dj-link">Leto</a></td>
-                                    <td>6:00 PM</td>
-                                </tr>
-                                <tr>
-                                    <td>Tuesday</td>
-                                    <td>Groovin' Graveyard</td>
-                                    <td>Crustman</td>
-                                    <td>3:00 PM</td>
-                                </tr>
-                                <tr>
-                                    <td>Wednesday</td>
-                                    <td>Deeprun Classix</td>
-                                    <td>Kando</td>
-                                    <td>4:00 PM</td>
-                                </tr>
-                                <tr>
-                                    <td>Thursday</td>
-                                    <td>Morning Signal</td>
-                                    <td><a href="https://twitch.tv/sabellwind" target="_blank" class="dj-link">Sabellwind</a></td>
-                                    <td>6:30 AM</td>
-                                </tr>
-                                <tr>
-                                    <td>Saturday</td>
-                                    <td>Tavern Talks</td>
-                                    <td><a href="https://twitch.tv/DJ_Sheal" target="_blank" class="dj-link">Sheal</a></td>
-                                    <td>3:00 PM</td>
-                                </tr>
-                                <tr>
-                                    <td>Sunday</td>
-                                    <td>The Whiski Lounge</td>
-                                    <td><a href="https://twitch.tv/DJWhiski" target="_blank" class="dj-link">Whiski</a></td>
-                                    <td>2:00 PM</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
-            </div>
-
-            <!-- ========== TALE OF THREE TOWERS ========== -->
             <section class="tower-cards-section">
                 <div class="section-header">
-                    <h2>Tale of Three Towers</h2>
+                    <h2>On Air Control Room</h2>
                 </div>
 
-                <div class="tower-cards-grid">
-                    <!-- Tower 1 Card -->
-                    <div class="tower-card" data-tower="tower1">
-                        <div class="tower-card-header">
-                            <div class="tower-indicator" style="background-color: #3498db;"></div>
-                            <h3>Tower 1 Info</h3>
-                            <span class="tower-subtitle">NX78</span>
-                        </div>
-                        <div class="tower-show-info">
-                            <div class="show-info-item">
-                                <span class="show-info-value show-info-centered" id="tower1-stream-name">--</span>
-                            </div>
-                            <div class="show-info-item" id="tower1-desc-item" style="display: none;">
-                                <span class="show-info-value show-info-centered" id="tower1-stream-desc">--</span>
-                            </div>
-                        </div>
-                        <div class="tower-stats">
-                            <div class="stat">
-                                <span class="stat-label">Current Listeners</span>
-                                <span class="stat-value" id="tower1-listeners">--</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Peak Listeners</span>
-                                <span class="stat-value" id="tower1-peak">--</span>
-                            </div>
-                        </div>
-                        <div class="tower-now-playing">
-                            <span class="np-label">Now Playing:</span>
-                            <span class="np-value" id="tower1-np">--</span>
-                        </div>
-                        <div class="tower-media-controls">
-                            <button class="radio-control-btn radio-control-primary" id="tower1-play-btn" data-radio-action="play" data-tower="tower1" title="Play Tower 1">
-                                <span class="control-icon">▶</span>
-                                <span>Play</span>
-                            </button>
-                            <button class="radio-control-btn" id="tower1-pause-btn" data-radio-action="pause" data-tower="tower1" title="Pause Tower 1">
-                                <span class="control-icon">⏸</span>
-                                <span>Pause</span>
-                            </button>
-                            <button class="radio-control-btn radio-control-live" id="tower1-live-btn" data-radio-action="live" data-tower="tower1" title="Listen Live">
-                                <span class="control-icon">📻</span>
-                                <span>Live</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Tower 2 Card -->
-                    <div class="tower-card" data-tower="tower2">
-                        <div class="tower-card-header">
-                            <div class="tower-indicator" style="background-color: #9b59b6;"></div>
-                            <h3>Tower 2</h3>
-                            <span class="tower-subtitle">LG87</span>
-                        </div>
-                        <div class="tower-show-info">
-                            <div class="show-info-item">
-                                <span class="show-info-value show-info-centered" id="tower2-stream-name">--</span>
-                            </div>
-                            <div class="show-info-item" id="tower2-desc-item" style="display: none;">
-                                <span class="show-info-value show-info-centered" id="tower2-stream-desc">--</span>
-                            </div>
-                        </div>
-                        <div class="tower-stats">
-                            <div class="stat">
-                                <span class="stat-label">Current Listeners</span>
-                                <span class="stat-value" id="tower2-listeners">--</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Peak Listeners</span>
-                                <span class="stat-value" id="tower2-peak">--</span>
-                            </div>
-                        </div>
-                        <div class="tower-now-playing">
-                            <span class="np-label">Now Playing:</span>
-                            <span class="np-value" id="tower2-np">--</span>
-                        </div>
-                        <div class="tower-media-controls">
-                            <button class="radio-control-btn radio-control-primary" id="tower2-play-btn" data-radio-action="play" data-tower="tower2" title="Play Tower 2">
-                                <span class="control-icon">▶</span>
-                                <span>Play</span>
-                            </button>
-                            <button class="radio-control-btn" id="tower2-pause-btn" data-radio-action="pause" data-tower="tower2" title="Pause Tower 2">
-                                <span class="control-icon">⏸</span>
-                                <span>Pause</span>
-                            </button>
-                            <button class="radio-control-btn radio-control-live" id="tower2-live-btn" data-radio-action="live" data-tower="tower2" title="Listen Live">
-                                <span class="control-icon">📻</span>
-                                <span>Live</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Tower 3 Card -->
-                    <div class="tower-card tower-card-cursed" data-tower="tower3">
+                <div class="broadcast-stage">
+                    <article class="tower-card tower-card-cursed tower-hero-card" data-tower="tower3">
                         <div class="tower-card-header">
                             <div class="tower-indicator" style="background-color: #9b59b6;"></div>
                             <h3>Tower 3</h3>
-                            <span class="tower-subtitle">Out of Bounds</span>
+                            <span class="tower-subtitle">Primary Broadcast - Out of Bounds</span>
                         </div>
                         <div class="tower-metadata tower-metadata-featured">
                             <div class="tower-metadata-row">
@@ -229,21 +78,187 @@
                             <span class="np-label">Currently Playing</span>
                             <span class="np-value" id="tower3-np">--</span>
                         </div>
-                        <div class="tower-media-controls tower-media-controls-cursed">
+                        <div class="tower-media-controls tower-media-controls-hero tower-media-controls-cursed">
                             <button class="radio-control-btn radio-control-primary" id="tower3-play-btn" data-radio-action="play" data-tower="tower3" title="Play Tower 3">
                                 <span class="control-icon">▶</span>
-                                <span>Play</span>
+                                <span>Play Tower 3</span>
                             </button>
                             <button class="radio-control-btn" id="tower3-pause-btn" data-radio-action="pause" data-tower="tower3" title="Pause Tower 3">
                                 <span class="control-icon">⏸</span>
                                 <span>Pause</span>
                             </button>
-                            <button class="radio-control-btn radio-control-live" id="tower3-live-btn" data-radio-action="live" data-tower="tower3" title="Listen Live">
+                            <button class="radio-control-btn radio-control-live" id="tower3-live-btn" data-radio-action="live" data-tower="tower3" title="Live Tower 3">
                                 <span class="control-icon">📻</span>
                                 <span>Live</span>
                             </button>
                         </div>
-                    </div>
+                    </article>
+
+                    <article class="tower-card tower-mirror-card">
+                        <div class="tower-card-header">
+                            <div class="tower-indicator" style="background-color: #3498db;"></div>
+                            <h3>Mirror Channels</h3>
+                            <span class="tower-subtitle">Tower 1 and Tower 2 carry the same feed</span>
+                        </div>
+
+                        <div class="mirror-channel" data-tower="tower1">
+                            <div class="mirror-channel-head">
+                                <h4>Tower 1 - NX78</h4>
+                            </div>
+                            <div class="tower-show-info">
+                                <div class="show-info-item">
+                                    <span class="show-info-value show-info-centered" id="tower1-stream-name">--</span>
+                                </div>
+                                <div class="show-info-item" id="tower1-desc-item" style="display: none;">
+                                    <span class="show-info-value show-info-centered" id="tower1-stream-desc">--</span>
+                                </div>
+                            </div>
+                            <div class="tower-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Current Listeners</span>
+                                    <span class="stat-value" id="tower1-listeners">--</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Peak Listeners</span>
+                                    <span class="stat-value" id="tower1-peak">--</span>
+                                </div>
+                            </div>
+                            <div class="tower-now-playing">
+                                <span class="np-label">Now Playing</span>
+                                <span class="np-value" id="tower1-np">--</span>
+                            </div>
+                            <div class="tower-media-controls tower-media-controls-mirror">
+                                <button class="radio-control-btn radio-control-primary" id="tower1-play-btn" data-radio-action="play" data-tower="tower1" title="Play Tower 1">
+                                    <span class="control-icon">▶</span>
+                                    <span>Play</span>
+                                </button>
+                                <button class="radio-control-btn" id="tower1-pause-btn" data-radio-action="pause" data-tower="tower1" title="Pause Tower 1">
+                                    <span class="control-icon">⏸</span>
+                                    <span>Pause</span>
+                                </button>
+                                <button class="radio-control-btn radio-control-live" id="tower1-live-btn" data-radio-action="live" data-tower="tower1" title="Live Tower 1">
+                                    <span class="control-icon">📻</span>
+                                    <span>Live</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mirror-channel" data-tower="tower2">
+                            <div class="mirror-channel-head">
+                                <h4>Tower 2 - LG87</h4>
+                            </div>
+                            <div class="tower-show-info">
+                                <div class="show-info-item">
+                                    <span class="show-info-value show-info-centered" id="tower2-stream-name">--</span>
+                                </div>
+                                <div class="show-info-item" id="tower2-desc-item" style="display: none;">
+                                    <span class="show-info-value show-info-centered" id="tower2-stream-desc">--</span>
+                                </div>
+                            </div>
+                            <div class="tower-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Current Listeners</span>
+                                    <span class="stat-value" id="tower2-listeners">--</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Peak Listeners</span>
+                                    <span class="stat-value" id="tower2-peak">--</span>
+                                </div>
+                            </div>
+                            <div class="tower-now-playing">
+                                <span class="np-label">Now Playing</span>
+                                <span class="np-value" id="tower2-np">--</span>
+                            </div>
+                            <div class="tower-media-controls tower-media-controls-mirror">
+                                <button class="radio-control-btn radio-control-primary" id="tower2-play-btn" data-radio-action="play" data-tower="tower2" title="Play Tower 2">
+                                    <span class="control-icon">▶</span>
+                                    <span>Play</span>
+                                </button>
+                                <button class="radio-control-btn" id="tower2-pause-btn" data-radio-action="pause" data-tower="tower2" title="Pause Tower 2">
+                                    <span class="control-icon">⏸</span>
+                                    <span>Pause</span>
+                                </button>
+                                <button class="radio-control-btn radio-control-live" id="tower2-live-btn" data-radio-action="live" data-tower="tower2" title="Live Tower 2">
+                                    <span class="control-icon">📻</span>
+                                    <span>Live</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="schedule-timeline-section">
+                <div class="section-header">
+                    <h2>Weekly Broadcast Lineup</h2>
+                </div>
+                <div class="schedule-timeline" id="schedule-timeline">
+                    <article class="schedule-timeline-item" data-day="1" data-hour="18" data-minute="0">
+                        <div class="timeline-time">
+                            <span class="timeline-day">Mon</span>
+                            <span class="timeline-est">6:00 PM EST</span>
+                        </div>
+                        <div class="timeline-show">
+                            <h3>Living in the Past</h3>
+                            <p>Hosted by Leto</p>
+                        </div>
+                        <a class="timeline-social" href="https://twitch.tv/danination" target="_blank" rel="noopener noreferrer">Twitch</a>
+                    </article>
+                    <article class="schedule-timeline-item" data-day="2" data-hour="15" data-minute="0">
+                        <div class="timeline-time">
+                            <span class="timeline-day">Tue</span>
+                            <span class="timeline-est">3:00 PM EST</span>
+                        </div>
+                        <div class="timeline-show">
+                            <h3>Groovin' Graveyard</h3>
+                            <p>Hosted by Crustman</p>
+                        </div>
+                        <span class="timeline-social timeline-social-muted">Twitch Soon</span>
+                    </article>
+                    <article class="schedule-timeline-item" data-day="3" data-hour="16" data-minute="0">
+                        <div class="timeline-time">
+                            <span class="timeline-day">Wed</span>
+                            <span class="timeline-est">4:00 PM EST</span>
+                        </div>
+                        <div class="timeline-show">
+                            <h3>Deeprun Classix</h3>
+                            <p>Hosted by Kando</p>
+                        </div>
+                        <span class="timeline-social timeline-social-muted">Twitch Soon</span>
+                    </article>
+                    <article class="schedule-timeline-item" data-day="4" data-hour="6" data-minute="30">
+                        <div class="timeline-time">
+                            <span class="timeline-day">Thu</span>
+                            <span class="timeline-est">6:30 AM EST</span>
+                        </div>
+                        <div class="timeline-show">
+                            <h3>Morning Signal</h3>
+                            <p>Hosted by Sabellwind</p>
+                        </div>
+                        <a class="timeline-social" href="https://twitch.tv/sabellwind" target="_blank" rel="noopener noreferrer">Twitch</a>
+                    </article>
+                    <article class="schedule-timeline-item" data-day="6" data-hour="15" data-minute="0">
+                        <div class="timeline-time">
+                            <span class="timeline-day">Sat</span>
+                            <span class="timeline-est">3:00 PM EST</span>
+                        </div>
+                        <div class="timeline-show">
+                            <h3>Tavern Talks</h3>
+                            <p>Hosted by Sheal</p>
+                        </div>
+                        <a class="timeline-social" href="https://twitch.tv/DJ_Sheal" target="_blank" rel="noopener noreferrer">Twitch</a>
+                    </article>
+                    <article class="schedule-timeline-item" data-day="0" data-hour="14" data-minute="0">
+                        <div class="timeline-time">
+                            <span class="timeline-day">Sun</span>
+                            <span class="timeline-est">2:00 PM EST</span>
+                        </div>
+                        <div class="timeline-show">
+                            <h3>The Whiski Lounge</h3>
+                            <p>Hosted by Whiski</p>
+                        </div>
+                        <a class="timeline-social" href="https://twitch.tv/DJWhiski" target="_blank" rel="noopener noreferrer">Twitch</a>
+                    </article>
                 </div>
             </section>
 

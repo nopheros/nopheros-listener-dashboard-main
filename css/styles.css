@@ -121,7 +121,6 @@ body {
 .event-item a:hover {
     transform: translateX(4px);
     color: var(--accent-primary);
-    min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1797,142 +1796,133 @@ img {
 }
 
 /* ========================================
-   DASHBOARD GRID LAYOUT (Two Columns)
+   BROADCAST STAGE LAYOUT
    ======================================== */
-.dashboard-grid {
+.broadcast-stage {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 1.2rem;
     margin-bottom: 2rem;
 }
 
-.left-column {
+.tower-hero-card,
+.tower-mirror-card {
+    background: radial-gradient(circle at 20% 20%, rgba(24, 24, 34, 0.95), rgba(10, 10, 18, 0.96));
+    border: 1px solid rgba(95, 101, 125, 0.35);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.36);
+}
+
+.tower-hero-card {
+    border-color: rgba(175, 89, 207, 0.55);
+    box-shadow: 0 0 0 1px rgba(175, 89, 207, 0.3), 0 22px 55px rgba(137, 55, 164, 0.3);
+}
+
+.tower-hero-card .tower-card-header h3 {
+    font-size: 1.6rem;
+}
+
+.tower-hero-card .tower-subtitle {
+    font-size: 0.95rem;
+    color: #c9b0d8;
+}
+
+.tower-hero-card .tower-stats .stat-value {
+    font-size: 2rem;
+}
+
+.tower-hero-card .np-value {
+    font-size: 1rem;
+}
+
+.tower-mirror-card {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
-/* ========================================
-   WEEKLY SCHEDULE COMPACT
-   ======================================== */
-.schedule-section-compact {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 1px solid var(--border-color);
+.mirror-channel {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
 }
 
-.schedule-section-compact .panel-header {
-    margin-bottom: 1rem;
+.mirror-channel + .mirror-channel {
+    margin-top: 0.2rem;
 }
 
-.schedule-section-compact .panel-header h2 {
-    font-size: 1.5rem;
-    color: var(--primary-green);
-    margin: 0 0 0.5rem 0;
+.mirror-channel-head h4 {
+    margin: 0 0 0.7rem 0;
+    color: #d6dcff;
+    font-size: 1rem;
 }
 
-.schedule-section-compact .schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.schedule-section-compact .schedule-table th,
-.schedule-section-compact .schedule-table td {
-    padding: 0.4rem 0.6rem;
-    text-align: left;
-    font-size: 0.85rem;
-}
-
-.schedule-section-compact .schedule-table th {
-    background: var(--table-header-bg);
-    color: var(--primary-green);
-    font-weight: 600;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.schedule-section-compact .schedule-table tr:nth-child(even) {
-    background: var(--table-row-alt);
-}
-
-.schedule-section-compact .schedule-table tr:hover {
-    background: var(--table-row-hover);
+.tower-show-info {
+    margin-bottom: 0.8rem;
 }
 
 .tower-media-controls {
     width: 100%;
     display: grid;
-    grid-template-columns: 52px minmax(120px, 1fr) 52px;
-    gap: 0.75rem;
+    grid-template-columns: minmax(130px, 1fr) 86px 86px;
+    gap: 0.6rem;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
 }
 
-.tower-media-controls .radio-control-btn {
-    min-height: 52px;
-    padding: 0.65rem;
+.tower-media-controls-hero {
+    grid-template-columns: minmax(180px, 1fr) 120px 120px;
+    gap: 0.75rem;
 }
 
 .radio-control-btn {
     appearance: none;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 14px;
-    padding: 0.75rem 0.95rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    min-height: 46px;
+    padding: 0.65rem 0.85rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
     color: var(--text-primary);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.45rem;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.tower-media-controls .radio-control-btn[data-radio-action="play"] {
-    min-height: 60px;
-    border-radius: 999px;
-    letter-spacing: 0.2px;
-}
-
-.tower-media-controls .radio-control-btn[data-radio-action="pause"],
-.tower-media-controls .radio-control-btn[data-radio-action="live"] {
-    width: 52px;
-    border-radius: 50%;
-    padding: 0;
-}
-
-.tower-media-controls .radio-control-btn[data-radio-action="pause"] span:last-child,
-.tower-media-controls .radio-control-btn[data-radio-action="live"] span:last-child {
-    display: none;
 }
 
 .radio-control-btn:hover {
     transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
 .radio-control-btn:focus-visible {
-    outline: 2px solid var(--primary-green);
-    outline-offset: 3px;
+    outline: 2px solid #2ecc71;
+    outline-offset: 2px;
 }
 
 .radio-control-btn.is-active {
-    border-color: rgba(46, 204, 113, 0.55);
-    box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.35), 0 14px 34px rgba(46, 204, 113, 0.12);
+    border-color: rgba(46, 204, 113, 0.72);
+    box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.35);
 }
 
 .radio-control-primary {
-    background: linear-gradient(135deg, #2ecc71, #23a75a);
-    color: #08140d;
+    background: linear-gradient(130deg, #14cf83, #0ba56d);
+    color: #06180f;
+}
+
+.tower-media-controls-cursed .radio-control-primary {
+    background: linear-gradient(135deg, #b46ad8, #8f4bb4);
+    color: #fff;
 }
 
 .radio-control-live {
-    background: linear-gradient(135deg, rgba(155, 89, 182, 0.95), rgba(142, 68, 173, 0.95));
-    color: #fff;
+    background: linear-gradient(130deg, #2c3041, #1f2331);
+    color: #f2d8ff;
 }
 
 .radio-control-btn .control-icon {
@@ -1940,83 +1930,138 @@ img {
     line-height: 1;
 }
 
-.tower-media-controls-cursed .radio-control-primary {
-    background: linear-gradient(135deg, #9b59b6, #8e44ad);
-    color: #fff;
-}
-
 .tower-card-cursed .tower-media-controls .radio-control-btn.is-active {
-    border-color: rgba(155, 89, 182, 0.62);
-    box-shadow: 0 0 0 1px rgba(155, 89, 182, 0.35), 0 14px 34px rgba(155, 89, 182, 0.16);
+    border-color: rgba(176, 106, 215, 0.78);
+    box-shadow: 0 0 0 1px rgba(176, 106, 215, 0.33);
 }
 
-.tower-card[data-tower="tower1"] {
-    position: relative;
+/* ========================================
+   TIMELINE SCHEDULE
+   ======================================== */
+.schedule-timeline-section {
+    margin-bottom: 2rem;
 }
 
-.tower-card[data-tower="tower1"]::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
-    pointer-events: none;
-    animation: greenGlow 2s ease-in-out infinite;
+.schedule-timeline {
+    display: grid;
+    gap: 0.8rem;
 }
 
-@keyframes greenGlow {
-    0%, 100% { box-shadow: 0 0 20px rgba(46, 204, 113, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(46, 204, 113, 0.6); }
+.schedule-timeline-item {
+    display: grid;
+    grid-template-columns: 170px 1fr 110px;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.95rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
 }
 
-.tower-card-cursed {
-    position: relative;
+.schedule-timeline-item.is-upcoming {
+    border-color: rgba(46, 204, 113, 0.65);
+    box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.25), 0 0 30px rgba(46, 204, 113, 0.1);
 }
 
-.tower-card-cursed::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
-    pointer-events: none;
-    animation: cursedPulse 2s ease-in-out infinite;
+.schedule-timeline-item.is-upcoming .timeline-day {
+    color: #1f2f22;
+    background: #39d37d;
 }
 
-@keyframes cursedPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(155, 89, 182, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(155, 89, 182, 0.6); }
+.timeline-time {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.timeline-day {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 28px;
+    border-radius: 999px;
+    background: #334;
+    color: #f3f4ff;
+    font-weight: 700;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+}
+
+.timeline-est {
+    font-size: 0.87rem;
+    color: #b7bfdd;
+    font-weight: 600;
+}
+
+.timeline-show h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.timeline-show p {
+    margin: 0.2rem 0 0;
+    color: #9ca3bd;
+    font-size: 0.9rem;
+}
+
+.timeline-social {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 84px;
+    min-height: 36px;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(95, 221, 141, 0.5);
+    border-radius: 999px;
+    background: rgba(12, 196, 104, 0.14);
+    color: #75f0af;
+    font-weight: 700;
+    font-size: 0.82rem;
+}
+
+.timeline-social:hover {
+    color: #b8ffd8;
+    border-color: rgba(95, 221, 141, 0.8);
+}
+
+.timeline-social-muted {
+    border-color: rgba(159, 167, 188, 0.35);
+    background: rgba(129, 138, 161, 0.12);
+    color: #b6bed2;
 }
 
 /* ========================================
    RESPONSIVE ADJUSTMENTS
    ======================================== */
 @media (max-width: 1200px) {
-    .dashboard-grid {
+    .broadcast-stage {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
-    .dashboard-grid {
-        gap: 1rem;
+    .broadcast-stage {
+        gap: 0.9rem;
     }
 
     .tower-media-controls {
-        grid-template-columns: 46px minmax(110px, 1fr) 46px;
+        grid-template-columns: minmax(124px, 1fr) 72px 72px;
         gap: 0.6rem;
     }
 
-    .tower-media-controls .radio-control-btn[data-radio-action="pause"],
-    .tower-media-controls .radio-control-btn[data-radio-action="live"] {
-        width: 46px;
-        min-height: 46px;
+    .tower-media-controls-hero {
+        grid-template-columns: minmax(140px, 1fr) 82px 82px;
+    }
+
+    .schedule-timeline-item {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+    }
+
+    .timeline-social {
+        justify-self: start;
     }
 }
 

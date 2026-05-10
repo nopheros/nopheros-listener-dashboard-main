@@ -14,7 +14,7 @@ const LiveDashboard = {
     currentRange: "24h",
     refreshInterval: null,
     nowPlayingInterval: null,
-    currentPlayerTower: "tower1",
+    currentPlayerTower: "tower3",
     playerRecoveryAt: 0,
 
     // DOM element cache
@@ -27,6 +27,7 @@ const LiveDashboard = {
         this.cacheElements();
         this.setupPlayer();
         this.setupEventListeners();
+        this.updateScheduleHighlight();
         this.loadInitialData();
         this.startRefreshLoop();
     },
@@ -81,8 +82,52 @@ const LiveDashboard = {
             rangeButtons: document.querySelectorAll(".range-btn[data-range]"),
 
             // Header
-            lastUpdated: document.getElementById("last-updated")
+            lastUpdated: document.getElementById("last-updated"),
+            scheduleTimeline: document.getElementById("schedule-timeline")
         };
+    },
+
+    /**
+     * Highlight the next upcoming schedule item in the timeline
+     */
+    updateScheduleHighlight() {
+        const timeline = this.elements.scheduleTimeline;
+        if (!timeline) return;
+
+        const entries = Array.from(timeline.querySelectorAll(".schedule-timeline-item"));
+        if (!entries.length) return;
+
+        const now = new Date();
+        const nowDay = now.getDay();
+        const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+        let bestEntry = null;
+        let bestDelta = Number.POSITIVE_INFINITY;
+
+        entries.forEach((entry) => {
+            const entryDay = Number(entry.dataset.day);
+            const entryHour = Number(entry.dataset.hour || 0);
+            const entryMinute = Number(entry.dataset.minute || 0);
+
+            if (Number.isNaN(entryDay)) return;
+
+            const entryMinutes = entryHour * 60 + entryMinute;
+            let dayDelta = entryDay - nowDay;
+            if (dayDelta < 0 || (dayDelta === 0 && entryMinutes < nowMinutes)) {
+                dayDelta += 7;
+            }
+
+            const minuteDelta = dayDelta * 1440 + (entryMinutes - nowMinutes);
+            if (minuteDelta < bestDelta) {
+                bestDelta = minuteDelta;
+                bestEntry = entry;
+            }
+        });
+
+        entries.forEach((entry) => entry.classList.remove("is-upcoming"));
+        if (bestEntry) {
+            bestEntry.classList.add("is-upcoming");
+        }
     },
 
     /**
@@ -496,6 +541,7 @@ const LiveDashboard = {
             this.loadChartData();
             this.updatePiHealth();
             this.updateLiveTotals();
+            this.updateScheduleHighlight();
         }, CONFIG.LIVE_REFRESH_INTERVAL_MS);
 
         // Now playing updates (more frequent)
@@ -505,6 +551,7 @@ const LiveDashboard = {
 
         // Initial now playing update
         this.updateNowPlaying();
+        this.updateScheduleHighlight();
     },
 
     /**
