@@ -290,7 +290,21 @@ const IcecastAPI = {
         // Process results from each server
         for (const { towers, status } of serverResults) {
             for (const { towerId, tower } of towers) {
-                const mount = status?.mounts?.[tower.mountpoint];
+                let mount = status?.mounts?.[tower.mountpoint];
+
+                // For Tower 3, if /stream has no metadata, fallback to /autodj for metadata
+                // but keep listeners from /stream if available
+                if (towerId === "tower3" && (!mount || !(mount.title || mount.serverName))) {
+                    const autodj = status?.mounts?.["/autodj"];
+                    if (autodj) {
+                        mount = {
+                            ...autodj,
+                            listeners: mount ? mount.listeners : autodj.listeners,
+                            listenerPeak: mount ? mount.listenerPeak : autodj.listenerPeak,
+                            mountpoint: "/stream"
+                        };
+                    }
+                }
 
                 if (mount) {
                     result.towers[towerId] = {
