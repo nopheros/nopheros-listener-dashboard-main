@@ -204,30 +204,45 @@ const IcecastAPI = {
             return null;
         }
 
-        // Fetch from the tower's specific server
-        const baseUrl = tower.baseUrl || CONFIG.ICECAST_BASE_URL;
+        // For Tower 3, always use its handbook baseUrl and /stream mount
+        let baseUrl = tower.baseUrl || CONFIG.ICECAST_BASE_URL;
+        let mountpoint = tower.mountpoint;
+        if (towerId === "tower3") {
+            baseUrl = "http://romeblue7.myvnc.com:8088";
+            mountpoint = "/stream";
+        }
+
         const status = await this.fetchStatus(baseUrl);
         if (!status || !status.mounts) {
             return null;
         }
 
-        // Find mount matching this tower's mountpoint
-        let mount = status.mounts[tower.mountpoint];
+        // Normalize mountpoint (remove trailing slashes, lowercase)
+        const normalizedMount = mountpoint.replace(/\/+$/, '').toLowerCase();
+        let mount = null;
+        for (const [mp, info] of Object.entries(status.mounts)) {
+            const normMp = mp.replace(/\/+$/, '').toLowerCase();
+            if (normMp === normalizedMount) {
+                mount = info;
+                break;
+            }
+        }
 
-        // Special fallback for Tower 3: if /stream has no metadata, try /autodj
-        if (
-            towerId === "tower3" &&
-            (!mount || !(mount.title || mount.serverName)) &&
-            status.mounts["/autodj"]
-        ) {
-            // Use /autodj metadata for display, but keep listeners from /stream
+        // For Tower 3, if /stream has no metadata, fallback to /autodj for metadata, but keep listeners from /stream if available
+        if (towerId === "tower3") {
             const autodj = status.mounts["/autodj"];
-            mount = {
-                ...autodj,
-                listeners: mount ? mount.listeners : autodj.listeners,
-                listenerPeak: mount ? mount.listenerPeak : autodj.listenerPeak,
-                mountpoint: tower.mountpoint // keep as /stream for UI
-            };
+            const streamMount = mount;
+            // If /stream is missing or has no title/serverName, but /autodj exists, use /autodj for metadata
+            if ((!streamMount || !(streamMount.title || streamMount.serverName)) && autodj) {
+                return {
+                    ...autodj,
+                    listeners: streamMount ? streamMount.listeners : autodj.listeners,
+                    listenerPeak: streamMount ? streamMount.listenerPeak : autodj.listenerPeak,
+                    mountpoint: "/stream",
+                    towerId: towerId,
+                    towerName: tower.name
+                };
+            }
         }
 
         if (mount) {
