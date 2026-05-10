@@ -50,6 +50,7 @@ const LiveDashboard = {
             playerListeners: document.getElementById("player-listeners"),
             playerPeak: document.getElementById("player-peak"),
             tower1PlayBtn: document.getElementById("tower1-play-btn"),
+            tower2PlayBtn: document.getElementById("tower2-play-btn"),
             tower3PlayBtn: document.getElementById("tower3-play-btn"),
 
             // Tower cards
@@ -89,88 +90,30 @@ const LiveDashboard = {
     setupPlayer() {
         this.setPlayerSource(this.currentPlayerTower);
 
-        // Hook tower selector
-        if (this.elements.playerSelect) {
-            this.elements.playerSelect.value = this.currentPlayerTower;
-            this.elements.playerSelect.addEventListener("change", (e) => {
-                const nextTower = e.target.value || "tower1";
-                this.setPlayerSource(nextTower);
-                this.updateNowPlaying();
-            });
-        }
+        const towerButtons = [
+            { towerId: "tower1", element: this.elements.tower1PlayBtn },
+            { towerId: "tower2", element: this.elements.tower2PlayBtn },
+            { towerId: "tower3", element: this.elements.tower3PlayBtn }
+        ];
 
-        // Hook dual tower buttons (old layout - may not exist in new layout)
-        const t1Btn = this.elements.playerTower1Btn;
-        const t3Btn = this.elements.playerTower3Btn;
-        if (t1Btn && t3Btn) {
-            const setActive = (tower) => {
-                this.currentPlayerTower = tower;
-                this.setPlayerSource(tower);
-                this.updateNowPlaying();
-                if (tower === "tower1") {
-                    t1Btn.classList.add("active");
-                    t3Btn.classList.remove("active");
-                } else {
-                    t3Btn.classList.add("active");
-                    t1Btn.classList.remove("active");
-                }
-            };
-
-            // Initialize active state
-            setActive(this.currentPlayerTower);
-
-            t1Btn.addEventListener("click", () => setActive("tower1"));
-            t3Btn.addEventListener("click", () => setActive("tower3"));
-        }
-
-        // Hook new gold play button (Tower 1) and cursed purple button (Tower 3)
-        const goldPlayBtn = this.elements.tower1PlayBtn;
-        const cursedPlayBtn = this.elements.tower3PlayBtn;
-
-        if (goldPlayBtn) {
-            const player = this.elements.player;
-            
-            goldPlayBtn.addEventListener("click", () => {
-                this.currentPlayerTower = "tower1";
-                this.setPlayerSource("tower1");
-                this.updateNowPlaying();
-                
-                if (player) {
-                    if (player.paused) {
-                        player.play().then(() => {
-                            goldPlayBtn.classList.add("active");
-                        }).catch(err => {
-                            console.warn("[Player] Autoplay blocked:", err.message);
-                        });
-                    } else {
-                        player.pause();
-                        goldPlayBtn.classList.remove("active");
-                    }
-                }
-            });
-
-            // Listen to player state changes
-            if (player) {
-                player.addEventListener("play", () => {
-                    goldPlayBtn.classList.add("active");
-                });
-                player.addEventListener("pause", () => {
-                    goldPlayBtn.classList.remove("active");
-                });
-                player.addEventListener("ended", () => {
-                    goldPlayBtn.classList.remove("active");
-                });
-            }
-        }
-
-        if (cursedPlayBtn) {
-            cursedPlayBtn.addEventListener("click", (e) => {
+        towerButtons.forEach(({ towerId, element }) => {
+            if (!element) return;
+            element.addEventListener("click", (e) => {
                 e.preventDefault();
-                // Open Tower 3 stream in a new window
-                const streamUrl = CONFIG.getStreamUrl("tower3");
-                window.open(streamUrl, "tower3_player", "width=500,height=300,noopener,noreferrer");
+                this.currentPlayerTower = towerId;
+                this.openTowerStream(towerId);
             });
-        }
+        });
+    },
+
+    /**
+     * Open a tower stream in a new window
+     * @param {string} towerId
+     */
+    openTowerStream(towerId) {
+        const streamUrl = CONFIG.getStreamUrl(towerId);
+        if (!streamUrl) return;
+        window.open(streamUrl, `${towerId}_player`, "width=500,height=300,noopener,noreferrer");
     },
 
     /**
@@ -227,27 +170,7 @@ const LiveDashboard = {
      * Play Tower 3 stream
      */
     playTower3() {
-        const streamUrl = CONFIG.getStreamUrl("tower3");
-        if (!streamUrl) {
-            console.error("[Dashboard] Failed to get Tower 3 stream URL");
-            return;
-        }
-
-        // Switch player to Tower 3
-        this.setPlayerSource("tower3");
-
-        // Start playing
-        const player = this.elements.player;
-        if (player) {
-            player.play().catch(error => {
-                console.error("[Dashboard] Failed to play Tower 3:", error);
-            });
-        }
-
-        // Update the player selector dropdown
-        if (this.elements.playerSelect) {
-            this.elements.playerSelect.value = "tower3";
-        }
+        this.openTowerStream("tower3");
     },
 
     /**
@@ -402,17 +325,6 @@ const LiveDashboard = {
             });
         }
 
-        // Tower 3 play button
-        const tower3PlayBtn = document.getElementById("tower3-play-btn");
-        if (tower3PlayBtn) {
-            tower3PlayBtn.addEventListener("click", (e) => {
-                e.preventDefault();
-                this.playTower3();
-            });
-        } else {
-            console.warn("[Dashboard] Tower 3 play button not found");
-        }
-
         // Chart range buttons
         this.elements.rangeButtons.forEach(btn => {
             btn.addEventListener("click", () => {
@@ -501,17 +413,17 @@ const LiveDashboard = {
         try {
             // DJ Twitch URL mapping
             const djTwitchUrls = {
-                "Nopheros": "https://twitch.tv/Nopheros",
+                "Sabellwind": "https://www.twitch.tv/sabellwind",
                 "Whiski": "https://twitch.tv/DJWhiski",
                 "Sheal": "https://twitch.tv/DJ_Sheal"
             };
 
             const schedule = [
-                { day: 1, show: "Treehab", dj: "Nopheros", startHour: 11, startMin: 0, endHour: 16, endMin: 0 },
+                { day: 1, show: "Treehab", dj: "Sabellwind", startHour: 11, startMin: 0, endHour: 16, endMin: 0 },
                 { day: 1, show: "Living in the Past", dj: "Leto", startHour: 18, startMin: 0, endHour: 23, endMin: 0 },
                 { day: 2, show: "Groovin' Graveyard", dj: "Crustman", startHour: 15, startMin: 0, endHour: 20, endMin: 0 },
                 { day: 3, show: "Deeprun Classix", dj: "Kando", startHour: 16, startMin: 0, endHour: 21, endMin: 0 },
-                { day: 5, show: "Pilgrim of Signal", dj: "Nopheros", startHour: 20, startMin: 0, endHour: 25, endMin: 0 },
+                { day: 5, show: "Pilgrim of Signal", dj: "Sabellwind", startHour: 20, startMin: 0, endHour: 25, endMin: 0 },
                 { day: 6, show: "Tavern Talks", dj: "Sheal", startHour: 15, startMin: 0, endHour: 20, endMin: 0 },
                 { day: 0, show: "The Whiski Lounge", dj: "Whiski", startHour: 14, startMin: 0, endHour: 19, endMin: 0 }
             ];
