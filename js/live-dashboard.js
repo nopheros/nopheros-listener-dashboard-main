@@ -145,7 +145,7 @@ const LiveDashboard = {
         });
 
         this.syncRadioControls();
-        this.focusPlayerSection();
+        this.focusPlayerSection(towerId);
     },
 
     /**
@@ -197,11 +197,11 @@ const LiveDashboard = {
     /**
      * Focus the embedded player area after a tower selection
      */
-    focusPlayerSection() {
-        const playerSection = document.querySelector(".tower1-player-section");
-        if (!playerSection) return;
+    focusPlayerSection(towerId) {
+        const towerCard = document.querySelector(`.tower-card[data-tower="${towerId}"]`);
+        if (!towerCard) return;
 
-        playerSection.scrollIntoView({ behavior: "smooth", block: "center" });
+        towerCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
     },
 
     /**
@@ -678,9 +678,6 @@ const LiveDashboard = {
                     }
                 }
                 
-                // Update player stats (Tower 1 Media Player section)
-                this.setText(this.elements.playerListeners, t1.listeners ?? "--");
-                this.setText(this.elements.playerPeak, t1.listenerPeak ?? "--");
             }
 
             // Update Tower 2

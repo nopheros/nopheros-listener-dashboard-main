@@ -42,9 +42,8 @@
 
     <main class="main-content">
         <div class="content-wrapper-single">
-            <!-- ========== TWO COLUMN LAYOUT ========== -->
+            <!-- ========== TOP LAYOUT ========== -->
             <div class="dashboard-grid">
-                <!-- LEFT COLUMN: Upcoming Shows + Weekly Schedule -->
                 <div class="left-column">
                     <section class="schedule-section-compact">
                         <div class="panel-header">
@@ -57,95 +56,47 @@
                                     <th>Show</th>
                                     <th>DJ</th>
                                     <th>EST</th>
-                                    <th>ST</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Monday</td>
-                                    <td>Treehab</td>
-                                    <td>Everlook Team</td>
-                                    <td>11:00 AM</td>
-                                    <td>16:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Monday</td>
                                     <td>Living in the Past</td>
-                                    <td>Leto</td>
+                                    <td><a href="https://twitch.tv/danination" target="_blank" class="dj-link">Leto</a></td>
                                     <td>6:00 PM</td>
-                                    <td>23:00</td>
                                 </tr>
                                 <tr>
                                     <td>Tuesday</td>
                                     <td>Groovin' Graveyard</td>
                                     <td>Crustman</td>
                                     <td>3:00 PM</td>
-                                    <td>20:00</td>
                                 </tr>
                                 <tr>
                                     <td>Wednesday</td>
                                     <td>Deeprun Classix</td>
                                     <td>Kando</td>
                                     <td>4:00 PM</td>
-                                    <td>21:00</td>
                                 </tr>
                                 <tr>
-                                    <td>Friday</td>
-                                    <td>Pilgrim of Signal</td>
-                                    <td>Everlook Team</td>
-                                    <td>8:00 PM</td>
-                                    <td>01:00</td>
+                                    <td>Thursday</td>
+                                    <td>Morning Signal</td>
+                                    <td><a href="https://twitch.tv/sabellwind" target="_blank" class="dj-link">Sabellwind</a></td>
+                                    <td>6:30 AM</td>
                                 </tr>
                                 <tr>
                                     <td>Saturday</td>
                                     <td>Tavern Talks</td>
                                     <td><a href="https://twitch.tv/DJ_Sheal" target="_blank" class="dj-link">Sheal</a></td>
                                     <td>3:00 PM</td>
-                                    <td>20:00</td>
                                 </tr>
                                 <tr>
                                     <td>Sunday</td>
                                     <td>The Whiski Lounge</td>
                                     <td><a href="https://twitch.tv/DJWhiski" target="_blank" class="dj-link">Whiski</a></td>
                                     <td>2:00 PM</td>
-                                    <td>19:00</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </section>
-                </div>
-
-                <!-- RIGHT COLUMN: Tower 1 Media Player -->
-                <div class="right-column">
-                    <section class="tower1-player-section">
-                        <div class="panel-header">
-                            <h2>Everlook Broadcasting Co.</h2>
-                        </div>
-                        <div class="player-content">
-                            <img src="img/elbc_logo.png" alt="ELBC Logo" class="elbc-logo-large">
-                            <p class="tune-in-label">Tune in:</p>
-                            <div class="player-media-controls">
-                                <button class="radio-control-btn radio-control-primary" id="player-play-btn" data-radio-action="play" data-tower="tower1" title="Play Tower 1">
-                                    <span class="control-icon">▶</span>
-                                    <span>Play</span>
-                                </button>
-                                <button class="radio-control-btn" id="player-pause-btn" data-radio-action="pause" data-tower="tower1" title="Pause Tower 1">
-                                    <span class="control-icon">⏸</span>
-                                    <span>Pause</span>
-                                </button>
-                                <button class="radio-control-btn radio-control-live" id="player-live-btn" data-radio-action="live" data-tower="tower1" title="Listen Live">
-                                    <span class="control-icon">📻</span>
-                                    <span>Live</span>
-                                </button>
-                            </div>
-                            <p class="now-playing-text" id="player-now-playing">Loading...</p>
-                            <div class="player-stats-inline">
-                                <span id="player-listeners">--</span> listeners | Peak: <span id="player-peak">--</span>
-                            </div>
-                            <audio id="tower1-player" preload="none" style="display:none;">
-                                <source src="" type="audio/mpeg" id="tower1-source">
-                            </audio>
-                        </div>
                     </section>
                 </div>
             </div>
@@ -165,7 +116,6 @@
                             <span class="tower-subtitle">NX78</span>
                         </div>
                         <div class="tower-show-info">
-                            <div class="show-info-header">SHOW INFO:</div>
                             <div class="show-info-item">
                                 <span class="show-info-value show-info-centered" id="tower1-stream-name">--</span>
                             </div>
@@ -211,7 +161,6 @@
                             <span class="tower-subtitle">LG87</span>
                         </div>
                         <div class="tower-show-info">
-                            <div class="show-info-header">SHOW INFO:</div>
                             <div class="show-info-item">
                                 <span class="show-info-value show-info-centered" id="tower2-stream-name">--</span>
                             </div>
@@ -297,6 +246,10 @@
                     </div>
                 </div>
             </section>
+
+            <audio id="tower1-player" preload="none" style="display:none;">
+                <source src="" type="audio/mpeg" id="tower1-source">
+            </audio>
 
             <!-- ========== LISTENER GRAPH ========== -->
             <section class="chart-section">
