@@ -779,7 +779,7 @@ const LiveDashboard = {
             if (status.towers.tower3) {
                 const t3 = status.towers.tower3;
                 const tower3Config = CONFIG.TOWERS.tower3;
-                
+
                 // Only show listener stats if configured to show live status
                 if (tower3Config.showLiveStatus) {
                     this.setText(this.elements.tower3Listeners, t3.listeners ?? "--");
@@ -787,7 +787,7 @@ const LiveDashboard = {
                 }
                 this.setText(this.elements.tower3Np, t3.title || "(no metadata)");
                 this.setText(this.elements.tower3StreamName, t3.serverName || "--");
-                
+
                 // Only show description if it exists and is not generic
                 const desc = t3.description || "";
                 if (desc && desc.toLowerCase() !== "unspecified description" && desc !== "--") {
