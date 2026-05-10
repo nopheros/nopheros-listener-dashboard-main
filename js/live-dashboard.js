@@ -15,6 +15,7 @@ const LiveDashboard = {
     refreshInterval: null,
     nowPlayingInterval: null,
     currentPlayerTower: "tower1",
+    playerRecoveryAt: 0,
 
     // DOM element cache
     elements: {},
@@ -89,6 +90,7 @@ const LiveDashboard = {
      */
     setupPlayer() {
         this.setPlayerSource(this.currentPlayerTower);
+        this.bindPlayerRecovery();
 
         const towerButtons = [
             { towerId: "tower1", element: this.elements.tower1PlayBtn },
@@ -100,20 +102,67 @@ const LiveDashboard = {
             if (!element) return;
             element.addEventListener("click", (e) => {
                 e.preventDefault();
-                this.currentPlayerTower = towerId;
-                this.openTowerStream(towerId);
+                this.playTower(towerId);
             });
         });
     },
 
     /**
-     * Open a tower stream in a new window
+     * Play a tower stream in the embedded player
      * @param {string} towerId
      */
     openTowerStream(towerId) {
-        const streamUrl = CONFIG.getStreamUrl(towerId);
-        if (!streamUrl) return;
-        window.open(streamUrl, `${towerId}_player`, "width=500,height=300,noopener,noreferrer");
+        this.playTower(towerId);
+    },
+
+    /**
+     * Select a tower and start playback in the embedded player
+     * @param {string} towerId
+     */
+    playTower(towerId) {
+        const player = this.elements.player;
+        if (!player) return;
+
+        this.setPlayerSource(towerId);
+        this.currentPlayerTower = towerId;
+
+        player.play().catch(err => {
+            console.warn("[Player] Playback could not start:", err.message);
+        });
+
+        this.focusPlayerSection();
+    },
+
+    /**
+     * Focus the embedded player area after a tower selection
+     */
+    focusPlayerSection() {
+        const playerSection = document.querySelector(".tower1-player-section");
+        if (!playerSection) return;
+
+        playerSection.scrollIntoView({ behavior: "smooth", block: "center" });
+    },
+
+    /**
+     * Keep the stream alive when browsers stall or reconnect late
+     */
+    bindPlayerRecovery() {
+        const player = this.elements.player;
+        if (!player || this.playerRecoveryBound) return;
+
+        this.playerRecoveryBound = true;
+
+        const recover = () => {
+            const now = Date.now();
+            if (now - this.playerRecoveryAt < 5000) return;
+            this.playerRecoveryAt = now;
+            this.resyncPlayer();
+        };
+
+        player.addEventListener("stalled", recover);
+        player.addEventListener("waiting", recover);
+        player.addEventListener("error", recover);
+        player.addEventListener("ended", recover);
     },
 
     /**
@@ -170,7 +219,7 @@ const LiveDashboard = {
      * Play Tower 3 stream
      */
     playTower3() {
-        this.openTowerStream("tower3");
+        this.playTower("tower3");
     },
 
     /**
@@ -314,14 +363,14 @@ const LiveDashboard = {
         // Pop-out player - new window
         if (this.elements.playerPopupWindow) {
             this.elements.playerPopupWindow.addEventListener("click", () => {
-                this.openPlayerWindow();
+                this.playTower(this.currentPlayerTower);
             });
         }
 
         // Pop-out player - modal overlay
         if (this.elements.playerPopupModal) {
             this.elements.playerPopupModal.addEventListener("click", () => {
-                this.openPlayerModal();
+                this.playTower(this.currentPlayerTower);
             });
         }
 

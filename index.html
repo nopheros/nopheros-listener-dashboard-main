@@ -42,74 +42,113 @@
 
     <main class="main-content">
         <div class="content-wrapper-single">
-            <!-- ========== WEEKLY SCHEDULE ========== -->
-            <section class="schedule-section-compact">
-                <div class="panel-header">
-                    <h2>Weekly Schedule</h2>
+            <!-- ========== TWO COLUMN LAYOUT ========== -->
+            <div class="dashboard-grid">
+                <!-- LEFT COLUMN: Upcoming Shows + Weekly Schedule -->
+                <div class="left-column">
+                    <!-- UPCOMING SHOWS (Tower 1 Only) -->
+                    <section class="upcoming-shows-section">
+                        <div class="panel-header">
+                            <h2>Upcoming Shows</h2>
+                        </div>
+                        <div class="events-list" id="events-list">
+                            <p class="events-loading">Loading schedule...</p>
+                        </div>
+                    </section>
+
+                    <!-- WEEKLY SCHEDULE (Tightened) -->
+                    <section class="schedule-section-compact">
+                        <div class="panel-header">
+                            <h2>Weekly Schedule</h2>
+                        </div>
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Show</th>
+                                    <th>DJ</th>
+                                    <th>EST</th>
+                                    <th>ST</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>Treehab</td>
+                                    <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros</a></td>
+                                    <td>11:00 AM</td>
+                                    <td>16:00</td>
+                                </tr>
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>Living in the Past</td>
+                                    <td>Leto</td>
+                                    <td>6:00 PM</td>
+                                    <td>23:00</td>
+                                </tr>
+                                <tr>
+                                    <td>Tuesday</td>
+                                    <td>Groovin' Graveyard</td>
+                                    <td>Crustman</td>
+                                    <td>3:00 PM</td>
+                                    <td>20:00</td>
+                                </tr>
+                                <tr>
+                                    <td>Wednesday</td>
+                                    <td>Deeprun Classix</td>
+                                    <td>Kando</td>
+                                    <td>4:00 PM</td>
+                                    <td>21:00</td>
+                                </tr>
+                                <tr>
+                                    <td>Friday</td>
+                                    <td>Pilgrim of Signal</td>
+                                    <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros</a></td>
+                                    <td>8:00 PM</td>
+                                    <td>01:00</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td>Tavern Talks</td>
+                                    <td><a href="https://twitch.tv/DJ_Sheal" target="_blank" class="dj-link">Sheal</a></td>
+                                    <td>3:00 PM</td>
+                                    <td>20:00</td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday</td>
+                                    <td>The Whiski Lounge</td>
+                                    <td><a href="https://twitch.tv/DJWhiski" target="_blank" class="dj-link">Whiski</a></td>
+                                    <td>2:00 PM</td>
+                                    <td>19:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
                 </div>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>Show</th>
-                            <th>DJ</th>
-                            <th>EST</th>
-                            <th>ST</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Monday</td>
-                            <td>Treehab</td>
-                            <td><a href="https://www.twitch.tv/sabellwind" target="_blank" class="dj-link">Sabellwind</a></td>
-                            <td>11:00 AM</td>
-                            <td>16:00</td>
-                        </tr>
-                        <tr>
-                            <td>Monday</td>
-                            <td>Living in the Past</td>
-                            <td>Leto</td>
-                            <td>6:00 PM</td>
-                            <td>23:00</td>
-                        </tr>
-                        <tr>
-                            <td>Tuesday</td>
-                            <td>Groovin' Graveyard</td>
-                            <td>Crustman</td>
-                            <td>3:00 PM</td>
-                            <td>20:00</td>
-                        </tr>
-                        <tr>
-                            <td>Wednesday</td>
-                            <td>Deeprun Classix</td>
-                            <td>Kando</td>
-                            <td>4:00 PM</td>
-                            <td>21:00</td>
-                        </tr>
-                        <tr>
-                            <td>Friday</td>
-                            <td>Pilgrim of Signal</td>
-                            <td><a href="https://www.twitch.tv/sabellwind" target="_blank" class="dj-link">Sabellwind</a></td>
-                            <td>8:00 PM</td>
-                            <td>01:00</td>
-                        </tr>
-                        <tr>
-                            <td>Saturday</td>
-                            <td>Tavern Talks</td>
-                            <td><a href="https://twitch.tv/DJ_Sheal" target="_blank" class="dj-link">Sheal</a></td>
-                            <td>3:00 PM</td>
-                            <td>20:00</td>
-                        </tr>
-                        <tr>
-                            <td>Sunday</td>
-                            <td>The Whiski Lounge</td>
-                            <td><a href="https://twitch.tv/DJWhiski" target="_blank" class="dj-link">Whiski</a></td>
-                            <td>2:00 PM</td>
-                            <td>19:00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+
+                <!-- RIGHT COLUMN: Tower 1 Media Player -->
+                <div class="right-column">
+                    <section class="tower1-player-section">
+                        <div class="panel-header">
+                            <h2>Everlook Broadcasting Co.</h2>
+                        </div>
+                        <div class="player-content">
+                            <img src="img/elbc_logo.png" alt="ELBC Logo" class="elbc-logo-large">
+                            <p class="tune-in-label">Tune in:</p>
+                            <button class="play-btn-gold" id="tower1-play-btn" title="Play Tower 1">
+                                <span class="play-icon">▶</span>
+                            </button>
+                            <p class="now-playing-text" id="player-now-playing">Loading...</p>
+                            <div class="player-stats-inline">
+                                <span id="player-listeners">--</span> listeners | Peak: <span id="player-peak">--</span>
+                            </div>
+                            <audio id="tower1-player" preload="none" style="display:none;">
+                                <source src="" type="audio/mpeg" id="tower1-source">
+                            </audio>
+                        </div>
+                    </section>
+                </div>
+            </div>
 
             <!-- ========== TALE OF THREE TOWERS ========== -->
             <section class="tower-cards-section">
@@ -148,10 +187,6 @@
                             <span class="np-label">Now Playing:</span>
                             <span class="np-value" id="tower1-np">--</span>
                         </div>
-                        <button class="tower-listen-btn" id="tower1-play-btn" title="Listen to Tower 1">
-                            <span class="play-icon">▶</span>
-                            <span>Listen Now</span>
-                        </button>
                     </div>
 
                     <!-- Tower 2 Card -->
@@ -184,25 +219,24 @@
                             <span class="np-label">Now Playing:</span>
                             <span class="np-value" id="tower2-np">--</span>
                         </div>
-                        <button class="tower-listen-btn tower-listen-btn-alt" id="tower2-play-btn" title="Listen to Tower 2">
-                            <span class="play-icon">▶</span>
-                            <span>Listen Now</span>
-                        </button>
                     </div>
 
-                    <!-- Tower 3 Card with Purple Glowing Cursed Play Button -->
+                    <!-- Tower 3 Card -->
                     <div class="tower-card tower-card-cursed" data-tower="tower3">
                         <div class="tower-card-header">
                             <div class="tower-indicator" style="background-color: #9b59b6;"></div>
                             <h3>Tower 3</h3>
-                            <span class="tower-subtitle">Atlantean Testing Relay</span>
+                            <span class="tower-subtitle">Out of Bounds</span>
                         </div>
-                        <div class="tower-show-info">
-                            <div class="show-info-header">SHOW INFO:</div>
-                            <div class="show-info-item">
-                                <span class="show-info-value show-info-centered" id="tower3-stream-name">--</span>
+                        <div class="tower-metadata tower-metadata-featured">
+                            <div class="tower-metadata-row">
+                                <span class="tower-metadata-label">Stream Name</span>
+                                <span class="tower-metadata-value" id="tower3-stream-name">--</span>
                             </div>
-
+                            <div class="tower-metadata-row" id="tower3-desc-item" style="display: none;">
+                                <span class="tower-metadata-label">Description</span>
+                                <span class="tower-metadata-value" id="tower3-stream-desc">--</span>
+                            </div>
                         </div>
                         <div class="tower-stats">
                             <div class="stat">
@@ -215,17 +249,12 @@
                             </div>
                         </div>
                         <div class="tower-now-playing">
-                            <span class="np-label">Now Playing:</span>
+                            <span class="np-label">Currently Playing</span>
                             <span class="np-value" id="tower3-np">--</span>
-                        </div>
-                        <div class="tower-tech-specs">
-                            <div><span class="tech-label">Mount:</span> /stream</div>
-                            <div><span class="tech-label">Listen URL:</span> <a href="http://romeblue7.myvnc.com:8088/" target="_blank" rel="noopener noreferrer">romeblue7.myvnc.com:8088</a></div>
-                            <div><span class="tech-label">Status:</span> <a href="http://romeblue7.myvnc.com:8088/status-json.xsl" target="_blank" rel="noopener noreferrer">status-json.xsl</a></div>
                         </div>
                         <button class="cursed-play-btn" id="tower3-play-btn" title="Play Cursed Tower 3">
                             <span class="play-icon">▶</span>
-                            <span class="cursed-text">Listen Now</span>
+                            <span class="cursed-text">Listen Live</span>
                         </button>
                     </div>
                 </div>
