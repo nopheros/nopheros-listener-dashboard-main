@@ -182,6 +182,12 @@ const LiveDashboard = {
         const player = this.elements.player;
         if (!player) return;
 
+        const streamUrl = IcecastAPI.getStreamUrl(towerId);
+        if (this.isMixedContentBlocked(streamUrl)) {
+            this.openMixedContentFallback(streamUrl, towerId);
+            return;
+        }
+
         this.setPlayerSource(towerId);
         this.currentPlayerTower = towerId;
 
@@ -191,6 +197,26 @@ const LiveDashboard = {
 
         this.syncRadioControls();
         this.focusPlayerSection(towerId);
+    },
+
+    /**
+     * Detect browser-mixed-content playback blocks (HTTPS page -> HTTP stream)
+     * @param {string|null} streamUrl
+     * @returns {boolean}
+     */
+    isMixedContentBlocked(streamUrl) {
+        if (!streamUrl || typeof window === "undefined") return false;
+        return window.location.protocol === "https:" && /^http:\/\//i.test(streamUrl);
+    },
+
+    /**
+     * Fallback when mixed-content blocks in-page playback
+     * @param {string} streamUrl
+     * @param {string} towerId
+     */
+    openMixedContentFallback(streamUrl, towerId) {
+        console.warn(`[Player] ${towerId} stream is HTTP-only while dashboard is HTTPS. Opening direct stream.`);
+        window.open(streamUrl, "_blank", "noopener,noreferrer");
     },
 
     /**
@@ -930,6 +956,30 @@ const LiveDashboard = {
     },
 
     /**
+     * Build a timestamp->value map from a points array
+     * @param {Array} points
+     * @returns {Map<number, number>}
+     */
+    buildPointMap(points) {
+        const map = new Map();
+        (points || []).forEach(([ts, value]) => {
+            map.set(ts, Number(value) || 0);
+        });
+        return map;
+    },
+
+    /**
+     * Convert a point map to sorted Chart.js points
+     * @param {Map<number, number>} map
+     * @returns {Array<{x:number,y:number}>}
+     */
+    mapToDatasetPoints(map) {
+        return Array.from(map.entries())
+            .sort((a, b) => a[0] - b[0])
+            .map(([x, y]) => ({ x, y }));
+    },
+
+    /**
      * Render the listeners chart
      * @param {Object} payload - Chart data payload
      */
@@ -938,50 +988,83 @@ const LiveDashboard = {
 
         const ctx = this.elements.chartCanvas.getContext("2d");
 
-        // Filter to only Tower 1, Tower 2, and Total (exclude Tower 3)
-        const allowedNames = ["Tower 1", "Tower 2", "Total"];
-        const filteredSeries = (payload.series || []).filter(s =>
-            allowedNames.some(name => s.name.toLowerCase() === name.toLowerCase())
-        );
+        const series = payload.series || [];
+        const findSeries = (name) => series.find(s => (s.name || "").toLowerCase() === name.toLowerCase());
 
-        // Find total series
-        const totalSeries = filteredSeries.find(s => s.name.toLowerCase() === "total");
-        const otherSeries = filteredSeries.filter(s => s !== totalSeries);
+        const tower1Series = findSeries("Tower 1");
+        const tower2Series = findSeries("Tower 2");
+        const tower3Series = findSeries("Tower 3");
+        const totalSeries = findSeries("Total");
 
-        // Build datasets
-        const datasets = [];
+        const tower1Map = this.buildPointMap(this.filterDataByRange(tower1Series?.points || []));
+        const tower2Map = this.buildPointMap(this.filterDataByRange(tower2Series?.points || []));
+        const tower3Map = this.buildPointMap(this.filterDataByRange(tower3Series?.points || []));
+        const totalMap = this.buildPointMap(this.filterDataByRange(totalSeries?.points || []));
 
-        // Add Tower 1 and Tower 2
-        for (const series of otherSeries) {
-            const nameLower = (series.name || "").toLowerCase();
-            const isTower1 = nameLower.includes("tower 1");
-            const color = isTower1 ? CONFIG.TOWERS.tower1.color : CONFIG.TOWERS.tower2.color;
+        const timestamps = new Set([
+            ...tower1Map.keys(),
+            ...tower2Map.keys(),
+            ...tower3Map.keys(),
+            ...totalMap.keys()
+        ]);
 
-            datasets.push({
-                label: series.name,
-                data: this.filterDataByRange(series.points || []).map(([x, y]) => ({ x, y })),
-                borderColor: color || "#888",
-                backgroundColor: color || "#888",
-                borderWidth: 2,
-                pointRadius: 0,
-                tension: 0.2,
-                fill: false
-            });
+        const combined12Map = new Map();
+        const tower3OnlyMap = new Map();
+        const totalAllMap = new Map();
+
+        for (const ts of timestamps) {
+            const t1 = tower1Map.get(ts) || 0;
+            const t2 = tower2Map.get(ts) || 0;
+            const combined12 = t1 + t2;
+
+            // If Tower 3 historical series is absent, keep it as 0 for older windows.
+            const t3 = tower3Map.has(ts) ? (tower3Map.get(ts) || 0) : 0;
+
+            // Prefer reported total if it is greater than combined 1+2; otherwise compute.
+            const reportedTotal = totalMap.has(ts) ? (totalMap.get(ts) || 0) : null;
+            const allTotal = reportedTotal !== null ? Math.max(reportedTotal, combined12 + t3) : (combined12 + t3);
+
+            combined12Map.set(ts, combined12);
+            tower3OnlyMap.set(ts, t3);
+            totalAllMap.set(ts, allTotal);
         }
 
-        // Add Total as bold line
-        if (totalSeries) {
-            datasets.push({
-                label: "Total",
-                data: this.filterDataByRange(totalSeries.points || []).map(([x, y]) => ({ x, y })),
+        const datasets = [
+            {
+                label: "Tower 1+2 Combined",
+                data: this.mapToDatasetPoints(combined12Map),
+                borderColor: CONFIG.TOWERS.tower1.color,
+                backgroundColor: CONFIG.TOWERS.tower1.color,
+                borderWidth: 2.5,
+                pointRadius: 0,
+                pointHoverRadius: 3,
+                tension: 0.22,
+                fill: false
+            },
+            {
+                label: "Tower 3",
+                data: this.mapToDatasetPoints(tower3OnlyMap),
+                borderColor: CONFIG.TOWERS.tower3.color,
+                backgroundColor: CONFIG.TOWERS.tower3.color,
+                borderWidth: 2,
+                borderDash: [5, 4],
+                pointRadius: 0,
+                pointHoverRadius: 3,
+                tension: 0.22,
+                fill: false
+            },
+            {
+                label: "Total (All Towers)",
+                data: this.mapToDatasetPoints(totalAllMap),
                 borderColor: CONFIG.CHART_COLORS.total,
                 backgroundColor: CONFIG.CHART_COLORS.total,
                 borderWidth: 3,
                 pointRadius: 0,
-                tension: 0.2,
+                pointHoverRadius: 4,
+                tension: 0.22,
                 fill: false
-            });
-        }
+            }
+        ];
 
         // Chart configuration
         const config = {
@@ -992,7 +1075,7 @@ const LiveDashboard = {
                 maintainAspectRatio: false,
                 parsing: false,
                 interaction: {
-                    mode: "nearest",
+                    mode: "index",
                     axis: "x",
                     intersect: false
                 },
@@ -1002,16 +1085,27 @@ const LiveDashboard = {
                         time: {
                             unit: this.getTimeUnit()
                         },
-                        ticks: { color: CONFIG.CHART_COLORS.text },
+                        ticks: {
+                            color: CONFIG.CHART_COLORS.text,
+                            autoSkip: true,
+                            maxRotation: 0
+                        },
                         grid: { color: CONFIG.CHART_COLORS.grid }
                     },
                     y: {
                         beginAtZero: true,
-                        ticks: { color: CONFIG.CHART_COLORS.text },
+                        ticks: {
+                            color: CONFIG.CHART_COLORS.text,
+                            callback: (value) => `${value}`
+                        },
                         grid: { color: CONFIG.CHART_COLORS.grid }
                     }
                 },
                 plugins: {
+                    decimation: {
+                        enabled: true,
+                        algorithm: "min-max"
+                    },
                     legend: {
                         labels: { color: CONFIG.CHART_COLORS.legend }
                     },
@@ -1024,6 +1118,29 @@ const LiveDashboard = {
                                     return new Date(items[0].parsed.x).toLocaleString();
                                 }
                                 return "";
+                            },
+                            label: (context) => `${context.dataset.label}: ${context.parsed.y} listeners`
+                        }
+                    },
+                    zoom: {
+                        pan: {
+                            enabled: true,
+                            mode: "x",
+                            modifierKey: "shift"
+                        },
+                        zoom: {
+                            wheel: {
+                                enabled: true
+                            },
+                            pinch: {
+                                enabled: true
+                            },
+                            mode: "x"
+                        },
+                        limits: {
+                            x: {
+                                min: "original",
+                                max: "original"
                             }
                         }
                     }

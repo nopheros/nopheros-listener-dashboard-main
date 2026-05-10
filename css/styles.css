@@ -1803,6 +1803,7 @@ img {
     grid-template-columns: 1.1fr 0.9fr;
     gap: 1.2rem;
     margin-bottom: 2rem;
+    align-items: start;
 }
 
 .tower-hero-card,
@@ -1816,6 +1817,7 @@ img {
 .tower-hero-card {
     border-color: rgba(175, 89, 207, 0.55);
     box-shadow: 0 0 0 1px rgba(175, 89, 207, 0.3), 0 22px 55px rgba(137, 55, 164, 0.3);
+    align-self: start;
 }
 
 .tower-hero-card .tower-card-header h3 {

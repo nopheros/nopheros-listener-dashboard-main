@@ -48,11 +48,11 @@ const CONFIG = {
         },
         tower3: {
             id: "tower3",
-            name: "Tower 3 - Atlantean Testing Relay",
+            name: "Tower 3 - Out of Bounds",
             baseUrl: "http://romeblue7.myvnc.com:8088",
             mountpoint: "/stream",
-            description: "Atlantean Testing Relay",
-            flavorText: "That rickety old tower those skeezy Gnomes wouldn't even touch...",
+            description: "Primary Broadcast Relay",
+            flavorText: "Primary production stream for Out of Bounds.",
             includeInCharts: false,  // INFO ONLY - no charts
             includeInHistory: false, // INFO ONLY - no history
             showLiveStatus: true,    // Show live listener count in card
