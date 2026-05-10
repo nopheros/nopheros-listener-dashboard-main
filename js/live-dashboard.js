@@ -91,20 +91,34 @@ const LiveDashboard = {
     setupPlayer() {
         this.setPlayerSource(this.currentPlayerTower);
         this.bindPlayerRecovery();
+        this.bindPlayerStateTracking();
 
-        const towerButtons = [
-            { towerId: "tower1", element: this.elements.tower1PlayBtn },
-            { towerId: "tower2", element: this.elements.tower2PlayBtn },
-            { towerId: "tower3", element: this.elements.tower3PlayBtn }
-        ];
-
-        towerButtons.forEach(({ towerId, element }) => {
-            if (!element) return;
-            element.addEventListener("click", (e) => {
+        document.querySelectorAll("[data-radio-action]").forEach(button => {
+            button.addEventListener("click", (e) => {
                 e.preventDefault();
-                this.playTower(towerId);
+                this.handleRadioControl(button.dataset.radioAction, button.dataset.tower);
             });
         });
+
+        this.syncRadioControls();
+    },
+
+    /**
+     * Handle radio control button interactions
+     * @param {string} action
+     * @param {string} towerId
+     */
+    handleRadioControl(action, towerId) {
+        switch (action) {
+            case "pause":
+                this.pauseStream();
+                break;
+            case "live":
+            case "play":
+            default:
+                this.playTower(towerId || this.currentPlayerTower);
+                break;
+        }
     },
 
     /**
@@ -130,7 +144,54 @@ const LiveDashboard = {
             console.warn("[Player] Playback could not start:", err.message);
         });
 
+        this.syncRadioControls();
         this.focusPlayerSection();
+    },
+
+    /**
+     * Pause the embedded player without changing the selected tower
+     */
+    pauseStream() {
+        const player = this.elements.player;
+        if (!player) return;
+
+        player.pause();
+        this.syncRadioControls();
+    },
+
+    /**
+     * Keep play/pause/live button state in sync with the audio element
+     */
+    bindPlayerStateTracking() {
+        const player = this.elements.player;
+        if (!player || this.playerStateTrackingBound) return;
+
+        this.playerStateTrackingBound = true;
+
+        const sync = () => this.syncRadioControls();
+        player.addEventListener("play", sync);
+        player.addEventListener("pause", sync);
+        player.addEventListener("ended", sync);
+        player.addEventListener("emptied", sync);
+    },
+
+    /**
+     * Update play/pause/live button styling and accessibility state
+     */
+    syncRadioControls() {
+        const player = this.elements.player;
+        const isPlaying = !!player && !player.paused && !player.ended && !!player.currentSrc;
+        const selectedTower = this.currentPlayerTower;
+
+        document.querySelectorAll("[data-radio-action]").forEach(button => {
+            const action = button.dataset.radioAction;
+            const towerId = button.dataset.tower;
+            const towerMatches = towerId === selectedTower;
+            const active = towerMatches && ((action === "pause" && !isPlaying) || (action !== "pause" && isPlaying));
+
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", active ? "true" : "false");
+        });
     },
 
     /**
@@ -213,6 +274,8 @@ const LiveDashboard = {
         if (wasPlaying) {
             player.play().catch(() => {});
         }
+
+        this.syncRadioControls();
     },
 
     /**
@@ -353,13 +416,6 @@ const LiveDashboard = {
      * Setup event listeners
      */
     setupEventListeners() {
-        // Player reload button
-        if (this.elements.playerReload) {
-            this.elements.playerReload.addEventListener("click", () => {
-                this.resyncPlayer();
-            });
-        }
-
         // Pop-out player - new window
         if (this.elements.playerPopupWindow) {
             this.elements.playerPopupWindow.addEventListener("click", () => {
@@ -423,7 +479,6 @@ const LiveDashboard = {
      */
     async loadInitialData() {
         await Promise.all([
-            this.loadEvents(),
             this.updateTowerStatus(),
             this.loadChartData(),
             this.updatePiHealth(),

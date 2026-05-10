@@ -1813,32 +1813,6 @@ img {
 }
 
 /* ========================================
-   UPCOMING SHOWS SECTION
-   ======================================== */
-.upcoming-shows-section {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 1px solid var(--border-color);
-}
-
-.upcoming-shows-section .panel-header {
-    margin-bottom: 1rem;
-}
-
-.upcoming-shows-section .panel-header h2 {
-    font-size: 1.5rem;
-    color: var(--primary-green);
-    margin: 0 0 0.5rem 0;
-}
-
-.upcoming-shows-section .schedule-subtitle {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-style: italic;
-}
-
-/* ========================================
    WEEKLY SCHEDULE COMPACT
    ======================================== */
 .schedule-section-compact {
@@ -1936,40 +1910,69 @@ img {
     justify-content: center;
 }
 
-.play-btn-gold {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #555, #777);
-    border: none;
-    cursor: pointer;
-    display: flex;
+.player-media-controls,
+.tower-media-controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.player-media-controls {
+    max-width: 560px;
+}
+
+.tower-media-controls {
+    margin-top: 1rem;
+}
+
+.radio-control-btn {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 0.9rem 1rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    color: var(--text-primary);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px rgba(100, 100, 100, 0.3);
-    transition: all 0.3s ease;
+    gap: 0.55rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.play-btn-gold.active {
-    background: linear-gradient(135deg, #f1c40f, #f39c12);
-    box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+.radio-control-btn:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
 }
 
-.play-btn-gold:hover {
-    transform: scale(1.1);
+.radio-control-btn:focus-visible {
+    outline: 2px solid var(--primary-green);
+    outline-offset: 3px;
 }
 
-.play-btn-gold.active:hover {
-    box-shadow: 0 0 30px rgba(241, 196, 15, 0.9);
+.radio-control-btn.is-active {
+    border-color: rgba(46, 204, 113, 0.55);
+    box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.35), 0 14px 34px rgba(46, 204, 113, 0.12);
 }
 
-.play-btn-gold .play-icon {
-    font-size: 2rem;
-    color: #2c3e50;
+.radio-control-primary {
+    background: linear-gradient(135deg, #2ecc71, #23a75a);
+    color: #08140d;
 }
 
-.play-btn-gold.active .play-icon {
-    color: #2c3e50;
+.radio-control-live {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.95), rgba(142, 68, 173, 0.95));
+    color: #fff;
+}
+
+.radio-control-btn .control-icon {
+    font-size: 1rem;
+    line-height: 1;
 }
 
 .now-playing-wrapper {
@@ -2020,39 +2023,14 @@ img {
     color: var(--primary-green);
 }
 
-/* ========================================
-   CURSED PLAY BUTTON (Tower 3)
-   ======================================== */
-.cursed-play-btn {
-    width: 100%;
-    padding: 1rem;
-    margin-top: 1rem;
-    background: linear-gradient(135deg, #8e44ad, #9b59b6);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    box-shadow: 0 0 20px rgba(155, 89, 182, 0.6);
-    transition: all 0.3s ease;
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
+.tower-media-controls-cursed .radio-control-primary {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: #fff;
 }
 
-.cursed-play-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(155, 89, 182, 0.9);
-}
-
-.cursed-play-btn .play-icon {
-    font-size: 1.25rem;
-}
-
-.cursed-text {
-    font-weight: 600;
+.tower-card-cursed .tower-media-controls .radio-control-btn.is-active {
+    border-color: rgba(155, 89, 182, 0.62);
+    box-shadow: 0 0 0 1px rgba(155, 89, 182, 0.35), 0 14px 34px rgba(155, 89, 182, 0.16);
 }
 
 .tower-card[data-tower="tower1"] {

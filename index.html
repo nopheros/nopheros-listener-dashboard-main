@@ -46,17 +46,6 @@
             <div class="dashboard-grid">
                 <!-- LEFT COLUMN: Upcoming Shows + Weekly Schedule -->
                 <div class="left-column">
-                    <!-- UPCOMING SHOWS (Tower 1 Only) -->
-                    <section class="upcoming-shows-section">
-                        <div class="panel-header">
-                            <h2>Upcoming Shows</h2>
-                        </div>
-                        <div class="events-list" id="events-list">
-                            <p class="events-loading">Loading schedule...</p>
-                        </div>
-                    </section>
-
-                    <!-- WEEKLY SCHEDULE (Tightened) -->
                     <section class="schedule-section-compact">
                         <div class="panel-header">
                             <h2>Weekly Schedule</h2>
@@ -75,7 +64,7 @@
                                 <tr>
                                     <td>Monday</td>
                                     <td>Treehab</td>
-                                    <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros</a></td>
+                                    <td>Everlook Team</td>
                                     <td>11:00 AM</td>
                                     <td>16:00</td>
                                 </tr>
@@ -103,7 +92,7 @@
                                 <tr>
                                     <td>Friday</td>
                                     <td>Pilgrim of Signal</td>
-                                    <td><a href="https://twitch.tv/Nopheros" target="_blank" class="dj-link">Nopheros</a></td>
+                                    <td>Everlook Team</td>
                                     <td>8:00 PM</td>
                                     <td>01:00</td>
                                 </tr>
@@ -135,9 +124,20 @@
                         <div class="player-content">
                             <img src="img/elbc_logo.png" alt="ELBC Logo" class="elbc-logo-large">
                             <p class="tune-in-label">Tune in:</p>
-                            <button class="play-btn-gold" id="tower1-play-btn" title="Play Tower 1">
-                                <span class="play-icon">▶</span>
-                            </button>
+                            <div class="player-media-controls">
+                                <button class="radio-control-btn radio-control-primary" id="player-play-btn" data-radio-action="play" data-tower="tower1" title="Play Tower 1">
+                                    <span class="control-icon">▶</span>
+                                    <span>Play</span>
+                                </button>
+                                <button class="radio-control-btn" id="player-pause-btn" data-radio-action="pause" data-tower="tower1" title="Pause Tower 1">
+                                    <span class="control-icon">⏸</span>
+                                    <span>Pause</span>
+                                </button>
+                                <button class="radio-control-btn radio-control-live" id="player-live-btn" data-radio-action="live" data-tower="tower1" title="Listen Live">
+                                    <span class="control-icon">📻</span>
+                                    <span>Live</span>
+                                </button>
+                            </div>
                             <p class="now-playing-text" id="player-now-playing">Loading...</p>
                             <div class="player-stats-inline">
                                 <span id="player-listeners">--</span> listeners | Peak: <span id="player-peak">--</span>
@@ -187,6 +187,20 @@
                             <span class="np-label">Now Playing:</span>
                             <span class="np-value" id="tower1-np">--</span>
                         </div>
+                        <div class="tower-media-controls">
+                            <button class="radio-control-btn radio-control-primary" id="tower1-play-btn" data-radio-action="play" data-tower="tower1" title="Play Tower 1">
+                                <span class="control-icon">▶</span>
+                                <span>Play</span>
+                            </button>
+                            <button class="radio-control-btn" id="tower1-pause-btn" data-radio-action="pause" data-tower="tower1" title="Pause Tower 1">
+                                <span class="control-icon">⏸</span>
+                                <span>Pause</span>
+                            </button>
+                            <button class="radio-control-btn radio-control-live" id="tower1-live-btn" data-radio-action="live" data-tower="tower1" title="Listen Live">
+                                <span class="control-icon">📻</span>
+                                <span>Live</span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Tower 2 Card -->
@@ -218,6 +232,20 @@
                         <div class="tower-now-playing">
                             <span class="np-label">Now Playing:</span>
                             <span class="np-value" id="tower2-np">--</span>
+                        </div>
+                        <div class="tower-media-controls">
+                            <button class="radio-control-btn radio-control-primary" id="tower2-play-btn" data-radio-action="play" data-tower="tower2" title="Play Tower 2">
+                                <span class="control-icon">▶</span>
+                                <span>Play</span>
+                            </button>
+                            <button class="radio-control-btn" id="tower2-pause-btn" data-radio-action="pause" data-tower="tower2" title="Pause Tower 2">
+                                <span class="control-icon">⏸</span>
+                                <span>Pause</span>
+                            </button>
+                            <button class="radio-control-btn radio-control-live" id="tower2-live-btn" data-radio-action="live" data-tower="tower2" title="Listen Live">
+                                <span class="control-icon">📻</span>
+                                <span>Live</span>
+                            </button>
                         </div>
                     </div>
 
@@ -252,10 +280,20 @@
                             <span class="np-label">Currently Playing</span>
                             <span class="np-value" id="tower3-np">--</span>
                         </div>
-                        <button class="cursed-play-btn" id="tower3-play-btn" title="Play Cursed Tower 3">
-                            <span class="play-icon">▶</span>
-                            <span class="cursed-text">Listen Live</span>
-                        </button>
+                        <div class="tower-media-controls tower-media-controls-cursed">
+                            <button class="radio-control-btn radio-control-primary" id="tower3-play-btn" data-radio-action="play" data-tower="tower3" title="Play Tower 3">
+                                <span class="control-icon">▶</span>
+                                <span>Play</span>
+                            </button>
+                            <button class="radio-control-btn" id="tower3-pause-btn" data-radio-action="pause" data-tower="tower3" title="Pause Tower 3">
+                                <span class="control-icon">⏸</span>
+                                <span>Pause</span>
+                            </button>
+                            <button class="radio-control-btn radio-control-live" id="tower3-live-btn" data-radio-action="live" data-tower="tower3" title="Listen Live">
+                                <span class="control-icon">📻</span>
+                                <span>Live</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
