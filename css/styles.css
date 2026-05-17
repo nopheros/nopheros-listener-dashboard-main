@@ -1017,6 +1017,42 @@ img {
     padding: var(--spacing-sm);
 }
 
+.signal-honors-box {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin: 0.1rem 0 0.55rem;
+    padding: 0.55rem;
+    border: 1px solid rgba(181, 136, 66, 0.34);
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(29, 27, 24, 0.95), rgba(13, 14, 19, 0.92));
+}
+
+.signal-honor-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    padding: 0.35rem 0.45rem;
+    border-radius: 8px;
+    border: 1px solid rgba(181, 136, 66, 0.2);
+    background: rgba(22, 20, 17, 0.85);
+}
+
+.signal-honor-label {
+    color: #b9a789;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.signal-honor-value {
+    color: #f0d9a3;
+    font-size: 0.86rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
 .chart-wrapper canvas {
     width: 100% !important;
     height: 100% !important;
@@ -1921,6 +1957,12 @@ img {
     color: #e8c98a;
     font-size: 0.86rem;
     font-weight: 600;
+}
+
+@media (max-width: 700px) {
+    .signal-honors-box {
+        grid-template-columns: 1fr;
+    }
 }
 
 .tower-hero-card .tower-card-header h3 {

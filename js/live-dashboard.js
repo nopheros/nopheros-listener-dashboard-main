@@ -74,7 +74,9 @@ const LiveDashboard = {
             // Header
             lastUpdated: document.getElementById("last-updated"),
             scheduleTimeline: document.getElementById("schedule-timeline"),
-            signalHonors: document.getElementById("signal-honors")
+            signalHonors: document.getElementById("signal-honors"),
+            signalPeakLegacy: document.getElementById("signal-peak-legacy"),
+            signalPeakTower3: document.getElementById("signal-peak-tower3")
         };
     },
 
@@ -503,8 +505,7 @@ const LiveDashboard = {
         // Refresh chart button
         if (this.elements.refreshChart) {
             this.elements.refreshChart.addEventListener("click", () => {
-                this.loadChartData();
-                this.updateTowerStatus();
+                this.refreshLiveAndChart();
             });
         }
 
@@ -515,12 +516,19 @@ const LiveDashboard = {
      */
     async loadInitialData() {
         await Promise.all([
-            this.updateTowerStatus(),
-            this.loadChartData(),
+            this.refreshLiveAndChart(),
             this.updatePiHealth(),
             this.updateLiveTotals(),
             this.updateMemorialStatus()
         ]);
+    },
+
+    /**
+     * Refresh live status first, then chart so live-tail overlay has current samples
+     */
+    async refreshLiveAndChart() {
+        await this.updateTowerStatus();
+        await this.loadChartData();
     },
 
     /**
@@ -529,8 +537,7 @@ const LiveDashboard = {
     startRefreshLoop() {
         // Tower status and chart refresh
         this.refreshInterval = setInterval(() => {
-            this.updateTowerStatus();
-            this.loadChartData();
+            this.refreshLiveAndChart();
             this.updatePiHealth();
             this.updateLiveTotals();
             this.updateMemorialStatus();
@@ -984,10 +991,20 @@ const LiveDashboard = {
             const combinedDate = combinedPeak.ts ? new Date(combinedPeak.ts).toLocaleDateString() : "--";
             const tower3Date = tower3Peak.ts ? new Date(tower3Peak.ts).toLocaleDateString() : "--";
 
-            const text = `Hall of Peaks: Tower 1+2 ${combinedPeak.value} (${combinedDate}) | Tower 3 ${tower3Peak.value} (${tower3Date})`;
-            this.setText(this.elements.signalHonors, text);
+            if (this.elements.signalPeakLegacy && this.elements.signalPeakTower3) {
+                this.setText(this.elements.signalPeakLegacy, `${combinedPeak.value} listeners (${combinedDate})`);
+                this.setText(this.elements.signalPeakTower3, `${tower3Peak.value} listeners (${tower3Date})`);
+            } else {
+                const text = `Hall of Peaks: Tower 1+2 ${combinedPeak.value} (${combinedDate}) | Tower 3 ${tower3Peak.value} (${tower3Date})`;
+                this.setText(this.elements.signalHonors, text);
+            }
         } catch (error) {
-            this.setText(this.elements.signalHonors, "Hall of Peaks: unavailable");
+            if (this.elements.signalPeakLegacy && this.elements.signalPeakTower3) {
+                this.setText(this.elements.signalPeakLegacy, "Unavailable");
+                this.setText(this.elements.signalPeakTower3, "Unavailable");
+            } else {
+                this.setText(this.elements.signalHonors, "Hall of Peaks: unavailable");
+            }
         }
     },
 
