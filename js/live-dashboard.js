@@ -16,6 +16,8 @@ const LiveDashboard = {
     nowPlayingInterval: null,
     currentPlayerTower: "tower3",
     playerRecoveryAt: 0,
+    liveTailPoints: [],
+    liveTailWindowMinutes: 20,
 
     // DOM element cache
     elements: {},
@@ -703,6 +705,7 @@ const LiveDashboard = {
             if (status.towers.tower3) {
                 const t3 = status.towers.tower3;
                 const tower3Config = CONFIG.TOWERS.tower3;
+                this.recordLiveTailPoint(t3.listeners ?? 0, status.fetchedAt || Date.now());
 
                 // Only show listener stats if configured to show live status
                 if (tower3Config.showLiveStatus) {
@@ -878,6 +881,36 @@ const LiveDashboard = {
     },
 
     /**
+     * Record the latest Tower 3 listeners for short-term live-tail chart overlay
+     * @param {number} listeners
+     * @param {number} timestamp
+     */
+    recordLiveTailPoint(listeners, timestamp = Date.now()) {
+        const ts = Number.isFinite(Number(timestamp)) ? Number(timestamp) : Date.now();
+        const value = Number.isFinite(Number(listeners)) ? Number(listeners) : 0;
+
+        const lastPoint = this.liveTailPoints[this.liveTailPoints.length - 1];
+        if (lastPoint && Math.abs(ts - lastPoint.x) < 15000) {
+            lastPoint.x = ts;
+            lastPoint.y = value;
+        } else {
+            this.liveTailPoints.push({ x: ts, y: value });
+        }
+
+        const cutoff = Date.now() - (this.liveTailWindowMinutes * 60 * 1000);
+        this.liveTailPoints = this.liveTailPoints.filter((point) => point.x >= cutoff);
+    },
+
+    /**
+     * Get live-tail points filtered to active range for chart rendering
+     * @returns {Array<{x:number,y:number}>}
+     */
+    getLiveTailDatasetPoints() {
+        const points = this.liveTailPoints.map((point) => [point.x, point.y]);
+        return this.filterDataByRange(points).map(([x, y]) => ({ x, y }));
+    },
+
+    /**
      * Extract a named series from payload and return a timestamp->value map
      * @param {Object} payload
      * @param {string} name
@@ -969,6 +1002,8 @@ const LiveDashboard = {
 
         const tower3HistoryMap = this.buildTower3HistoricalMap(payload);
         const activePoints = this.filterDataByRange(this.mapToDatasetPoints(tower3HistoryMap).map((point) => [point.x, point.y]));
+        const historyHasSignal = activePoints.some(([_, y]) => Number(y) > 0);
+        const liveTailOverlay = this.getLiveTailDatasetPoints();
 
         const datasets = [
             {
@@ -984,6 +1019,22 @@ const LiveDashboard = {
                 fill: false
             }
         ];
+
+        // Keep archive data as source-of-record, but show a short live overlay while archive is still zero.
+        if (!historyHasSignal && liveTailOverlay.length > 0) {
+            datasets.push({
+                label: `Live Tail (${this.liveTailWindowMinutes}m)`,
+                data: liveTailOverlay,
+                borderColor: "#78f2ad",
+                backgroundColor: "#78f2ad",
+                borderWidth: 2,
+                borderDash: [4, 4],
+                pointRadius: 2,
+                pointHoverRadius: 4,
+                tension: 0.18,
+                fill: false
+            });
+        }
 
         // Chart configuration
         const config = {
