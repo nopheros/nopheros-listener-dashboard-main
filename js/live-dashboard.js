@@ -3,7 +3,7 @@
  *
  * Handles all live page functionality including:
  * - Real-time tower status updates
- * - Tower 1 embedded player with resync
+ * - Embedded Tower 3 player with resync
  * - Live chart visualization
  * - Pi health monitoring
  */
@@ -38,8 +38,8 @@ const LiveDashboard = {
     cacheElements() {
         this.elements = {
             // Player
-            player: document.getElementById("tower1-player"),
-            playerSource: document.getElementById("tower1-source"),
+            player: document.getElementById("tower-player"),
+            playerSource: document.getElementById("tower-player-source"),
             playerReload: document.getElementById("player-reload"),
             playerNowPlaying: document.getElementById("player-now-playing"),
             playerSelect: document.getElementById("player-stream-select"),
@@ -51,23 +51,9 @@ const LiveDashboard = {
             playerLivePeak: document.getElementById("player-live-peak"),
             playerListeners: document.getElementById("player-listeners"),
             playerPeak: document.getElementById("player-peak"),
-            tower1PlayBtn: document.getElementById("tower1-play-btn"),
-            tower2PlayBtn: document.getElementById("tower2-play-btn"),
             tower3PlayBtn: document.getElementById("tower3-play-btn"),
 
             // Tower cards
-            tower1Listeners: document.getElementById("tower1-listeners"),
-            tower1Peak: document.getElementById("tower1-peak"),
-            tower1Np: document.getElementById("tower1-np"),
-            tower1StreamName: document.getElementById("tower1-stream-name"),
-            tower1StreamDesc: document.getElementById("tower1-stream-desc"),
-            tower1DescItem: document.getElementById("tower1-desc-item"),
-            tower2Listeners: document.getElementById("tower2-listeners"),
-            tower2Peak: document.getElementById("tower2-peak"),
-            tower2Np: document.getElementById("tower2-np"),
-            tower2StreamName: document.getElementById("tower2-stream-name"),
-            tower2StreamDesc: document.getElementById("tower2-stream-desc"),
-            tower2DescItem: document.getElementById("tower2-desc-item"),
             tower3Listeners: document.getElementById("tower3-listeners"),
             tower3Peak: document.getElementById("tower3-peak"),
             tower3Np: document.getElementById("tower3-np"),
@@ -75,6 +61,8 @@ const LiveDashboard = {
             tower3StreamDesc: document.getElementById("tower3-stream-desc"),
             tower3DescItem: document.getElementById("tower3-desc-item"),
             totalListeners: document.getElementById("total-listeners"),
+            memorialPlaque: document.getElementById("memorial-plaque"),
+            memorialSecret: document.getElementById("memorial-secret"),
 
             // Chart
             chartCanvas: document.getElementById("listeners-chart"),
@@ -131,7 +119,7 @@ const LiveDashboard = {
     },
 
     /**
-     * Setup the Tower 1 audio player
+     * Setup the embedded audio player
      */
     setupPlayer() {
         this.setPlayerSource(this.currentPlayerTower);
@@ -553,7 +541,8 @@ const LiveDashboard = {
             this.updateTowerStatus(),
             this.loadChartData(),
             this.updatePiHealth(),
-            this.updateLiveTotals()
+            this.updateLiveTotals(),
+            this.updateMemorialStatus()
         ]);
     },
 
@@ -567,6 +556,7 @@ const LiveDashboard = {
             this.loadChartData();
             this.updatePiHealth();
             this.updateLiveTotals();
+            this.updateMemorialStatus();
             this.updateScheduleHighlight();
         }, CONFIG.LIVE_REFRESH_INTERVAL_MS);
 
@@ -689,26 +679,31 @@ const LiveDashboard = {
     async updateLiveTotals() {
         try {
             const status = await IcecastAPI.getAllTowerStatus();
-            const total = status?.chartTowersTotal ?? 0;
+            const total = status?.towers?.tower3?.listeners ?? 0;
             if (this.elements.playerLiveTotal) {
                 this.setText(this.elements.playerLiveTotal, `${total} Live`);
             }
 
-            // Compute peak from last 24h total series
+            this.setText(this.elements.totalListeners, total);
+
+            // Prefer a Tower 3 archive peak, otherwise fall back to the live listener peak
             let peak = null;
             try {
                 const url = CONFIG.getArchiveUrl("data24h");
                 const response = await fetch(url, { cache: "no-store" });
                 if (response.ok) {
                     const payload = await response.json();
-                    const totalSeries = (payload.series || []).find(s => s.name.toLowerCase() === "total");
-                    if (totalSeries && Array.isArray(totalSeries.points)) {
-                        // Restrict to 2026 data per requirement
-                        const points = this.filterDataByRange(totalSeries.points);
+                    const tower3Series = (payload.series || []).find(s => (s.name || "").toLowerCase() === "tower 3");
+                    if (tower3Series && Array.isArray(tower3Series.points)) {
+                        const points = this.filterDataByRange(tower3Series.points);
                         peak = points.length ? Math.max(...points.map(([_, y]) => y)) : 0;
                     }
                 }
             } catch {}
+
+            if (peak == null) {
+                peak = status?.towers?.tower3?.listenerPeak ?? null;
+            }
 
             if (this.elements.playerLivePeak) {
                 this.setText(this.elements.playerLivePeak, `Peak: ${peak ?? "--"}`);
@@ -730,52 +725,6 @@ const LiveDashboard = {
                 return;
             }
 
-            // Update Tower 1
-            if (status.towers.tower1) {
-                const t1 = status.towers.tower1;
-                this.setText(this.elements.tower1Listeners, t1.listeners ?? "--");
-                this.setText(this.elements.tower1Peak, t1.listenerPeak ?? "--");
-                this.setText(this.elements.tower1Np, t1.title || "(no metadata)");
-                this.setText(this.elements.tower1StreamName, t1.serverName || "--");
-                
-                // Only show description if it exists and is not generic
-                const desc = t1.description || "";
-                if (desc && desc.toLowerCase() !== "unspecified description" && desc !== "--") {
-                    this.setText(this.elements.tower1StreamDesc, desc);
-                    if (this.elements.tower1DescItem) {
-                        this.elements.tower1DescItem.style.display = "flex";
-                    }
-                } else {
-                    if (this.elements.tower1DescItem) {
-                        this.elements.tower1DescItem.style.display = "none";
-                    }
-                }
-                
-            }
-
-            // Update Tower 2
-            if (status.towers.tower2) {
-                const t2 = status.towers.tower2;
-                this.setText(this.elements.tower2Listeners, t2.listeners ?? "--");
-                this.setText(this.elements.tower2Peak, t2.listenerPeak ?? "--");
-                this.setText(this.elements.tower2Np, t2.title || "(no metadata)");
-                this.setText(this.elements.tower2StreamName, t2.serverName || "--");
-                
-                // Only show description if it exists and is not generic
-                const desc = t2.description || "";
-                if (desc && desc.toLowerCase() !== "unspecified description" && desc !== "--") {
-                    this.setText(this.elements.tower2StreamDesc, desc);
-                    if (this.elements.tower2DescItem) {
-                        this.elements.tower2DescItem.style.display = "flex";
-                    }
-                } else {
-                    if (this.elements.tower2DescItem) {
-                        this.elements.tower2DescItem.style.display = "none";
-                    }
-                }
-            }
-
-            // Update Tower 3 (now with live listener data + now playing)
             if (status.towers.tower3) {
                 const t3 = status.towers.tower3;
                 const tower3Config = CONFIG.TOWERS.tower3;
@@ -800,10 +749,9 @@ const LiveDashboard = {
                         this.elements.tower3DescItem.style.display = "none";
                     }
                 }
-            }
 
-            // Update Total (Tower 1 + Tower 2 only)
-            this.setText(this.elements.totalListeners, status.chartTowersTotal);
+                this.setText(this.elements.totalListeners, t3.listeners ?? "--");
+            }
 
             // Sync player now playing with current selection
             this.updatePlayerNowPlayingFromStatus(status.towers);
@@ -824,20 +772,9 @@ const LiveDashboard = {
             const status = await IcecastAPI.getAllTowerStatus();
             if (!status || !status.towers) return;
 
-            for (const [towerId, towerStatus] of Object.entries(status.towers)) {
-                const title = towerStatus?.title || "(no metadata)";
-
-                switch (towerId) {
-                    case "tower1":
-                        this.setText(this.elements.tower1Np, title);
-                        break;
-                    case "tower2":
-                        this.setText(this.elements.tower2Np, title);
-                        break;
-                    case "tower3":
-                        this.setText(this.elements.tower3Np, title);
-                        break;
-                }
+            if (status.towers.tower3) {
+                const title = status.towers.tower3.title || "(no metadata)";
+                this.setText(this.elements.tower3Np, title);
             }
 
             this.updatePlayerNowPlayingFromStatus(status.towers);
@@ -989,79 +926,25 @@ const LiveDashboard = {
         const ctx = this.elements.chartCanvas.getContext("2d");
 
         const series = payload.series || [];
-        const findSeries = (name) => series.find(s => (s.name || "").toLowerCase() === name.toLowerCase());
+        const findSeries = (...names) => series.find((entry) => names.includes((entry.name || "").toLowerCase()));
+        const tower3Series = findSeries("tower 3");
+        const archiveFallbackSeries = findSeries("total");
 
-        const tower1Series = findSeries("Tower 1");
-        const tower2Series = findSeries("Tower 2");
-        const tower3Series = findSeries("Tower 3");
-        const totalSeries = findSeries("Total");
-
-        const tower1Map = this.buildPointMap(this.filterDataByRange(tower1Series?.points || []));
-        const tower2Map = this.buildPointMap(this.filterDataByRange(tower2Series?.points || []));
-        const tower3Map = this.buildPointMap(this.filterDataByRange(tower3Series?.points || []));
-        const totalMap = this.buildPointMap(this.filterDataByRange(totalSeries?.points || []));
-
-        const timestamps = new Set([
-            ...tower1Map.keys(),
-            ...tower2Map.keys(),
-            ...tower3Map.keys(),
-            ...totalMap.keys()
-        ]);
-
-        const combined12Map = new Map();
-        const tower3OnlyMap = new Map();
-        const totalAllMap = new Map();
-
-        for (const ts of timestamps) {
-            const t1 = tower1Map.get(ts) || 0;
-            const t2 = tower2Map.get(ts) || 0;
-            const combined12 = t1 + t2;
-
-            // If Tower 3 historical series is absent, keep it as 0 for older windows.
-            const t3 = tower3Map.has(ts) ? (tower3Map.get(ts) || 0) : 0;
-
-            // Prefer reported total if it is greater than combined 1+2; otherwise compute.
-            const reportedTotal = totalMap.has(ts) ? (totalMap.get(ts) || 0) : null;
-            const allTotal = reportedTotal !== null ? Math.max(reportedTotal, combined12 + t3) : (combined12 + t3);
-
-            combined12Map.set(ts, combined12);
-            tower3OnlyMap.set(ts, t3);
-            totalAllMap.set(ts, allTotal);
-        }
+        const hasTower3Archive = tower3Series && Array.isArray(tower3Series.points) && tower3Series.points.length > 0;
+        const activeSeries = hasTower3Archive ? tower3Series : archiveFallbackSeries;
+        const activePoints = this.filterDataByRange(activeSeries?.points || []);
 
         const datasets = [
             {
-                label: "Tower 1+2 Combined",
-                data: this.mapToDatasetPoints(combined12Map),
-                borderColor: CONFIG.TOWERS.tower1.color,
-                backgroundColor: CONFIG.TOWERS.tower1.color,
-                borderWidth: 2.5,
-                pointRadius: 0,
-                pointHoverRadius: 3,
-                tension: 0.22,
-                fill: false
-            },
-            {
-                label: "Tower 3",
-                data: this.mapToDatasetPoints(tower3OnlyMap),
-                borderColor: CONFIG.TOWERS.tower3.color,
-                backgroundColor: CONFIG.TOWERS.tower3.color,
-                borderWidth: 2,
-                borderDash: [5, 4],
-                pointRadius: 0,
-                pointHoverRadius: 3,
-                tension: 0.22,
-                fill: false
-            },
-            {
-                label: "Total (All Towers)",
-                data: this.mapToDatasetPoints(totalAllMap),
-                borderColor: CONFIG.CHART_COLORS.total,
-                backgroundColor: CONFIG.CHART_COLORS.total,
-                borderWidth: 3,
+                label: hasTower3Archive ? "Tower 3" : "Archive Feed",
+                data: activePoints.map(([x, y]) => ({ x, y })),
+                borderColor: hasTower3Archive ? CONFIG.TOWERS.tower3.color : CONFIG.CHART_COLORS.total,
+                backgroundColor: hasTower3Archive ? CONFIG.TOWERS.tower3.color : CONFIG.CHART_COLORS.total,
+                borderWidth: hasTower3Archive ? 3 : 2.5,
+                borderDash: hasTower3Archive ? [] : [8, 5],
                 pointRadius: 0,
                 pointHoverRadius: 4,
-                tension: 0.22,
+                tension: 0.24,
                 fill: false
             }
         ];
@@ -1299,6 +1182,28 @@ const LiveDashboard = {
         const now = new Date();
         this.setText(this.elements.lastUpdated,
             `Updated: ${now.toLocaleTimeString()}`);
+    },
+
+    /**
+     * Update the memorial plaque's hidden reawakening state
+     */
+    async updateMemorialStatus() {
+        if (!this.elements.memorialPlaque) return;
+
+        try {
+            const signal = await IcecastAPI.getRetiredTowerSignals();
+            const nextState = signal.anyOnline ? "reawakened" : "dormant";
+            this.elements.memorialPlaque.dataset.memorialState = nextState;
+
+            if (this.elements.memorialSecret) {
+                this.elements.memorialSecret.hidden = !signal.anyOnline;
+            }
+        } catch (error) {
+            this.elements.memorialPlaque.dataset.memorialState = "dormant";
+            if (this.elements.memorialSecret) {
+                this.elements.memorialSecret.hidden = true;
+            }
+        }
     },
 
     /**

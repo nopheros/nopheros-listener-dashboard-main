@@ -29,20 +29,20 @@ const CONFIG = {
     TOWERS: {
         tower1: {
             id: "tower1",
-               name: "Tower 1 - NX78",
+            name: "Tower 1 - NX78",
             mountpoint: "/stream",
             description: "Primary Broadcast Tower",
-            includeInCharts: true,
+            includeInCharts: false,
             includeInHistory: true,
             color: "#2ecc71"  // Rich Green
         },
         tower2: {
             id: "tower2",
-               name: "Tower 2 - LG87",
+            name: "Tower 2 - LG87",
             baseUrl: "https://sgradio.turtle-music.org",
             mountpoint: "/stream",
             description: "Secondary Relay Tower",
-            includeInCharts: true,
+            includeInCharts: false,
             includeInHistory: true,
             color: "#9b59b6"  // Purple (as per wireframe)
         },
@@ -53,12 +53,25 @@ const CONFIG = {
             mountpoint: "/stream",
             description: "Primary Broadcast Relay",
             flavorText: "Primary production stream for Out of Bounds.",
-            includeInCharts: false,  // INFO ONLY - no charts
-            includeInHistory: false, // INFO ONLY - no history
+            includeInCharts: true,
+            includeInHistory: true,
             showLiveStatus: true,    // Show live listener count in card
             color: "#27ae60"  // Green
         }
     },
+
+    RETIRED_TOWERS: [
+        {
+            id: "tower1",
+            name: "Tower 1 - NX78",
+            baseUrl: "https://radio.turtle-music.org"
+        },
+        {
+            id: "tower2",
+            name: "Tower 2 - LG87",
+            baseUrl: "https://sgradio.turtle-music.org"
+        }
+    ],
 
     // Get stream URL for a tower (public playable stream, NOT admin URL)
     getStreamUrl(towerId) {

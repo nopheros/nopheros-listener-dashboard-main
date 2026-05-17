@@ -6,10 +6,10 @@
     <title>ELBC Statmographifier - Live Listener Dashboard</title>
     <meta name="description" content="Real-time listener statistics for the Everlook Broadcasting Co. towers">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
 </head>
 <body>
     <!-- ========== HEADER ========== -->
@@ -27,7 +27,7 @@
                 <a href="annals.html" class="nav-link">Annals of the Signal</a>
             </nav>
             <div class="header-total-listeners badge">
-                <span class="label">Total Overall Listeners:</span>
+                <span class="label">Tower 3 Live Listeners:</span>
                 <span id="total-listeners">--</span>
             </div>
             <div class="header-badges">
@@ -46,148 +46,135 @@
         <div class="content-wrapper-single">
             <section class="tower-cards-section">
                 <div class="section-header">
-                    <h2>On Air Control Room</h2>
+                    <h2>Tower 3 Command Deck</h2>
                 </div>
 
-                <div class="broadcast-stage">
-                    <article class="tower-card tower-card-cursed tower-hero-card" data-tower="tower3">
-                        <div class="tower-card-header">
-                            <div class="tower-indicator" style="background-color: #9b59b6;"></div>
-                            <h3>Tower 3</h3>
-                            <span class="tower-subtitle">Primary Broadcast - Out of Bounds</span>
-                        </div>
-                        <div class="tower-metadata tower-metadata-featured">
-                            <div class="tower-metadata-row">
-                                <span class="tower-metadata-label">Stream Name</span>
-                                <span class="tower-metadata-value" id="tower3-stream-name">--</span>
+                <div class="tower3-command-grid">
+                    <article class="tower-card tower-card-cursed tower-hero-card tower3-command-card" data-tower="tower3">
+                        <div class="tower3-command-header">
+                            <div class="tower-card-header tower-card-header-command">
+                                <div class="tower-indicator tower-indicator-command"></div>
+                                <div class="tower-title-block">
+                                    <h3>Tower 3</h3>
+                                    <span class="tower-subtitle">Primary Broadcast Relay for Out of Bounds</span>
+                                </div>
+                                <span class="tower-command-badge">Primary Relay</span>
                             </div>
-                            <div class="tower-metadata-row" id="tower3-desc-item" style="display: none;">
-                                <span class="tower-metadata-label">Description</span>
-                                <span class="tower-metadata-value" id="tower3-stream-desc">--</span>
-                            </div>
-                        </div>
-                        <div class="tower-stats">
-                            <div class="stat">
-                                <span class="stat-label">Current Listeners</span>
-                                <span class="stat-value" id="tower3-listeners">--</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Peak Listeners</span>
-                                <span class="stat-value" id="tower3-peak">--</span>
-                            </div>
-                        </div>
-                        <div class="tower-now-playing">
-                            <span class="np-label">Currently Playing</span>
-                            <span class="np-value" id="tower3-np">--</span>
-                        </div>
-                        <div class="tower-media-controls tower-media-controls-hero tower-media-controls-cursed">
-                            <button class="radio-control-btn radio-control-primary" id="tower3-play-btn" data-radio-action="play" data-tower="tower3" title="Play Tower 3">
-                                <span class="control-icon">▶</span>
-                                <span>Play Tower 3</span>
-                            </button>
-                            <button class="radio-control-btn" id="tower3-pause-btn" data-radio-action="pause" data-tower="tower3" title="Pause Tower 3">
-                                <span class="control-icon">⏸</span>
-                                <span>Pause</span>
-                            </button>
-                            <button class="radio-control-btn radio-control-live" id="tower3-live-btn" data-radio-action="live" data-tower="tower3" title="Live Tower 3">
-                                <span class="control-icon">📻</span>
-                                <span>Live</span>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article class="tower-card tower-mirror-card">
-                        <div class="tower-card-header">
-                            <div class="tower-indicator" style="background-color: #3498db;"></div>
-                            <h3>Mirror Channels</h3>
-                            <span class="tower-subtitle">Tower 1 and Tower 2 carry the same feed</span>
+                            <p class="tower-command-copy">The active transmission line. Live relay status, metadata, and current listener telemetry stay here at the top of the page.</p>
                         </div>
 
-                        <div class="mirror-channel" data-tower="tower1">
-                            <div class="mirror-channel-head">
-                                <h4>Tower 1 - NX78</h4>
-                            </div>
-                            <div class="tower-show-info">
-                                <div class="show-info-item">
-                                    <span class="show-info-value show-info-centered" id="tower1-stream-name">--</span>
+                        <div class="tower3-command-body">
+                            <div class="tower-metadata tower-metadata-featured tower-metadata-command">
+                                <div class="tower-metadata-row">
+                                    <span class="tower-metadata-label">Stream Name</span>
+                                    <span class="tower-metadata-value" id="tower3-stream-name">--</span>
                                 </div>
-                                <div class="show-info-item" id="tower1-desc-item" style="display: none;">
-                                    <span class="show-info-value show-info-centered" id="tower1-stream-desc">--</span>
+                                <div class="tower-metadata-row" id="tower3-desc-item" style="display: none;">
+                                    <span class="tower-metadata-label">Signal Notes</span>
+                                    <span class="tower-metadata-value" id="tower3-stream-desc">--</span>
                                 </div>
                             </div>
-                            <div class="tower-stats">
-                                <div class="stat">
+
+                            <div class="tower-stats tower-stats-command">
+                                <div class="stat stat-featured">
                                     <span class="stat-label">Current Listeners</span>
-                                    <span class="stat-value" id="tower1-listeners">--</span>
+                                    <span class="stat-value" id="tower3-listeners">--</span>
                                 </div>
                                 <div class="stat">
                                     <span class="stat-label">Peak Listeners</span>
-                                    <span class="stat-value" id="tower1-peak">--</span>
+                                    <span class="stat-value" id="tower3-peak">--</span>
                                 </div>
                             </div>
-                            <div class="tower-now-playing">
-                                <span class="np-label">Now Playing</span>
-                                <span class="np-value" id="tower1-np">--</span>
+
+                            <div class="tower-now-playing tower-now-playing-command">
+                                <span class="np-label">Currently Playing</span>
+                                <span class="np-value" id="tower3-np">--</span>
                             </div>
-                            <div class="tower-media-controls tower-media-controls-mirror">
-                                <button class="radio-control-btn radio-control-primary" id="tower1-play-btn" data-radio-action="play" data-tower="tower1" title="Play Tower 1">
+
+                            <div class="tower-media-controls tower-media-controls-hero tower-media-controls-cursed">
+                                <button class="radio-control-btn radio-control-primary" id="tower3-play-btn" data-radio-action="play" data-tower="tower3" title="Play Tower 3">
                                     <span class="control-icon">▶</span>
-                                    <span>Play</span>
+                                    <span>Play Tower 3</span>
                                 </button>
-                                <button class="radio-control-btn" id="tower1-pause-btn" data-radio-action="pause" data-tower="tower1" title="Pause Tower 1">
+                                <button class="radio-control-btn" id="tower3-pause-btn" data-radio-action="pause" data-tower="tower3" title="Pause Tower 3">
                                     <span class="control-icon">⏸</span>
                                     <span>Pause</span>
                                 </button>
-                                <button class="radio-control-btn radio-control-live" id="tower1-live-btn" data-radio-action="live" data-tower="tower1" title="Live Tower 1">
+                                <button class="radio-control-btn radio-control-live" id="tower3-live-btn" data-radio-action="live" data-tower="tower3" title="Live Tower 3">
                                     <span class="control-icon">📻</span>
                                     <span>Live</span>
                                 </button>
                             </div>
-                        </div>
 
-                        <div class="mirror-channel" data-tower="tower2">
-                            <div class="mirror-channel-head">
-                                <h4>Tower 2 - LG87</h4>
-                            </div>
-                            <div class="tower-show-info">
-                                <div class="show-info-item">
-                                    <span class="show-info-value show-info-centered" id="tower2-stream-name">--</span>
+                            <div class="tower3-player-shell">
+                                <div class="tower3-player-header">
+                                    <span class="tower3-player-label">Embedded Relay</span>
+                                    <span class="tower3-player-note">In-page audio monitor</span>
                                 </div>
-                                <div class="show-info-item" id="tower2-desc-item" style="display: none;">
-                                    <span class="show-info-value show-info-centered" id="tower2-stream-desc">--</span>
-                                </div>
-                            </div>
-                            <div class="tower-stats">
-                                <div class="stat">
-                                    <span class="stat-label">Current Listeners</span>
-                                    <span class="stat-value" id="tower2-listeners">--</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-label">Peak Listeners</span>
-                                    <span class="stat-value" id="tower2-peak">--</span>
-                                </div>
-                            </div>
-                            <div class="tower-now-playing">
-                                <span class="np-label">Now Playing</span>
-                                <span class="np-value" id="tower2-np">--</span>
-                            </div>
-                            <div class="tower-media-controls tower-media-controls-mirror">
-                                <button class="radio-control-btn radio-control-primary" id="tower2-play-btn" data-radio-action="play" data-tower="tower2" title="Play Tower 2">
-                                    <span class="control-icon">▶</span>
-                                    <span>Play</span>
-                                </button>
-                                <button class="radio-control-btn" id="tower2-pause-btn" data-radio-action="pause" data-tower="tower2" title="Pause Tower 2">
-                                    <span class="control-icon">⏸</span>
-                                    <span>Pause</span>
-                                </button>
-                                <button class="radio-control-btn radio-control-live" id="tower2-live-btn" data-radio-action="live" data-tower="tower2" title="Live Tower 2">
-                                    <span class="control-icon">📻</span>
-                                    <span>Live</span>
-                                </button>
+                                <p class="tower3-player-now-playing" id="player-now-playing">Now Playing: --</p>
+                                <audio id="tower-player" preload="none" style="width: 100%;" controls>
+                                    <source src="" type="audio/mpeg" id="tower-player-source">
+                                </audio>
                             </div>
                         </div>
                     </article>
+
+                    <section class="chart-section tower3-chart-section">
+                        <div class="chart-panel tower3-chart-panel">
+                            <div class="panel-header tower3-chart-header">
+                                <div>
+                                    <h2>Listener Chronicle</h2>
+                                    <p class="tower3-chart-copy">Archive-backed listener history for the dashboard feed. Live relay status remains the primary source of truth above.</p>
+                                </div>
+                                <div class="chart-controls">
+                                    <button class="range-btn" data-range="2h">2 Hours</button>
+                                    <button class="range-btn active" data-range="24h">24 Hours</button>
+                                    <button class="range-btn" data-range="3d">3 Days</button>
+                                    <button class="range-btn" data-range="week">Week</button>
+                                    <button class="btn-icon" id="refresh-chart" title="Refresh now">🔄</button>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="listeners-chart"></canvas>
+                            </div>
+                            <div class="chart-footer tower3-chart-footer">
+                                <p class="chart-refresh-info">Live page refreshes every 60 seconds; archived series update when new data lands.</p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
+
+                <article class="memorial-plaque" id="memorial-plaque" data-memorial-state="dormant" aria-live="polite">
+                    <div class="memorial-plaque-frame">
+                        <div class="memorial-plaque-header">
+                            <span class="memorial-kicker">Retired Relay Honor Roll</span>
+                            <h3>The Silent Towers</h3>
+                            <p>Once part of the signal chain. Now remembered in the hall beneath the active relay.</p>
+                        </div>
+                        <div class="memorial-plaque-body">
+                            <div class="memorial-tower-entry">
+                                <span class="memorial-tower-name">Tower 1 - NX78</span>
+                                <span class="memorial-tower-years">2018 - 2026</span>
+                            </div>
+                            <div class="memorial-divider" aria-hidden="true"></div>
+                            <div class="memorial-tower-entry">
+                                <span class="memorial-tower-name">Tower 2 - LG87</span>
+                                <span class="memorial-tower-years">2018 - 2026</span>
+                            </div>
+                        </div>
+                        <div class="memorial-secret" id="memorial-secret" hidden>
+                            <span class="memorial-secret-label">Signal Reawakened</span>
+                            <span class="memorial-secret-copy">An old relay answered the call.</span>
+                        </div>
+                        <div class="memorial-embers" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </article>
             </section>
 
             <section class="schedule-timeline-section">
@@ -264,32 +251,6 @@
                 </div>
             </section>
 
-            <audio id="tower1-player" preload="none" style="display:none;">
-                <source src="" type="audio/mpeg" id="tower1-source">
-            </audio>
-
-            <!-- ========== LISTENER GRAPH ========== -->
-            <section class="chart-section">
-                <div class="chart-panel">
-                    <div class="panel-header">
-                        <h2>Listener Graph</h2>
-                        <div class="chart-controls">
-                            <button class="range-btn" data-range="2h">2 Hours</button>
-                            <button class="range-btn active" data-range="24h">24 Hours</button>
-                            <button class="range-btn" data-range="3d">3 Days</button>
-                            <button class="range-btn" data-range="week">Week</button>
-                            <button class="btn-icon" id="refresh-chart" title="Refresh now">🔄</button>
-                        </div>
-                    </div>
-                    <div class="chart-wrapper">
-                        <canvas id="listeners-chart"></canvas>
-                    </div>
-                    <div class="chart-footer">
-
-                        <p class="chart-refresh-info">Live updates every 60 seconds</p>
-                    </div>
-                </div>
-            </section>
         </div>
     </main>
 
@@ -297,7 +258,7 @@
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <img src="img/elbc_logo.png" alt="ELBC Everlook Logo" class="footer-logo">
+                <img src="img/elbc_logo.png" alt="ELBC Everlook Logo" class="footer-logo" loading="lazy">
                 <span>Everlook Broadcasting Co. Statmographifier</span>
             </div>
             <nav class="footer-nav">

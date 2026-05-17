@@ -193,6 +193,65 @@ const IcecastAPI = {
     },
 
     /**
+     * Find a mount regardless of trailing slash or case differences
+     * @param {Object|null} status
+     * @param {string} mountpoint
+     * @returns {Object|null}
+     */
+    findMount(status, mountpoint) {
+        if (!status?.mounts || !mountpoint) return null;
+
+        const normalizedMount = mountpoint.replace(/\/+$/, "").toLowerCase();
+        for (const [candidateMount, info] of Object.entries(status.mounts)) {
+            const normalizedCandidate = candidateMount.replace(/\/+$/, "").toLowerCase();
+            if (normalizedCandidate === normalizedMount) {
+                return info;
+            }
+        }
+
+        return null;
+    },
+
+    /**
+     * Merge fallback metadata into the primary stream mount while preserving live listeners
+     * @param {Object|null} primaryMount
+     * @param {Object|null} fallbackMount
+     * @param {string} mountpoint
+     * @returns {Object|null}
+     */
+    mergeFallbackMetadata(primaryMount, fallbackMount, mountpoint) {
+        if (!fallbackMount) return primaryMount;
+        if (primaryMount && (primaryMount.title || primaryMount.serverName)) {
+            return primaryMount;
+        }
+
+        return {
+            ...fallbackMount,
+            listeners: primaryMount ? primaryMount.listeners : fallbackMount.listeners,
+            listenerPeak: primaryMount ? primaryMount.listenerPeak : fallbackMount.listenerPeak,
+            mountpoint
+        };
+    },
+
+    /**
+     * Resolve the effective mount for a tower, applying tower-specific metadata fallbacks
+     * @param {string} towerId
+     * @param {Object} tower
+     * @param {Object|null} status
+     * @returns {Object|null}
+     */
+    resolveTowerMount(towerId, tower, status) {
+        const primaryMount = this.findMount(status, tower.mountpoint);
+
+        if (towerId === "tower3") {
+            const autodjMount = this.findMount(status, "/autodj");
+            return this.mergeFallbackMetadata(primaryMount, autodjMount, tower.mountpoint);
+        }
+
+        return primaryMount;
+    },
+
+    /**
      * Get status for a specific tower by ID
      * @param {string} towerId - Tower ID from CONFIG
      * @returns {Promise<Object|null>} Mount status or null
@@ -204,46 +263,16 @@ const IcecastAPI = {
             return null;
         }
 
-        // For Tower 3, always use its handbook baseUrl and /stream mount
-        let baseUrl = tower.baseUrl || CONFIG.ICECAST_BASE_URL;
-        let mountpoint = tower.mountpoint;
-        if (towerId === "tower3") {
-            baseUrl = "http://romeblue7.myvnc.com:8088";
-            mountpoint = "/stream";
-        }
+        const baseUrl = towerId === "tower3"
+            ? "http://romeblue7.myvnc.com:8088"
+            : (tower.baseUrl || CONFIG.ICECAST_BASE_URL);
 
         const status = await this.fetchStatus(baseUrl);
         if (!status || !status.mounts) {
             return null;
         }
 
-        // Normalize mountpoint (remove trailing slashes, lowercase)
-        const normalizedMount = mountpoint.replace(/\/+$/, '').toLowerCase();
-        let mount = null;
-        for (const [mp, info] of Object.entries(status.mounts)) {
-            const normMp = mp.replace(/\/+$/, '').toLowerCase();
-            if (normMp === normalizedMount) {
-                mount = info;
-                break;
-            }
-        }
-
-        // For Tower 3, if /stream has no metadata, fallback to /autodj for metadata, but keep listeners from /stream if available
-        if (towerId === "tower3") {
-            const autodj = status.mounts["/autodj"];
-            const streamMount = mount;
-            // If /stream is missing or has no title/serverName, but /autodj exists, use /autodj for metadata
-            if ((!streamMount || !(streamMount.title || streamMount.serverName)) && autodj) {
-                return {
-                    ...autodj,
-                    listeners: streamMount ? streamMount.listeners : autodj.listeners,
-                    listenerPeak: streamMount ? streamMount.listenerPeak : autodj.listenerPeak,
-                    mountpoint: "/stream",
-                    towerId: towerId,
-                    towerName: tower.name
-                };
-            }
-        }
+        const mount = this.resolveTowerMount(towerId, tower, status);
 
         if (mount) {
             return {
@@ -290,21 +319,7 @@ const IcecastAPI = {
         // Process results from each server
         for (const { towers, status } of serverResults) {
             for (const { towerId, tower } of towers) {
-                let mount = status?.mounts?.[tower.mountpoint];
-
-                // For Tower 3, if /stream has no metadata, fallback to /autodj for metadata
-                // but keep listeners from /stream if available
-                if (towerId === "tower3" && (!mount || !(mount.title || mount.serverName))) {
-                    const autodj = status?.mounts?.["/autodj"];
-                    if (autodj) {
-                        mount = {
-                            ...autodj,
-                            listeners: mount ? mount.listeners : autodj.listeners,
-                            listenerPeak: mount ? mount.listenerPeak : autodj.listenerPeak,
-                            mountpoint: "/stream"
-                        };
-                    }
-                }
+                const mount = this.resolveTowerMount(towerId, tower, status);
 
                 if (mount) {
                     result.towers[towerId] = {
@@ -339,6 +354,34 @@ const IcecastAPI = {
         }
 
         return result;
+    },
+
+    /**
+     * Check whether a retired server is reachable via its Icecast status endpoint
+     * @param {string} baseUrl
+     * @returns {Promise<boolean>}
+     */
+    async isServerReachable(baseUrl) {
+        const status = await this.fetchStatus(baseUrl);
+        return status !== null;
+    },
+
+    /**
+     * Probe retired towers to drive the memorial plaque's hidden reawakening state
+     * @returns {Promise<{anyOnline:boolean,towers:Array}>}
+     */
+    async getRetiredTowerSignals() {
+        const probes = await Promise.all(
+            (CONFIG.RETIRED_TOWERS || []).map(async (tower) => ({
+                ...tower,
+                online: await this.isServerReachable(tower.baseUrl)
+            }))
+        );
+
+        return {
+            anyOnline: probes.some((tower) => tower.online),
+            towers: probes
+        };
     },
 
     /**
