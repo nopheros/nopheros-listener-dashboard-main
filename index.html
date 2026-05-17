@@ -31,9 +31,6 @@
                 <span id="total-listeners">--</span>
             </div>
             <div class="header-badges">
-                <button id="theme-toggle" class="theme-toggle-btn" title="Toggle light/dark mode">
-                    <span class="theme-icon">☀️</span>
-                </button>
                 <span class="badge badge-live">
                     <span class="live-dot"></span> LIVE
                 </span>
@@ -60,7 +57,6 @@
                                 </div>
                                 <span class="tower-command-badge">Primary Relay</span>
                             </div>
-                            <p class="tower-command-copy">The active transmission line. Live relay status, metadata, and current listener telemetry stay here at the top of the page.</p>
                         </div>
 
                         <div class="tower3-command-body">
@@ -123,8 +119,7 @@
                         <div class="chart-panel tower3-chart-panel">
                             <div class="panel-header tower3-chart-header">
                                 <div>
-                                    <h2>Listener Chronicle</h2>
-                                    <p class="tower3-chart-copy">Archive-backed listener history for the dashboard feed. Live relay status remains the primary source of truth above.</p>
+                                    <h2>Metrics of the Signal</h2>
                                 </div>
                                 <div class="chart-controls">
                                     <button class="range-btn" data-range="2h">2 Hours</button>
@@ -138,115 +133,116 @@
                                 <canvas id="listeners-chart"></canvas>
                             </div>
                             <div class="chart-footer tower3-chart-footer">
+                                <p class="signal-honors" id="signal-honors">Hall of Peaks: --</p>
                                 <p class="chart-refresh-info">Live page refreshes every 60 seconds; archived series update when new data lands.</p>
                             </div>
                         </div>
                     </section>
                 </div>
-
-                <article class="memorial-plaque" id="memorial-plaque" data-memorial-state="dormant" aria-live="polite">
-                    <div class="memorial-plaque-frame">
-                        <div class="memorial-plaque-header">
-                            <span class="memorial-kicker">Retired Relay Honor Roll</span>
-                            <h3>The Silent Towers</h3>
-                            <p>Once part of the signal chain. Now remembered in the hall beneath the active relay.</p>
-                        </div>
-                        <div class="memorial-plaque-body">
-                            <div class="memorial-tower-entry">
-                                <span class="memorial-tower-name">Tower 1 - NX78</span>
-                                <span class="memorial-tower-years">2018 - 2026</span>
-                            </div>
-                            <div class="memorial-divider" aria-hidden="true"></div>
-                            <div class="memorial-tower-entry">
-                                <span class="memorial-tower-name">Tower 2 - LG87</span>
-                                <span class="memorial-tower-years">2018 - 2026</span>
-                            </div>
-                        </div>
-                        <div class="memorial-secret" id="memorial-secret" hidden>
-                            <span class="memorial-secret-label">Signal Reawakened</span>
-                            <span class="memorial-secret-copy">An old relay answered the call.</span>
-                        </div>
-                        <div class="memorial-embers" aria-hidden="true">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                </article>
             </section>
 
             <section class="schedule-timeline-section">
                 <div class="section-header">
                     <h2>Weekly Broadcast Lineup</h2>
                 </div>
-                <div class="schedule-timeline" id="schedule-timeline">
-                    <article class="schedule-timeline-item" data-day="1" data-hour="18" data-minute="0">
-                        <div class="timeline-time">
-                            <span class="timeline-day">Mon</span>
-                            <span class="timeline-est">6:00 PM EST</span>
+                <div class="schedule-memorial-layout">
+                    <div class="schedule-timeline" id="schedule-timeline">
+                        <article class="schedule-timeline-item" data-day="1" data-hour="18" data-minute="0">
+                            <div class="timeline-time">
+                                <span class="timeline-day">Mon</span>
+                                <span class="timeline-est">6:00 PM EST</span>
+                            </div>
+                            <div class="timeline-show">
+                                <h3>Living in the Past</h3>
+                                <p>Hosted by Leto</p>
+                            </div>
+                            <a class="timeline-social" href="https://twitch.tv/danination" target="_blank" rel="noopener noreferrer">Twitch</a>
+                        </article>
+                        <article class="schedule-timeline-item" data-day="2" data-hour="15" data-minute="0">
+                            <div class="timeline-time">
+                                <span class="timeline-day">Tue</span>
+                                <span class="timeline-est">3:00 PM EST</span>
+                            </div>
+                            <div class="timeline-show">
+                                <h3>Groovin' Graveyard</h3>
+                                <p>Hosted by Crustman</p>
+                            </div>
+                            <span class="timeline-social timeline-social-muted">Twitch Soon</span>
+                        </article>
+                        <article class="schedule-timeline-item" data-day="3" data-hour="16" data-minute="0">
+                            <div class="timeline-time">
+                                <span class="timeline-day">Wed</span>
+                                <span class="timeline-est">4:00 PM EST</span>
+                            </div>
+                            <div class="timeline-show">
+                                <h3>Deeprun Classix</h3>
+                                <p>Hosted by Kando</p>
+                            </div>
+                            <span class="timeline-social timeline-social-muted">Twitch Soon</span>
+                        </article>
+                        <article class="schedule-timeline-item" data-day="4" data-hour="6" data-minute="30">
+                            <div class="timeline-time">
+                                <span class="timeline-day">Thu</span>
+                                <span class="timeline-est">6:30 AM EST</span>
+                            </div>
+                            <div class="timeline-show">
+                                <h3>Morning Signal</h3>
+                                <p>Hosted by Sabellwind</p>
+                            </div>
+                            <a class="timeline-social" href="https://twitch.tv/sabellwind" target="_blank" rel="noopener noreferrer">Twitch</a>
+                        </article>
+                        <article class="schedule-timeline-item" data-day="6" data-hour="15" data-minute="0">
+                            <div class="timeline-time">
+                                <span class="timeline-day">Sat</span>
+                                <span class="timeline-est">3:00 PM EST</span>
+                            </div>
+                            <div class="timeline-show">
+                                <h3>Tavern Talks</h3>
+                                <p>Hosted by Sheal</p>
+                            </div>
+                            <a class="timeline-social" href="https://twitch.tv/DJ_Sheal" target="_blank" rel="noopener noreferrer">Twitch</a>
+                        </article>
+                        <article class="schedule-timeline-item" data-day="0" data-hour="19" data-minute="0">
+                            <div class="timeline-time">
+                                <span class="timeline-day">Sun</span>
+                                <span class="timeline-est">7:00 PM EST</span>
+                            </div>
+                            <div class="timeline-show">
+                                <h3>The Whiski Lounge</h3>
+                                <p>Hosted by Whiski</p>
+                            </div>
+                            <a class="timeline-social" href="https://twitch.tv/DJWhiski" target="_blank" rel="noopener noreferrer">Twitch</a>
+                        </article>
+                    </div>
+
+                    <article class="memorial-plaque memorial-plaque-inline" id="memorial-plaque" data-memorial-state="dormant" aria-live="polite">
+                        <div class="memorial-plaque-frame">
+                            <div class="memorial-plaque-header">
+                                <h3>In Memoriam</h3>
+                            </div>
+                            <div class="memorial-plaque-body">
+                                <div class="memorial-tower-entry">
+                                    <span class="memorial-tower-name">Tower 1 - NX78</span>
+                                    <span class="memorial-tower-years">2018 - 2026</span>
+                                </div>
+                                <div class="memorial-divider" aria-hidden="true"></div>
+                                <div class="memorial-tower-entry">
+                                    <span class="memorial-tower-name">Tower 2 - LG87</span>
+                                    <span class="memorial-tower-years">2018 - 2026</span>
+                                </div>
+                            </div>
+                            <div class="memorial-secret" id="memorial-secret" hidden>
+                                <span class="memorial-secret-label">Signal Reawakened</span>
+                                <span class="memorial-secret-copy">Legacy relay signal detected.</span>
+                            </div>
+                            <div class="memorial-embers" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </div>
-                        <div class="timeline-show">
-                            <h3>Living in the Past</h3>
-                            <p>Hosted by Leto</p>
-                        </div>
-                        <a class="timeline-social" href="https://twitch.tv/danination" target="_blank" rel="noopener noreferrer">Twitch</a>
-                    </article>
-                    <article class="schedule-timeline-item" data-day="2" data-hour="15" data-minute="0">
-                        <div class="timeline-time">
-                            <span class="timeline-day">Tue</span>
-                            <span class="timeline-est">3:00 PM EST</span>
-                        </div>
-                        <div class="timeline-show">
-                            <h3>Groovin' Graveyard</h3>
-                            <p>Hosted by Crustman</p>
-                        </div>
-                        <span class="timeline-social timeline-social-muted">Twitch Soon</span>
-                    </article>
-                    <article class="schedule-timeline-item" data-day="3" data-hour="16" data-minute="0">
-                        <div class="timeline-time">
-                            <span class="timeline-day">Wed</span>
-                            <span class="timeline-est">4:00 PM EST</span>
-                        </div>
-                        <div class="timeline-show">
-                            <h3>Deeprun Classix</h3>
-                            <p>Hosted by Kando</p>
-                        </div>
-                        <span class="timeline-social timeline-social-muted">Twitch Soon</span>
-                    </article>
-                    <article class="schedule-timeline-item" data-day="4" data-hour="6" data-minute="30">
-                        <div class="timeline-time">
-                            <span class="timeline-day">Thu</span>
-                            <span class="timeline-est">6:30 AM EST</span>
-                        </div>
-                        <div class="timeline-show">
-                            <h3>Morning Signal</h3>
-                            <p>Hosted by Sabellwind</p>
-                        </div>
-                        <a class="timeline-social" href="https://twitch.tv/sabellwind" target="_blank" rel="noopener noreferrer">Twitch</a>
-                    </article>
-                    <article class="schedule-timeline-item" data-day="6" data-hour="15" data-minute="0">
-                        <div class="timeline-time">
-                            <span class="timeline-day">Sat</span>
-                            <span class="timeline-est">3:00 PM EST</span>
-                        </div>
-                        <div class="timeline-show">
-                            <h3>Tavern Talks</h3>
-                            <p>Hosted by Sheal</p>
-                        </div>
-                        <a class="timeline-social" href="https://twitch.tv/DJ_Sheal" target="_blank" rel="noopener noreferrer">Twitch</a>
-                    </article>
-                    <article class="schedule-timeline-item" data-day="0" data-hour="14" data-minute="0">
-                        <div class="timeline-time">
-                            <span class="timeline-day">Sun</span>
-                            <span class="timeline-est">2:00 PM EST</span>
-                        </div>
-                        <div class="timeline-show">
-                            <h3>The Whiski Lounge</h3>
-                            <p>Hosted by Whiski</p>
-                        </div>
-                        <a class="timeline-social" href="https://twitch.tv/DJWhiski" target="_blank" rel="noopener noreferrer">Twitch</a>
                     </article>
                 </div>
             </section>

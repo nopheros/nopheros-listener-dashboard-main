@@ -1,6 +1,6 @@
 /**
  * Nopheros Listener Dashboard - Styles
- * Dark/Light theme with ELBC green & gold accents
+ * Dark theme with ELBC green & brass accents
  */
 
 /* ========== CSS VARIABLES - SHARED ========== */
@@ -63,38 +63,6 @@
     --memorial-ash: #261813;
 
     color-scheme: dark;
-}
-
-/* ========== LIGHT MODE ========== */
-:root[data-theme="light"] {
-    /* Colors */
-    --bg-primary: #f5f5f5;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #e9e9e9;
-    --bg-card: #ffffff;
-
-    --border-color: #ddd;
-    --border-light: #ccc;
-
-    --text-primary: #1a1a1a;
-    --text-secondary: #4a4a4a;
-    --text-muted: #888;
-
-    --accent-primary: #27ae60;
-    --accent-secondary: #2ecc71;
-    --accent-blue: #3498db;
-    --accent-purple: #9b59b6;
-    --accent-gold: #f39c12;
-    --accent-orange: #e67e22;
-    --accent-red: #e74c3c;
-    --tower3-glow: #2f9f62;
-    --tower3-surface: #eef6f0;
-    --memorial-brass: #8e6731;
-    --memorial-oak: #7a5530;
-    --memorial-ember: #d14d2d;
-    --memorial-ash: #f4e7de;
-
-    color-scheme: light;
 }
 
 /* ========== RESET & BASE ========== */
@@ -1664,31 +1632,6 @@ img {
     }
 }
 
-/* ========== THEME TOGGLE ========== */
-.theme-toggle-btn {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-round);
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-primary);
-}
-
-.theme-toggle-btn:hover {
-    background: var(--bg-secondary);
-    border-color: var(--accent-gold);
-    transform: scale(1.05);
-}
-
-.theme-icon {
-    font-size: 18px;
-    line-height: 1;
-}
-
 /* ========== EVENTS SECTION ========== */
 .events-section {
     margin-bottom: var(--spacing-xl);
@@ -1878,12 +1821,6 @@ img {
     text-transform: uppercase;
 }
 
-.tower-command-copy {
-    margin: 0.9rem 0 0;
-    color: #aeb9b2;
-    max-width: 60ch;
-}
-
 .tower3-command-body {
     display: grid;
     gap: 1rem;
@@ -1975,14 +1912,15 @@ img {
     align-items: flex-start;
 }
 
-.tower3-chart-copy {
-    margin: 0.45rem 0 0;
-    color: #bba98b;
-    max-width: 34ch;
-}
-
 .tower3-chart-footer {
     padding-top: 0.6rem;
+}
+
+.signal-honors {
+    margin: 0 0 0.5rem;
+    color: #e8c98a;
+    font-size: 0.86rem;
+    font-weight: 600;
 }
 
 .tower-hero-card .tower-card-header h3 {
@@ -2006,6 +1944,10 @@ img {
     position: relative;
 }
 
+.memorial-plaque-inline {
+    align-self: start;
+}
+
 .memorial-plaque-frame {
     position: relative;
     overflow: hidden;
@@ -2016,31 +1958,23 @@ img {
     border-color: rgba(181, 136, 66, 0.32);
 }
 
+.memorial-plaque-inline .memorial-plaque-frame {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.1rem;
+}
+
 .memorial-plaque-header {
     position: relative;
     z-index: 1;
     margin-bottom: 1.15rem;
 }
 
-.memorial-kicker {
-    display: inline-flex;
-    margin-bottom: 0.5rem;
-    color: #e8c98a;
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
 .memorial-plaque-header h3 {
-    font-size: 1.55rem;
+    font-size: 1.45rem;
     color: #f7e1ae;
-}
-
-.memorial-plaque-header p {
-    margin: 0.45rem 0 0;
-    color: #d3c1a0;
-    max-width: 54ch;
 }
 
 .memorial-plaque-body {
@@ -2170,12 +2104,12 @@ img {
 
 .radio-control-btn {
     appearance: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(120, 136, 158, 0.35);
     border-radius: 14px;
     min-height: 46px;
     padding: 0.65rem 0.85rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
-    color: var(--text-primary);
+    background: linear-gradient(180deg, rgba(20, 24, 33, 0.95), rgba(14, 18, 26, 0.98));
+    color: #d7dfeb;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -2188,7 +2122,7 @@ img {
 
 .radio-control-btn:hover {
     transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(160, 179, 206, 0.55);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
@@ -2198,33 +2132,22 @@ img {
 }
 
 .radio-control-btn.is-active {
-    border-color: rgba(46, 204, 113, 0.72);
-    box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.35);
+    border-color: rgba(73, 209, 138, 0.78);
+    box-shadow: 0 0 0 1px rgba(73, 209, 138, 0.35), 0 0 20px rgba(73, 209, 138, 0.2);
 }
 
 .radio-control-primary {
-    background: linear-gradient(130deg, #14cf83, #0ba56d);
-    color: #06180f;
-}
-
-.tower-media-controls-cursed .radio-control-primary {
-    background: linear-gradient(135deg, #b46ad8, #8f4bb4);
-    color: #fff;
+    background: linear-gradient(135deg, rgba(73, 209, 138, 0.28), rgba(22, 87, 57, 0.95));
+    color: #e9fff2;
 }
 
 .radio-control-live {
-    background: linear-gradient(130deg, #2c3041, #1f2331);
-    color: #f2d8ff;
+    background: linear-gradient(180deg, rgba(20, 24, 33, 0.95), rgba(14, 18, 26, 0.98));
 }
 
 .radio-control-btn .control-icon {
     font-size: 0.95rem;
     line-height: 1;
-}
-
-.tower-card-cursed .tower-media-controls .radio-control-btn.is-active {
-    border-color: rgba(176, 106, 215, 0.78);
-    box-shadow: 0 0 0 1px rgba(176, 106, 215, 0.33);
 }
 
 /* ========================================
@@ -2234,19 +2157,26 @@ img {
     margin-bottom: 2rem;
 }
 
+.schedule-memorial-layout {
+    display: grid;
+    grid-template-columns: 1.2fr minmax(260px, 0.8fr);
+    gap: 1rem;
+    align-items: start;
+}
+
 .schedule-timeline {
     display: grid;
-    gap: 0.8rem;
+    gap: 0.55rem;
 }
 
 .schedule-timeline-item {
     display: grid;
-    grid-template-columns: 170px 1fr 110px;
+    grid-template-columns: 132px 1fr 92px;
     align-items: center;
-    gap: 1rem;
-    padding: 0.95rem 1rem;
+    gap: 0.7rem;
+    padding: 0.68rem 0.82rem;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 14px;
+    border-radius: 12px;
     background: linear-gradient(100deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
 }
 
@@ -2270,8 +2200,8 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 46px;
-    height: 28px;
+    width: 40px;
+    height: 24px;
     border-radius: 999px;
     background: #334;
     color: #f3f4ff;
@@ -2281,20 +2211,20 @@ img {
 }
 
 .timeline-est {
-    font-size: 0.87rem;
+    font-size: 0.8rem;
     color: #b7bfdd;
     font-weight: 600;
 }
 
 .timeline-show h3 {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.92rem;
 }
 
 .timeline-show p {
     margin: 0.2rem 0 0;
     color: #9ca3bd;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
 }
 
 .timeline-social {
@@ -2302,15 +2232,15 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 84px;
-    min-height: 36px;
-    padding: 0.35rem 0.75rem;
+    min-width: 72px;
+    min-height: 32px;
+    padding: 0.25rem 0.56rem;
     border: 1px solid rgba(95, 221, 141, 0.5);
     border-radius: 999px;
     background: rgba(12, 196, 104, 0.14);
     color: #75f0af;
     font-weight: 700;
-    font-size: 0.82rem;
+    font-size: 0.76rem;
 }
 
 .timeline-social:hover {
@@ -2330,6 +2260,14 @@ img {
 @media (max-width: 1200px) {
     .tower3-command-grid {
         grid-template-columns: 1fr;
+    }
+
+    .schedule-memorial-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .memorial-plaque-inline .memorial-plaque-frame {
+        aspect-ratio: auto;
     }
 }
 

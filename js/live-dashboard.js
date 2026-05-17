@@ -71,7 +71,8 @@ const LiveDashboard = {
 
             // Header
             lastUpdated: document.getElementById("last-updated"),
-            scheduleTimeline: document.getElementById("schedule-timeline")
+            scheduleTimeline: document.getElementById("schedule-timeline"),
+            signalHonors: document.getElementById("signal-honors")
         };
     },
 
@@ -505,32 +506,6 @@ const LiveDashboard = {
             });
         }
 
-        // Theme toggle
-        const themeToggle = document.getElementById("theme-toggle");
-        if (themeToggle) {
-            const savedTheme = localStorage.getItem("theme") || "dark";
-            document.documentElement.setAttribute("data-theme", savedTheme);
-            this.updateThemeIcon(savedTheme);
-
-            themeToggle.addEventListener("click", () => {
-                const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
-                const newTheme = currentTheme === "dark" ? "light" : "dark";
-                document.documentElement.setAttribute("data-theme", newTheme);
-                localStorage.setItem("theme", newTheme);
-                this.updateThemeIcon(newTheme);
-            });
-        }
-    },
-
-    /**
-     * Update theme toggle icon based on current theme
-     */
-    updateThemeIcon(theme) {
-        const themeIcon = document.querySelector(".theme-icon");
-        if (themeIcon) {
-            // Show sun when in dark mode (to switch to light), show moon when in light mode (to switch to dark)
-            themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
-        }
     },
 
     /**
@@ -592,7 +567,7 @@ const LiveDashboard = {
                 { day: 3, show: "Deeprun Classix", dj: "Kando", startHour: 16, startMin: 0, endHour: 21, endMin: 0 },
                 { day: 5, show: "Pilgrim of Signal", dj: "Sabellwind", startHour: 20, startMin: 0, endHour: 25, endMin: 0 },
                 { day: 6, show: "Tavern Talks", dj: "Sheal", startHour: 15, startMin: 0, endHour: 20, endMin: 0 },
-                { day: 0, show: "The Whiski Lounge", dj: "Whiski", startHour: 14, startMin: 0, endHour: 19, endMin: 0 }
+                { day: 0, show: "The Whiski Lounge", dj: "Whiski", startHour: 19, startMin: 0, endHour: 24, endMin: 0 }
             ];
 
             const now = new Date();
@@ -791,20 +766,8 @@ const LiveDashboard = {
             console.log("[Dashboard] loadChartData() called, range:", this.currentRange);
             const targetRange = this.currentRange;
             
-            // Map range to data file
-            let url;
-            switch (targetRange) {
-                case "2h":
-                case "24h":
-                    url = CONFIG.getArchiveUrl("data24h");
-                    break;
-                case "3d":
-                case "week":
-                    url = CONFIG.getArchiveUrl("dataAll");
-                    break;
-                default:
-                    url = CONFIG.getArchiveUrl("data24h");
-            }
+            // Always prefer all-time data so Tower 3 historical derivation is available.
+            const url = CONFIG.getArchiveUrl("dataAll");
 
             let payload;
             try {
@@ -814,23 +777,21 @@ const LiveDashboard = {
                 }
                 payload = await response.json();
             } catch (err) {
-                // If all-time or week fails, fall back to 24h
-                if (targetRange === "week" || targetRange === "3d") {
-                    console.warn(`[Dashboard] ${targetRange} data unavailable, falling back to 24h`, err?.message);
-                    this.setRangeButtonActive("24h");
-                    return this.loadChartData();
+                console.warn("[Dashboard] all-time dataset unavailable, falling back to 24h", err?.message);
+                const fallbackResponse = await fetch(CONFIG.getArchiveUrl("data24h"), { cache: "no-store" });
+                if (!fallbackResponse.ok) {
+                    throw new Error(`HTTP ${fallbackResponse.status}`);
                 }
-                throw err;
+                payload = await fallbackResponse.json();
             }
 
             const hasSeries = Array.isArray(payload.series) && payload.series.some(s => Array.isArray(s.points) && s.points.length);
-            if (!hasSeries && (targetRange === "week" || targetRange === "3d")) {
-                console.warn(`[Dashboard] ${targetRange} dataset empty, falling back to 24h`);
-                this.setRangeButtonActive("24h");
-                return this.loadChartData();
+            if (!hasSeries) {
+                console.warn("[Dashboard] chart dataset empty");
             }
 
             this.renderChart(payload);
+            this.updateSignalHonors();
 
         } catch (error) {
             console.error("[Dashboard] Failed to load chart data:", error);
@@ -917,6 +878,87 @@ const LiveDashboard = {
     },
 
     /**
+     * Extract a named series from payload and return a timestamp->value map
+     * @param {Object} payload
+     * @param {string} name
+     * @returns {Map<number, number>}
+     */
+    getSeriesMap(payload, name) {
+        const series = (payload?.series || []).find((entry) => (entry.name || "").toLowerCase() === name.toLowerCase());
+        return this.buildPointMap(series?.points || []);
+    },
+
+    /**
+     * Build a Tower 3 historical map.
+     * If explicit Tower 3 data exists, use it. Otherwise derive it as Total - (Tower1 + Tower2).
+     * @param {Object} payload
+     * @returns {Map<number, number>}
+     */
+    buildTower3HistoricalMap(payload) {
+        const tower3Map = this.getSeriesMap(payload, "tower 3");
+        if (tower3Map.size > 0) {
+            return tower3Map;
+        }
+
+        const totalMap = this.getSeriesMap(payload, "total");
+        const tower1Map = this.getSeriesMap(payload, "tower 1");
+        const tower2Map = this.getSeriesMap(payload, "tower 2");
+        const derivedMap = new Map();
+
+        for (const [timestamp, totalValue] of totalMap.entries()) {
+            const t1 = tower1Map.get(timestamp) || 0;
+            const t2 = tower2Map.get(timestamp) || 0;
+            derivedMap.set(timestamp, Math.max(0, totalValue - t1 - t2));
+        }
+
+        return derivedMap;
+    },
+
+    /**
+     * Refresh the Hall of Peaks line with combined Tower 1+2 and Tower 3 record values
+     */
+    async updateSignalHonors() {
+        if (!this.elements.signalHonors) return;
+
+        try {
+            const response = await fetch(CONFIG.getArchiveUrl("dataAll"), { cache: "no-store" });
+            if (!response.ok) {
+                this.setText(this.elements.signalHonors, "Hall of Peaks: unavailable");
+                return;
+            }
+
+            const payload = await response.json();
+            const tower1 = this.getSeriesMap(payload, "tower 1");
+            const tower2 = this.getSeriesMap(payload, "tower 2");
+            const tower3 = this.buildTower3HistoricalMap(payload);
+
+            let combinedPeak = { value: 0, ts: null };
+            const allCombinedTimestamps = new Set([...tower1.keys(), ...tower2.keys()]);
+            for (const ts of allCombinedTimestamps) {
+                const combined = (tower1.get(ts) || 0) + (tower2.get(ts) || 0);
+                if (combined > combinedPeak.value) {
+                    combinedPeak = { value: combined, ts };
+                }
+            }
+
+            let tower3Peak = { value: 0, ts: null };
+            for (const [ts, value] of tower3.entries()) {
+                if (value > tower3Peak.value) {
+                    tower3Peak = { value, ts };
+                }
+            }
+
+            const combinedDate = combinedPeak.ts ? new Date(combinedPeak.ts).toLocaleDateString() : "--";
+            const tower3Date = tower3Peak.ts ? new Date(tower3Peak.ts).toLocaleDateString() : "--";
+
+            const text = `Hall of Peaks: Tower 1+2 ${combinedPeak.value} (${combinedDate}) | Tower 3 ${tower3Peak.value} (${tower3Date})`;
+            this.setText(this.elements.signalHonors, text);
+        } catch (error) {
+            this.setText(this.elements.signalHonors, "Hall of Peaks: unavailable");
+        }
+    },
+
+    /**
      * Render the listeners chart
      * @param {Object} payload - Chart data payload
      */
@@ -925,23 +967,17 @@ const LiveDashboard = {
 
         const ctx = this.elements.chartCanvas.getContext("2d");
 
-        const series = payload.series || [];
-        const findSeries = (...names) => series.find((entry) => names.includes((entry.name || "").toLowerCase()));
-        const tower3Series = findSeries("tower 3");
-        const archiveFallbackSeries = findSeries("total");
-
-        const hasTower3Archive = tower3Series && Array.isArray(tower3Series.points) && tower3Series.points.length > 0;
-        const activeSeries = hasTower3Archive ? tower3Series : archiveFallbackSeries;
-        const activePoints = this.filterDataByRange(activeSeries?.points || []);
+        const tower3HistoryMap = this.buildTower3HistoricalMap(payload);
+        const activePoints = this.filterDataByRange(this.mapToDatasetPoints(tower3HistoryMap).map((point) => [point.x, point.y]));
 
         const datasets = [
             {
-                label: hasTower3Archive ? "Tower 3" : "Archive Feed",
+                label: "Tower 3",
                 data: activePoints.map(([x, y]) => ({ x, y })),
-                borderColor: hasTower3Archive ? CONFIG.TOWERS.tower3.color : CONFIG.CHART_COLORS.total,
-                backgroundColor: hasTower3Archive ? CONFIG.TOWERS.tower3.color : CONFIG.CHART_COLORS.total,
-                borderWidth: hasTower3Archive ? 3 : 2.5,
-                borderDash: hasTower3Archive ? [] : [8, 5],
+                borderColor: CONFIG.TOWERS.tower3.color,
+                backgroundColor: CONFIG.TOWERS.tower3.color,
+                borderWidth: 3,
+                borderDash: [],
                 pointRadius: 0,
                 pointHoverRadius: 4,
                 tension: 0.24,
